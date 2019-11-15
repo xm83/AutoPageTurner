@@ -4,9 +4,9 @@ Final project for CPSC459/559
 
 ## I. Dependencies
 
-- *numpy*
-- *matplotlib*
-- *opencv-python*
+Run the following command in the terminal to get the dependencies:
+
+    $ pip install -r requirements.txt
 
 ## II. Usage
 
