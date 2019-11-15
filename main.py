@@ -26,7 +26,7 @@ from matplotlib import pyplot as plt
 from collections import Counter
 from copy import deepcopy
 from PIL import Image
-from midiutil.MidiFile import MIDIFile
+# from midiutil.MidiFile import MIDIFile
 
 from best_match import match
 from box import BoundingBox
@@ -1197,20 +1197,7 @@ if __name__ == "__main__":
         # Add final bar in staff
         staffs[i].addBar(bar)
 
-    # -------------------------------------------------------------------------------
-    # Sequence MIDI
-    # -------------------------------------------------------------------------------
-
-    print("[INFO] Sequencing MIDI")
-    midi = MIDIFile(1)
-    track = 0
     time = 0
-    channel = 0
-    volume = 100
-
-    midi.addTrackName(track, time, "Track")
-    midi.addTempo(track, time, 110)
-
     for i in range(len(staffs)):
         print("==== Staff {} ====".format(i+1))
         bars = staffs[i].getBars()
@@ -1219,27 +1206,49 @@ if __name__ == "__main__":
             primitives = bars[j].getPrimitives()
             for k in range(len(primitives)):
                 duration = primitives[k].getDuration()
-                if (primitives[k].getPrimitive() == "note"):
-                    pitch = pitch_to_MIDI[primitives[k].getPitch()]
-                    midi.addNote(track, channel, pitch, time, duration, volume)
-                print(primitives[k].getPrimitive())
-                print(primitives[k].getPitch())
-                print(primitives[k].getDuration())
-                print("-----")
+                print("k and duration: ", k, duration)
+                primitive = primitives[k].getPrimitive()
+                print("k and primitive: ", k, primitive)
+                if (primitive == "note"):
+                    pitch = primitives[k].getPitch()
+                    print("k and pitch: ", k, pitch)
+                
                 time += duration
+                print("time: ", time)
+                print("-----")
+    # -------------------------------------------------------------------------------
+    # Sequence MIDI
+    # -------------------------------------------------------------------------------
+
+    # print("[INFO] Sequencing MIDI")
+    # midi = MIDIFile(1)
+    # track = 0
+    # time = 0
+    # channel = 0
+    # volume = 100
+
+    # midi.addTrackName(track, time, "Track")
+    # midi.addTempo(track, time, 110)
+
+    # for i in range(len(staffs)):
+    #     print("==== Staff {} ====".format(i+1))
+    #     bars = staffs[i].getBars()
+    #     for j in range(len(bars)):
+    #         print("--- Bar {} ---".format(j + 1))
+    #         primitives = bars[j].getPrimitives()
+    #         for k in range(len(primitives)):
+    #             duration = primitives[k].getDuration()
+    #             if (primitives[k].getPrimitive() == "note"):
+    #                 pitch = pitch_to_MIDI[primitives[k].getPitch()]
+    #                 midi.addNote(track, channel, pitch, time, duration, volume)
+    #             print(primitives[k].getPrimitive())
+    #             print(primitives[k].getPitch())
+    #             print(primitives[k].getDuration())
+    #             print("-----")
+    #             time += duration
 
     # ------- Write to disk -------
-    print("[INFO] Writing MIDI to disk")
-    binfile = open("output/output.mid", 'wb')
-    midi.writeFile(binfile)
-    binfile.close()
-
-
-
-
-
-
-
-
-
-
+    # print("[INFO] Writing MIDI to disk")
+    # binfile = open("output/output.mid", 'wb')
+    # midi.writeFile(binfile)
+    # binfile.close()
