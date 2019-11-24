@@ -1,20 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-
-"""
-6.819 Advances in Computer Vision
-Bill Freeman, Antonio Torralba
-
-Final Project - Optical Music Recognition Program
-cadenCV
-"""
-__author__ = "Afika Nyati"
-__email__ = "anyati@mit.edu"
-__status__ = "Prototype"
-
-# cv2.imshow("Input", no_staff_img)
-# cv2.waitKey(0)
-
 #-------------------------------------------------------------------------------
 # Import Statements
 #-------------------------------------------------------------------------------
@@ -79,6 +62,7 @@ note_paths = {
     ]
 }
 rest_paths = {
+    "sixteenth": ["resources/template/rest/sixteenth_rest.png"],
     "eighth": ["resources/template/rest/eighth_rest.jpg"],
     "quarter": ["resources/template/rest/quarter_rest.jpg"],
     "half": ["resources/template/rest/half_rest_1.jpg",
