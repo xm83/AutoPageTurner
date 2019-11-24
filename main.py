@@ -1198,12 +1198,16 @@ if __name__ == "__main__":
         staffs[i].addBar(bar)
 
     time = 0
+    # current duration -- eighth note: 0.5; quarter note: 1; half note: 2; whole note: 4
+    result = [];
     for i in range(len(staffs)):
         print("==== Staff {} ====".format(i+1))
         bars = staffs[i].getBars()
+
         for j in range(len(bars)):
             print("--- Bar {} ---".format(j + 1))
             primitives = bars[j].getPrimitives()
+
             for k in range(len(primitives)):
                 duration = primitives[k].getDuration()
                 print("k and duration: ", k, duration)
@@ -1216,6 +1220,16 @@ if __name__ == "__main__":
                 time += duration
                 print("time: ", time)
                 print("-----")
+
+                num_indices = duration * 2 # 0.5 => occupy 1 index, etc.
+                for i in range(num_indices):
+                    if (primitive == "note"):
+                        result.append(pitch)
+                    else:
+                        result.append("rest")
+    print(result)
+
+
     # -------------------------------------------------------------------------------
     # Sequence MIDI
     # -------------------------------------------------------------------------------
