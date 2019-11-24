@@ -77,6 +77,12 @@ flag_paths = ["resources/template/flag/eighth_flag_1.jpg",
                 "resources/template/flag/eighth_flag_5.jpg",
                 "resources/template/flag/eighth_flag_6.jpg"]
 
+flag_paths_16 = ["resources/template/flag/sixteenth_flag_1.png",
+                "resources/template/flag/sixteenth_flag_2.png",
+                "resources/template/flag/sixteenth_flag_3.png",
+                "resources/template/flag/sixteenth_flag_4.png",
+                "resources/template/flag/sixteenth_flag_5.png"]
+
 barline_paths = ["resources/template/barline/barline_1.jpg",
                  "resources/template/barline/barline_2.jpg",
                  "resources/template/barline/barline_3.jpg",
@@ -98,7 +104,8 @@ time_imgs = {
     "44": [cv2.imread(time, 0) for time in ["resources/template/time/44.jpg"]],
     "34": [cv2.imread(time, 0) for time in ["resources/template/time/34.jpg"]],
     "24": [cv2.imread(time, 0) for time in ["resources/template/time/24.jpg"]],
-    "68": [cv2.imread(time, 0) for time in ["resources/template/time/68.jpg"]]
+    "68": [cv2.imread(time, 0) for time in ["resources/template/time/68.jpg"]],
+    "32": [cv2.imread(time, 0) for time in ["resources/template/time/32.png"]],
 }
 
 # Accidentals
@@ -111,6 +118,7 @@ half_note_imgs = [cv2.imread(half, 0) for half in note_paths["half"]]
 whole_note_imgs = [cv2.imread(whole, 0) for whole in note_paths['whole']]
 
 # Rests
+sixteenth_rest_imgs = [cv2.imread(sixteenth, 0) for sixteenth in rest_paths["sixteenth"]]
 eighth_rest_imgs = [cv2.imread(eighth, 0) for eighth in rest_paths["eighth"]]
 quarter_rest_imgs = [cv2.imread(quarter, 0) for quarter in rest_paths["quarter"]]
 half_rest_imgs = [cv2.imread(half, 0) for half in rest_paths["half"]]
@@ -118,6 +126,9 @@ whole_rest_imgs = [cv2.imread(whole, 0) for whole in rest_paths['whole']]
 
 # Eighth Flag
 eighth_flag_imgs = [cv2.imread(flag, 0) for flag in flag_paths]
+
+# Sixteenth Flag
+sixteenth_flag_imgs = [cv2.imread(flag, 0) for flag in flag_paths_16]
 
 # Bar line
 bar_imgs = [cv2.imread(barline, 0) for barline in barline_paths]
@@ -143,12 +154,14 @@ half_note_lower, half_note_upper, half_note_thresh = 50, 150, 0.70
 whole_note_lower, whole_note_upper, whole_note_thresh = 50, 150, 0.7011
 
 # Rests
+sixteenth_rest_lower, sixteenth_rest_upper, sixteenth_rest_thresh = 50, 150, 0.75 
 eighth_rest_lower, eighth_rest_upper, eighth_rest_thresh = 50, 150, 0.75 # Before was 0.7
 quarter_rest_lower, quarter_rest_upper, quarter_rest_thresh = 50, 150, 0.70
 half_rest_lower, half_rest_upper, half_rest_thresh = 50, 150, 0.80
 whole_rest_lower, whole_rest_upper, whole_rest_thresh = 50, 150, 0.80
 
 # Eighth Flag
+sixteenth_flag_lower, sixteenth_flag_upper, sixteenth_flag_thresh = 50, 150, 0.8
 eighth_flag_lower, eighth_flag_upper, eighth_flag_thresh = 50, 150, 0.8
 
 # Bar line
@@ -906,6 +919,22 @@ if __name__ == "__main__":
             whole = Primitive("note", 4, box, pitch)
             staff_primitives.append(whole)
 
+        print("[INFO] Matching sixteenthh rest template...")
+        sixteenth_boxes = locate_templates(staff_img, sixteenth_rest_imgs, sixteenth_rest_lower, sixteenth_rest_upper, sixteenth_rest_thresh)
+        sixteenth_boxes = merge_boxes([j for i in sixteenth_boxes for j in i], 0.5)
+
+        print("[INFO] Displaying Matching Results on staff", i + 1)
+        for box in sixteenth_boxes:
+            box.draw(staff_img_color, red, box_thickness)
+            text = "1/16 rest"
+            font = cv2.FONT_HERSHEY_DUPLEX
+            textsize = cv2.getTextSize(text, font, fontScale=0.7, thickness=1)[0]
+            x = int(box.getCorner()[0] - (textsize[0] // 2))
+            y = int(box.getCorner()[1] + box.getHeight() + 20)
+            cv2.putText(staff_img_color, text, (x, y), font, fontScale=0.7, color=red, thickness=1)
+            sixteenth = Primitive("rest", 0.25, box)
+            staff_primitives.append(sixteenth)
+
         print("[INFO] Matching eighth rest template...")
         eighth_boxes = locate_templates(staff_img, eighth_rest_imgs, eighth_rest_lower, eighth_rest_upper, eighth_rest_thresh)
         eighth_boxes = merge_boxes([j for i in eighth_boxes for j in i], 0.5)
@@ -970,6 +999,23 @@ if __name__ == "__main__":
             whole = Primitive("rest", 4, box)
             staff_primitives.append(whole)
 
+        print("[INFO] Matching sixteenth flag template...")
+        flag_boxes = locate_templates(staff_img, sixteenth_flag_imgs, sixteenth_flag_lower, sixteenth_flag_upper, sixteenth_flag_thresh)
+        flag_boxes = merge_boxes([j for i in flag_boxes for j in i], 0.5)
+
+        print("[INFO] Displaying Matching Results on staff", i + 1)
+
+        for box in flag_boxes:
+            box.draw(staff_img_color, red, box_thickness)
+            text = "1/16 flag"
+            font = cv2.FONT_HERSHEY_DUPLEX
+            textsize = cv2.getTextSize(text, font, fontScale=0.7, thickness=1)[0]
+            x = int(box.getCorner()[0] - (textsize[0] // 2))
+            y = int(box.getCorner()[1] + box.getHeight() + 20)
+            cv2.putText(staff_img_color, text, (x, y), font, fontScale=0.7, color=red, thickness=1)
+            flag = Primitive("sixteenth_flag", 0, box)
+            staff_primitives.append(flag)
+
         print("[INFO] Matching eighth flag template...")
         flag_boxes = locate_templates(staff_img, eighth_flag_imgs, eighth_flag_lower, eighth_flag_upper, eighth_flag_thresh)
         flag_boxes = merge_boxes([j for i in flag_boxes for j in i], 0.5)
@@ -1012,6 +1058,21 @@ if __name__ == "__main__":
         staff_primitives.sort(key=lambda primitive: primitive.getBox().getCenter())
 
         print("[INFO] Staff primitives sorted in time")
+
+        sixteenth_flag_indices = []
+        for j in range(len(staff_primitives)):
+
+            if (staff_primitives[j].getPrimitive() == "sixteenth_flag"):
+                # Find all sixteenh flags
+                sixteenth_flag_indices.append(j)
+
+            if (staff_primitives[j].getPrimitive() == "note"):
+                print(staff_primitives[j].getPitch(), end=", ")
+            else:
+                print(staff_primitives[j].getPrimitive(), end=", ")
+
+        print("\n")
+
         eighth_flag_indices = []
         for j in range(len(staff_primitives)):
 
@@ -1025,6 +1086,60 @@ if __name__ == "__main__":
                 print(staff_primitives[j].getPrimitive(), end=", ")
 
         print("\n")
+
+        # ------- Correct for sixteenth notes -------
+        print("[INFO] Correcting for misclassified sixteenth notes")
+        # Sort out sixteenth flags
+        # Assign to closest note
+        for j in sixteenth_flag_indices:
+
+            distances = []
+            distance = staff_primitives[j].getBox().distance(staff_primitives[j-1].getBox())
+            distances.append(distance)
+            if (j + 1 < len(staff_primitives)):
+                distance = staff_primitives[j].getBox().distance(staff_primitives[j+1].getBox())
+                distances.append(distance)
+
+            if (distances[1] and distances[0] > distances[1]):
+                staff_primitives[j+1].setDuration(0.25)
+            else:
+                staff_primitives[j-1].setDuration(0.25)
+
+            print("[INFO] Primitive {} was a sixteenth note misclassified".format(j+1))
+            del staff_primitives[j]
+
+        # Correct for beamed sixteenth notes
+        # If number of pixels in center row of two notes
+        # greater than 5 * line_width, then notes are
+        # beamed
+        for j in range(len(staff_primitives)):
+            if (j+1 < len(staff_primitives)
+                and staff_primitives[j].getPrimitive() == "note"
+                and staff_primitives[j+1].getPrimitive() == "note"
+                and (staff_primitives[j].getDuration() == 1 
+                    or staff_primitives[j].getDuration() == 0.5 
+                    or staff_primitives[j].getDuration() == 0.25)
+                and staff_primitives[j+1].getDuration() == 1):
+
+                # Notes of interest
+                note_1_center_x = staff_primitives[j].getBox().getCenter()[0]
+                note_2_center_x = staff_primitives[j+1].getBox().getCenter()[0]
+
+                # Regular number of black pixels in staff column
+                num_black_pixels = 5 * staffs[i].getLineWidth()
+
+                # Actual number of black pixels in mid column
+                center_column = (note_2_center_x - note_1_center_x) // 2
+                mid_col = staff_img[:, int(note_1_center_x + center_column)]
+                num_black_pixels_mid = len(np.where(mid_col == 0)[0])
+
+                if (num_black_pixels_mid > num_black_pixels):
+                    # Notes beamed
+                    # Make sixteenth note length
+                    staff_primitives[j].setDuration(0.25)
+                    staff_primitives[j+1].setDuration(0.25)
+                    print("[INFO] Primitive {} and {} were sixteenth notes misclassified".format(j+1, j+2))
+
 
         # ------- Correct for eighth notes -------
         print("[INFO] Correcting for misclassified eighth notes")
@@ -1182,7 +1297,7 @@ if __name__ == "__main__":
         staffs[i].addBar(bar)
 
     time = 0
-    # current duration -- eighth note: 0.5; quarter note: 1; half note: 2; whole note: 4
+    # current duration -- sixteenth note: 0.25; eighth note: 0.5; quarter note: 1; half note: 2; whole note: 4
     result = [];
     for i in range(len(staffs)):
         print("==== Staff {} ====".format(i+1))
@@ -1212,41 +1327,3 @@ if __name__ == "__main__":
                     else:
                         result.append("rest")
     print(result)
-
-
-    # -------------------------------------------------------------------------------
-    # Sequence MIDI
-    # -------------------------------------------------------------------------------
-
-    # print("[INFO] Sequencing MIDI")
-    # midi = MIDIFile(1)
-    # track = 0
-    # time = 0
-    # channel = 0
-    # volume = 100
-
-    # midi.addTrackName(track, time, "Track")
-    # midi.addTempo(track, time, 110)
-
-    # for i in range(len(staffs)):
-    #     print("==== Staff {} ====".format(i+1))
-    #     bars = staffs[i].getBars()
-    #     for j in range(len(bars)):
-    #         print("--- Bar {} ---".format(j + 1))
-    #         primitives = bars[j].getPrimitives()
-    #         for k in range(len(primitives)):
-    #             duration = primitives[k].getDuration()
-    #             if (primitives[k].getPrimitive() == "note"):
-    #                 pitch = pitch_to_MIDI[primitives[k].getPitch()]
-    #                 midi.addNote(track, channel, pitch, time, duration, volume)
-    #             print(primitives[k].getPrimitive())
-    #             print(primitives[k].getPitch())
-    #             print(primitives[k].getDuration())
-    #             print("-----")
-    #             time += duration
-
-    # ------- Write to disk -------
-    # print("[INFO] Writing MIDI to disk")
-    # binfile = open("output/output.mid", 'wb')
-    # midi.writeFile(binfile)
-    # binfile.close()
