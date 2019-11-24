@@ -704,6 +704,7 @@ if __name__ == "__main__":
 
     # ============ Show Detected Staffs ============
     staffs = []
+    print("all_staffline_vertical_vertices: ", all_staffline_vertical_indices)
     half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
 
     for i in range(len(all_staffline_vertical_indices)):
@@ -1091,8 +1092,11 @@ if __name__ == "__main__":
         print("[INFO] Correcting for misclassified sixteenth notes")
         # Sort out sixteenth flags
         # Assign to closest note
+        ctr = 0
         for j in sixteenth_flag_indices:
 
+            # reflect change of index due to deletion of element from staff_primitives
+            j = j - ctr
             distances = []
             distance = staff_primitives[j].getBox().distance(staff_primitives[j-1].getBox())
             distances.append(distance)
@@ -1107,45 +1111,50 @@ if __name__ == "__main__":
 
             print("[INFO] Primitive {} was a sixteenth note misclassified".format(j+1))
             del staff_primitives[j]
+            ctr = ctr + 1
 
         # Correct for beamed sixteenth notes
         # If number of pixels in center row of two notes
         # greater than 5 * line_width, then notes are
         # beamed
-        for j in range(len(staff_primitives)):
-            if (j+1 < len(staff_primitives)
-                and staff_primitives[j].getPrimitive() == "note"
-                and staff_primitives[j+1].getPrimitive() == "note"
-                and (staff_primitives[j].getDuration() == 1 
-                    or staff_primitives[j].getDuration() == 0.5 
-                    or staff_primitives[j].getDuration() == 0.25)
-                and staff_primitives[j+1].getDuration() == 1):
+        # for j in range(len(staff_primitives)):
+        #     if (j+1 < len(staff_primitives)
+        #         and staff_primitives[j].getPrimitive() == "note"
+        #         and staff_primitives[j+1].getPrimitive() == "note"
+        #         and (staff_primitives[j].getDuration() == 1 
+        #             or staff_primitives[j].getDuration() == 0.5 
+        #             or staff_primitives[j].getDuration() == 0.25)
+        #         and staff_primitives[j+1].getDuration() == 1):
 
-                # Notes of interest
-                note_1_center_x = staff_primitives[j].getBox().getCenter()[0]
-                note_2_center_x = staff_primitives[j+1].getBox().getCenter()[0]
+        #         # Notes of interest
+        #         note_1_center_x = staff_primitives[j].getBox().getCenter()[0]
+        #         note_2_center_x = staff_primitives[j+1].getBox().getCenter()[0]
 
-                # Regular number of black pixels in staff column
-                num_black_pixels = 5 * staffs[i].getLineWidth()
+        #         # Regular number of black pixels in staff column
+        #         num_black_pixels = 5 * staffs[i].getLineWidth()
 
-                # Actual number of black pixels in mid column
-                center_column = (note_2_center_x - note_1_center_x) // 2
-                mid_col = staff_img[:, int(note_1_center_x + center_column)]
-                num_black_pixels_mid = len(np.where(mid_col == 0)[0])
+        #         # Actual number of black pixels in mid column
+        #         center_column = (note_2_center_x - note_1_center_x) // 2
+        #         mid_col = staff_img[:, int(note_1_center_x + center_column)]
+        #         num_black_pixels_mid = len(np.where(mid_col == 0)[0])
 
-                if (num_black_pixels_mid > num_black_pixels):
-                    # Notes beamed
-                    # Make sixteenth note length
-                    staff_primitives[j].setDuration(0.25)
-                    staff_primitives[j+1].setDuration(0.25)
-                    print("[INFO] Primitive {} and {} were sixteenth notes misclassified".format(j+1, j+2))
+        #         if (num_black_pixels_mid > num_black_pixels):
+        #             # Notes beamed
+        #             # Make sixteenth note length
+        #             staff_primitives[j].setDuration(0.25)
+        #             staff_primitives[j+1].setDuration(0.25)
+        #             print("[INFO] Primitive {} and {} were sixteenth notes misclassified".format(j+1, j+2))
 
 
         # ------- Correct for eighth notes -------
         print("[INFO] Correcting for misclassified eighth notes")
         # Sort out eighth flags
         # Assign to closest note
+        print("eighth_flag_indices: ", eighth_flag_indices)
+        ctr = 0
         for j in eighth_flag_indices:
+            # reflect -1 of indice due to each deletion 
+            j = j - ctr
 
             distances = []
             distance = staff_primitives[j].getBox().distance(staff_primitives[j-1].getBox())
@@ -1161,6 +1170,7 @@ if __name__ == "__main__":
 
             print("[INFO] Primitive {} was a eighth note misclassified as a quarter note".format(j+1))
             del staff_primitives[j]
+            ctr = ctr + 1
 
         # Correct for beamed eighth notes
         # If number of pixels in center row of two notes
@@ -1197,6 +1207,7 @@ if __name__ == "__main__":
         num_sharps = 0
         num_flats = 0
         j = 0
+        print("len; staff_primitives: ", len(staff_primitives), staff_primitives)        
         while (staff_primitives[j].getDuration() == 0):
             accidental = staff_primitives[j].getPrimitive()
             if (accidental == "sharp"):
@@ -1298,7 +1309,7 @@ if __name__ == "__main__":
 
     time = 0
     # current duration -- sixteenth note: 0.25; eighth note: 0.5; quarter note: 1; half note: 2; whole note: 4
-    result = [];
+    result = []
     for i in range(len(staffs)):
         print("==== Staff {} ====".format(i+1))
         bars = staffs[i].getBars()
@@ -1320,7 +1331,7 @@ if __name__ == "__main__":
                 print("time: ", time)
                 print("-----")
 
-                num_indices = duration * 2 # 0.5 => occupy 1 index, etc.
+                num_indices = int(duration * 4) # 0.25 => occupy 1 index ; 0.5 => occupy 2 indices, etc.
                 for i in range(num_indices):
                     if (primitive == "note"):
                         result.append(pitch)
