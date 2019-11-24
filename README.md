@@ -10,6 +10,8 @@ Run the following command in the terminal to get the dependencies:
 
 ## II. Usage
 
+Requires Python 3.7.2. 
+
 Run the following command in the terminal to get recognition
 
     $ python main.py "image"
