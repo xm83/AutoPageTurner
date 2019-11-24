@@ -1,4 +1,7 @@
-from flask import Flask, Response,render_template
+from flask import Flask, Response,render_template, request, session, url_for
+from flask_dropzone import Dropzone
+from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
+import os
 import pyaudio
 
 app = Flask(__name__)
@@ -13,7 +16,20 @@ RECORD_SECONDS = 5
 
 audio1 = pyaudio.PyAudio()
 
+# Uploads settings
+app.config['UPLOADED_PHOTOS_DEST'] = os.getcwd() + '/uploads'
+app.config['SECRET_KEY'] = 'lolthisisasupersecretkeyhehehehe'
 
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos)
+patch_request_class(app)  # set maximum file size, default is 16MB
+
+dropzone = Dropzone(app)
+# Dropzone settings
+app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
+app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
+app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
+app.config['DROPZONE_REDIRECT_VIEW'] = 'results'
 
 def genHeader(sampleRate, bitsPerSample, channels):
     datasize = 2000*10**6
@@ -55,11 +71,45 @@ def audio():
 
     return Response(sound())
 
-@app.route('/')
-def index():
-    """home page."""
-    return render_template('index.html')
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    
+    # set session for image results
+    if "file_urls" not in session:
+        session['file_urls'] = []
+    # list to hold our uploaded image urls
+    file_urls = session['file_urls']
+    # handle image upload from Dropzone
+    if request.method == 'POST':
+        file_obj = request.files
+        for f in file_obj:
+            file = request.files.get(f)
+            
+            # save the file with to our photos folder
+            filename = photos.save(
+                file,
+                name=file.filename    
+            )
+            # append image urls
+            file_urls.append(photos.url(filename))
+            
+        session['file_urls'] = file_urls
+        return "uploading..."
+    # return dropzone template on GET request    
+    return render_template('index.html')
+@app.route('/results')
+def results():
+    
+    # redirect to home if no images to display
+    if "file_urls" not in session or session['file_urls'] == []:
+        return redirect(url_for('index'))
+        
+    # set the file_urls and remove the session variable
+    file_urls = session['file_urls']
+    session.pop('file_urls', None)
+    
+    return render_template('results.html', file_urls=file_urls)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)
