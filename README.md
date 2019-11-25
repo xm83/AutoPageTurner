@@ -12,12 +12,12 @@ Run the following command in the terminal to get the dependencies:
 
 Requires Python 3.7.2. 
 
-Run the following command in the terminal to get recognition
+Run the following command in the terminal to launch the web app
 
-    $ python main.py "image"
+    $ export FLASK_APP=app.py
+    $ flask run
 
-where *image* is a placeholder for the sheet music bitmap file. (Accepts *.jpg* and *.png*) e.g. resources/samples/mary.jpg
-
+Then you can load sheet music images!
 
 Currently, we are restricting the scope: the system is only capable of recognizing and representing high resolution sheet music written for a single monophonic musical instrument using note or rest values equal to or greater than sixteenth notes, expressed on a staff consisting of either the treble or the bass clef and one of the common time signatures, i.e. common time, 2/4, 4/4, 3/4, 3/2 or 6/8. Consequently, my recognition system cannot perform *key* or *time signature alterations*, or *detect tempo demarcations*, *harmony*, *multi-instrumentation*, *braced-joined staffs*, *tuplets*, *repeats*, *slurs* and *ties*, *articulation* and *dynamic marks*, or *dotted rhythms*.
 
