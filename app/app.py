@@ -100,9 +100,13 @@ def index():
             file.seek(0)
             b_str = file.read()
             if len(b_str) > 0:
+                # read in the uploaded image
                 img = cv2.imdecode(numpy.fromstring(b_str, numpy.uint8), 0)
+                # parse the image to get the pitch duration array
                 result = parse(img)
-                print("result from parse(img): ", result)
+                # print("result from parse(img): ", result)
+            else:
+                print("ERROR: reading an empty byte string from img file with name: ", file.filename)
 
             # append image urls
             file_urls.append(photos.url(filename))
