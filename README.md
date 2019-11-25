@@ -7,6 +7,22 @@ Final project for CPSC459/559
 Run the following command in the terminal to get the dependencies:
 
     $ pip install -r requirements.txt
+    
+Note, to install PyAudio on MacOS with Python 3.7.2, do the following:
+
+    $ pip install portaudio
+
+    # create $HOME/.pydistutils.cfg using the include and lib directories of your portaudio install
+    $ vim $HOME/.pydistutils.cfg:	
+
+In the config file, write the following:
+[build_ext]
+include_dirs=/usr/local/Cellar/portaudio/19.6.0/include/ (Note: this will vary according to your own system)
+library_dirs=/usr/local/Cellar/portaudio/19.6.0/lib/ (Note: ditto)
+
+    $ pip install --global-option='build_ext' --global-option='-I/usr/local/include' --global-option='-L/usr/local/lib' pyaudio
+
+Then you'll be all set to use PyAudio!
 
 ## II. Usage
 
