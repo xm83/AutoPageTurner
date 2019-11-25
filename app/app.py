@@ -100,7 +100,7 @@ def index():
             file.seek(0)
             b_str = file.read()
             if len(b_str) > 0:
-                # read in the uploaded image
+                # read in the uploaded image as a grayscale image (setting to 0)
                 img = cv2.imdecode(numpy.fromstring(b_str, numpy.uint8), 0)
                 # parse the image to get the pitch duration array
                 result = parse(img)
