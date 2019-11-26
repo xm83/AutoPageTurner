@@ -18,7 +18,9 @@ Note, to install PyAudio on MacOS with Python 3.7.2, do the following:
 In the config file, write the following 3 lines:
 
 [build_ext]
+
 include_dirs=/usr/local/Cellar/portaudio/19.6.0/include/ (Note: this will vary according to your own system)
+
 library_dirs=/usr/local/Cellar/portaudio/19.6.0/lib/ (Note: ditto)
 
     $ pip install --global-option='build_ext' --global-option='-I/usr/local/include' --global-option='-L/usr/local/lib' pyaudio
