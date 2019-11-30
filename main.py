@@ -16,6 +16,7 @@ from box import BoundingBox
 from staff import Staff
 from primitive import Primitive
 from bar import Bar
+from lastRow import lastRow
 
 #-------------------------------------------------------------------------------
 # Template Paths
@@ -649,6 +650,62 @@ if __name__ == "__main__":
     # ============ Read Image ============
     img_file = sys.argv[1:][0]
     img = cv2.imread(img_file, 0)
+
+    # ============ Take Last Row ============
+    img = lastRow(img)
+    # gray_im = img
+    # plt.imshow(gray_im, cmap="Greys_r")
+    # plt.show()
+
+    # rowStepSize = 40
+    # bandHeight = 200
+    # lasti = 0
+
+    # subsums = []
+
+    # # shape of image is height by width
+    # height = gray_im.shape[0]
+    
+    # for i in range(height, int(height/2), -rowStepSize): #chang middle term back to 0
+    #     if (i-rowStepSize >= 0):
+    #         subimg = gray_im[i-bandHeight:i, :]
+    #         subsum = np.sum(gray_im[i-bandHeight:i, :])
+    #         subsums.append(subsum)
+
+    # lasti = 0
+    # for i in range(1, len(subsums)):
+    #     if subsums[i] > subsums[i-1] and subsums[i] < subsums[i+1]:
+    #         lasti = i
+    #         break
+    
+    # print(lasti, bandHeight)
+    
+    # if lasti > 0:
+    #     plt.imshow(gray_im[height - rowStepSize * lasti - bandHeight: height - rowStepSize * (lasti-1), :], cmap="Greys_r")
+    #     plt.show()
+
+
+
+
+
+
+    # if lasti >= 100:
+    #     plt.imshow(gray_im[lasti - 200: lasti - bandHeight, :], cmap="Greys_r")
+    #     plt.show()
+    # elif lasti == 0:
+    #     bandHeight = 10
+    #     for i in range(gray_im.shape[1], 0, -rowStepSize):
+    #         if i-rowStepSize >= 0:
+    #             subimg = gray_im[i-bandHeight:i, :]
+    #             subsum = np.sum(gray_im[i-bandHeight:i, :])
+
+    #             maxValue = 255*bandHeight*gray_im.shape[0]
+
+    #             if (subsum >= maxValue*.7):
+    #                 lasti = i
+    
+
+    '''       
 
     # ============ Noise Removal ============
 
@@ -1338,3 +1395,4 @@ if __name__ == "__main__":
                     else:
                         result.append("rest")
     print(result)
+    '''

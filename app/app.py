@@ -1,4 +1,4 @@
-from flask import Flask, Response,render_template, request, session, url_for
+from flask import Flask, Response,render_template, request, session, url_for, redirect
 from flask_dropzone import Dropzone
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 import os
@@ -6,8 +6,11 @@ import pyaudio
 import numpy
 import cv2
 import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
 
 from parse_img import parse
+from lastRow import lastRow
 
 app = Flask(__name__)
 # set the backend to a non-interactive one so that your server does not try to create (and then destroy) GUI windows
@@ -91,7 +94,7 @@ def index():
         file_obj = request.files
         for f in file_obj:
             file = request.files.get(f)
-            
+
             # save the file with to our photos folder
             filename = photos.save(
                 file,
@@ -102,6 +105,10 @@ def index():
             if len(b_str) > 0:
                 # read in the uploaded image as a grayscale image (setting to 0)
                 img = cv2.imdecode(numpy.fromstring(b_str, numpy.uint8), 0)
+
+                # get last row of image
+                img = lastRow(img)
+                
                 # parse the image to get the pitch duration array
                 result = parse(img)
                 # print("result from parse(img): ", result)

@@ -603,15 +603,28 @@ def open_file(path):
     img = Image.open(path)
     img.show()
 
+def is_not_empty(structure1):
+    if structure1 and len(list(structure1)) > 0:
+        return True
+    else:
+        return False
 
 def locate_templates(img, templates, start, stop, threshold):
     locations, scale = match(img, templates, start, stop, threshold)
     img_locations = []
+
     for i in range(len(templates)):
         w, h = templates[i].shape[::-1]
         w *= scale
         h *= scale
-        img_locations.append([BoundingBox(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
+
+        print("DEBUGGING HERE")
+        # a, b = zip(*locations)
+        if is_not_empty(zip(*locations)):
+            # if is_not_empty(*locations[i]):
+            img_locations.append([BoundingBox(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
+            
+        
     return img_locations
 
 
@@ -654,6 +667,44 @@ def parse(img):
     # cv2.waitKey(0)
     # load a colored img into grayscale
     # img = cv2.imread(img_file, 0)
+    rowStepSize = 20
+    bandHeight = 50
+    lasti = 0
+
+    subsums = []
+    gray_im = img
+
+    for i in range(gray_im.shape[1], 0, -rowStepSize):
+        if (i-rowStepSize >= 0):
+            subimg = gray_im[i-bandHeight:i, :]
+
+            subsum = np.sum(gray_im[i-bandHeight:i, :])
+            subsums.append(subsum)
+            
+            # print("subsum")
+            # print(subsum)
+
+            # print("max value*0.7")
+            maxValue = 255*bandHeight*gray_im.shape[0]
+            print(maxValue*.7)
+
+            if (subsum >= maxValue*.7):
+                lasti = i
+
+    if lasti >= 100:
+        plt.imshow(gray_im[lasti - 200: lasti - bandHeight, :], cmap="Greys_r")
+        plt.show()
+    elif lasti == 0:
+        bandHeight = 10
+        for i in range(gray_im.shape[1], 0, -rowStepSize):
+            if i-rowStepSize >= 0:
+                subimg = gray_im[i-bandHeight:i, :]
+                subsum = np.sum(gray_im[i-bandHeight:i, :])
+
+                maxValue = 255*bandHeight*gray_im.shape[0]
+
+                if (subsum >= maxValue*.7):
+                    lasti = i
 
     # ============ Noise Removal ============
 
@@ -710,8 +761,13 @@ def parse(img):
     # ============ Show Detected Staffs ============
     staffs = []
     print("all_staffline_vertical_vertices: ", all_staffline_vertical_indices)
-    half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
 
+    print("line width - 1", line_width -1 )
+    print("shape", len(all_staffline_vertical_indices))
+    if len(all_staffline_vertical_indices) > 1:
+        half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
+    else:
+        half_dist_between_staffs = 0
     for i in range(len(all_staffline_vertical_indices)):
         # Create Bounding Box
         x = all_staffline_horizontal_indices[i][0]
@@ -768,7 +824,7 @@ def parse(img):
 
     staff_imgs_color = []
 
-    for i in range(len(staffs)):
+    for i in range(len(staffs)): # only use the last detected staff
         red = (0, 0, 255)
         box_thickness = 2
         staff_img = staffs[i].getImage()
@@ -834,6 +890,7 @@ def parse(img):
 
     # always assert that notes in a bar equal duration dictated by time signature
     for i in range(len(staffs)):
+    # for i in range(1):
         print("[INFO] Finding Primitives on Staff ", i+1)
         staff_primitives = []
         staff_img = staffs[i].getImage()
@@ -1212,7 +1269,8 @@ def parse(img):
         num_sharps = 0
         num_flats = 0
         j = 0
-        print("len; staff_primitives: ", len(staff_primitives), staff_primitives)        
+        print("len; staff_primitives: ", len(staff_primitives), staff_primitives)
+        # if (len(staff_primitives) > 0) :        
         while (staff_primitives[j].getDuration() == 0):
             accidental = staff_primitives[j].getPrimitive()
             if (accidental == "sharp"):
