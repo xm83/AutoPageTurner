@@ -618,10 +618,7 @@ def locate_templates(img, templates, start, stop, threshold):
         w *= scale
         h *= scale
 
-        print("DEBUGGING HERE")
-        # a, b = zip(*locations)
         if is_not_empty(zip(*locations)):
-            # if is_not_empty(*locations[i]):
             img_locations.append([BoundingBox(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
             
         
@@ -667,44 +664,6 @@ def parse(img):
     # cv2.waitKey(0)
     # load a colored img into grayscale
     # img = cv2.imread(img_file, 0)
-    rowStepSize = 20
-    bandHeight = 50
-    lasti = 0
-
-    subsums = []
-    gray_im = img
-
-    for i in range(gray_im.shape[1], 0, -rowStepSize):
-        if (i-rowStepSize >= 0):
-            subimg = gray_im[i-bandHeight:i, :]
-
-            subsum = np.sum(gray_im[i-bandHeight:i, :])
-            subsums.append(subsum)
-            
-            # print("subsum")
-            # print(subsum)
-
-            # print("max value*0.7")
-            maxValue = 255*bandHeight*gray_im.shape[0]
-            print(maxValue*.7)
-
-            if (subsum >= maxValue*.7):
-                lasti = i
-
-    if lasti >= 100:
-        plt.imshow(gray_im[lasti - 200: lasti - bandHeight, :], cmap="Greys_r")
-        plt.show()
-    elif lasti == 0:
-        bandHeight = 10
-        for i in range(gray_im.shape[1], 0, -rowStepSize):
-            if i-rowStepSize >= 0:
-                subimg = gray_im[i-bandHeight:i, :]
-                subsum = np.sum(gray_im[i-bandHeight:i, :])
-
-                maxValue = 255*bandHeight*gray_im.shape[0]
-
-                if (subsum >= maxValue*.7):
-                    lasti = i
 
     # ============ Noise Removal ============
 
