@@ -38,6 +38,6 @@ def lastRow(gray_im):
     	wantedFirstRow = height - rowStepSize * lasti - bandHeight
     	if wantedFirstRow >= 0:
             wantedImg = gray_im[height - rowStepSize * lasti - bandHeight: height - rowStepSize * (lasti-1), :]
-            plt.imshow(wantedImg, cmap="Greys_r")
-            plt.show()
+            cv2.imwrite("lastRow.png", wantedImg)
             return wantedImg
+    return rect
