@@ -7,6 +7,7 @@ import numpy
 import cv2
 import numpy as np
 import matplotlib
+import time
 
 from .parse_img import parse
 from .last_row import lastRow
@@ -134,18 +135,9 @@ def index():
 
 @app.route('/results')
 def results():
-    
     # redirect to home if no images to display
     # if "file_urls" not in session or session['file_urls'] == []:
     #     return redirect(url_for('index'))
-        
-    # # set the file_urls and remove the session variable
-    # file_urls = session['file_urls']
-    # session.pop('file_urls', None)
-
-    # # print(file_urls)
-    # # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
-    # print("received parsed results: ", music_results)
     
     # return render_template('results.html', file_urls=file_urls)
     return render_template('results.html')
@@ -153,10 +145,6 @@ def results():
 
 @app.route('/interact')
 def interact():
-    
-    # redirect to home if no images to display
-    # if "file_urls" not in session or session['file_urls'] == []:
-    #     return redirect(url_for('index'))
         
     # set the file_urls and remove the session variable
     file_urls = session['file_urls']
@@ -166,11 +154,17 @@ def interact():
     print("received img results: ", img_results)
     # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
     print("received parsed results: ", music_results)
-    
-    return render_template('interact.html', file_urls=img_results)
 
+    # return render_template('interact.html', file_urls=img_results)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)
+    # for i in range(len(img_results) - 1):
+    #     time.sleep(3) 
+    #     return render_template('interact.html', file_url=img_results[i])
+
+    return render_template('interact.html', file_url=img_results[0])
+
+# commenting this out to enforce the best practice of running the app through flask CLI
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)
 
 
