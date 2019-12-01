@@ -8,8 +8,8 @@ import cv2
 import numpy as np
 import matplotlib
 
-from parse_img import parse
-from last_row import lastRow
+from .parse_img import parse
+from .last_row import lastRow
 
 app = Flask(__name__)
 # set the backend to a non-interactive one so that your server does not try to create (and then destroy) GUI windows
