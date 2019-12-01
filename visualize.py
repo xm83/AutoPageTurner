@@ -566,8 +566,9 @@ def find_staffline_columns(img, all_staffline_vertical_indices, line_width, line
                 begin_list.append(j)
 
         # Find maximum column that has no black pixels in staff window
-        list.sort(begin_list, reverse=True)
-        begin = begin_list[0]
+        if begin_list:
+            list.sort(begin_list, reverse=True)
+            begin = begin_list[0]
 
         # Find staff beginning
         for j in range(num_cols // 2, num_cols):
@@ -579,8 +580,9 @@ def find_staffline_columns(img, all_staffline_vertical_indices, line_width, line
                 end_list.append(j)
 
         # Find maximum column that has no black pixels in staff window
-        list.sort(end_list)
-        end = end_list[0]
+        if end_list:
+            list.sort(end_list)
+            end = end_list[0]
 
         staff_extremes = (begin, end)
         all_staff_extremes.append(staff_extremes)
