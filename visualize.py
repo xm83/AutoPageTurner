@@ -16,7 +16,7 @@ from app.box import BoundingBox
 from app.staff import Staff
 from app.primitive import Primitive
 from app.bar import Bar
-from app.last_row import lastRow
+from last_row import lastRow
 
 #-------------------------------------------------------------------------------
 # Template Paths
@@ -25,69 +25,69 @@ from app.last_row import lastRow
 
 clef_paths = {
     "treble": [
-        "resources/template/clef/treble_1.jpg",
-        "resources/template/clef/treble_2.jpg"
+        "app/resources/template/clef/treble_1.jpg",
+        "app/resources/template/clef/treble_2.jpg"
     ],
     "bass": [
-        "resources/template/clef/bass_1.jpg"
+        "app/resources/template/clef/bass_1.jpg"
     ]
 }
 
 accidental_paths = {
     "sharp": [
-        "resources/template/sharp-line.png",
-        "resources/template/sharp-space.png"
+        "app/resources/template/sharp-line.png",
+        "app/resources/template/sharp-space.png"
     ],
     "flat": [
-        "resources/template/flat-line.png",
-        "resources/template/flat-space.png"
+        "app/resources/template/flat-line.png",
+        "app/resources/template/flat-space.png"
     ]
 }
 
 note_paths = {
     "quarter": [
-        "resources/template/note/quarter.png",
-        "resources/template/note/solid-note.png"
+        "app/resources/template/note/quarter.png",
+        "app/resources/template/note/solid-note.png"
     ],
     "half": [
-        "resources/template/note/half-space.png",
-        "resources/template/note/half-note-line.png",
-        "resources/template/note/half-line.png",
-        "resources/template/note/half-note-space.png"
+        "app/resources/template/note/half-space.png",
+        "app/resources/template/note/half-note-line.png",
+        "app/resources/template/note/half-line.png",
+        "app/resources/template/note/half-note-space.png"
     ],
     "whole": [
-        "resources/template/note/whole-space.png",
-        "resources/template/note/whole-note-line.png",
-        "resources/template/note/whole-line.png",
-        "resources/template/note/whole-note-space.png"
+        "app/resources/template/note/whole-space.png",
+        "app/resources/template/note/whole-note-line.png",
+        "app/resources/template/note/whole-line.png",
+        "app/resources/template/note/whole-note-space.png"
     ]
 }
 rest_paths = {
-    "sixteenth": ["resources/template/rest/sixteenth_rest.png"],
-    "eighth": ["resources/template/rest/eighth_rest.jpg"],
-    "quarter": ["resources/template/rest/quarter_rest.jpg"],
-    "half": ["resources/template/rest/half_rest_1.jpg",
-            "resources/template/rest/half_rest_2.jpg"],
-    "whole": ["resources/template/rest/whole_rest.jpg"]
+    "sixteenth": ["app/resources/template/rest/sixteenth_rest.png"],
+    "eighth": ["app/resources/template/rest/eighth_rest.jpg"],
+    "quarter": ["app/resources/template/rest/quarter_rest.jpg"],
+    "half": ["app/resources/template/rest/half_rest_1.jpg",
+            "app/resources/template/rest/half_rest_2.jpg"],
+    "whole": ["app/resources/template/rest/whole_rest.jpg"]
 }
 
-flag_paths = ["resources/template/flag/eighth_flag_1.jpg",
-                "resources/template/flag/eighth_flag_2.jpg",
-                "resources/template/flag/eighth_flag_3.jpg",
-                "resources/template/flag/eighth_flag_4.jpg",
-                "resources/template/flag/eighth_flag_5.jpg",
-                "resources/template/flag/eighth_flag_6.jpg"]
+flag_paths = ["app/resources/template/flag/eighth_flag_1.jpg",
+                "app/resources/template/flag/eighth_flag_2.jpg",
+                "app/resources/template/flag/eighth_flag_3.jpg",
+                "app/resources/template/flag/eighth_flag_4.jpg",
+                "app/resources/template/flag/eighth_flag_5.jpg",
+                "app/resources/template/flag/eighth_flag_6.jpg"]
 
-flag_paths_16 = ["resources/template/flag/sixteenth_flag_1.png",
-                "resources/template/flag/sixteenth_flag_2.png",
-                "resources/template/flag/sixteenth_flag_3.png",
-                "resources/template/flag/sixteenth_flag_4.png",
-                "resources/template/flag/sixteenth_flag_5.png"]
+flag_paths_16 = ["app/resources/template/flag/sixteenth_flag_1.png",
+                "app/resources/template/flag/sixteenth_flag_2.png",
+                "app/resources/template/flag/sixteenth_flag_3.png",
+                "app/resources/template/flag/sixteenth_flag_4.png",
+                "app/resources/template/flag/sixteenth_flag_5.png"]
 
-barline_paths = ["resources/template/barline/barline_1.jpg",
-                 "resources/template/barline/barline_2.jpg",
-                 "resources/template/barline/barline_3.jpg",
-                 "resources/template/barline/barline_4.jpg"]
+barline_paths = ["app/resources/template/barline/barline_1.jpg",
+                 "app/resources/template/barline/barline_2.jpg",
+                 "app/resources/template/barline/barline_3.jpg",
+                 "app/resources/template/barline/barline_4.jpg"]
 
 #-------------------------------------------------------------------------------
 # Template Images
@@ -101,12 +101,12 @@ clef_imgs = {
 
 # Time Signatures
 time_imgs = {
-    "common": [cv2.imread(time, 0) for time in ["resources/template/time/common.jpg"]],
-    "44": [cv2.imread(time, 0) for time in ["resources/template/time/44.jpg"]],
-    "34": [cv2.imread(time, 0) for time in ["resources/template/time/34.jpg"]],
-    "24": [cv2.imread(time, 0) for time in ["resources/template/time/24.jpg"]],
-    "68": [cv2.imread(time, 0) for time in ["resources/template/time/68.jpg"]],
-    "32": [cv2.imread(time, 0) for time in ["resources/template/time/32.png"]],
+    "common": [cv2.imread(time, 0) for time in ["app/resources/template/time/common.jpg"]],
+    "44": [cv2.imread(time, 0) for time in ["app/resources/template/time/44.jpg"]],
+    "34": [cv2.imread(time, 0) for time in ["app/resources/template/time/34.jpg"]],
+    "24": [cv2.imread(time, 0) for time in ["app/resources/template/time/24.jpg"]],
+    "68": [cv2.imread(time, 0) for time in ["app/resources/template/time/68.jpg"]],
+    "32": [cv2.imread(time, 0) for time in ["app/resources/template/time/32.png"]],
 }
 
 # Accidentals
@@ -166,7 +166,8 @@ sixteenth_flag_lower, sixteenth_flag_upper, sixteenth_flag_thresh = 50, 150, 0.8
 eighth_flag_lower, eighth_flag_upper, eighth_flag_thresh = 50, 150, 0.8
 
 # Bar line
-bar_lower, bar_upper, bar_thresh = 50, 150, 0.85
+# bar_lower, bar_upper, bar_thresh = 50, 150, 0.85
+bar_lower, bar_upper, bar_thresh = 50, 150, 0.65 # threshold is tuned for best results
 
 #-------------------------------------------------------------------------------
 # Mapping Functions
@@ -604,15 +605,25 @@ def open_file(path):
     img = Image.open(path)
     img.show()
 
+def is_not_empty(structure1):
+    if structure1 and len(list(structure1)) > 0:
+        return True
+    else:
+        return False
 
 def locate_templates(img, templates, start, stop, threshold):
     locations, scale = match(img, templates, start, stop, threshold)
     img_locations = []
+
     for i in range(len(templates)):
         w, h = templates[i].shape[::-1]
         w *= scale
         h *= scale
-        img_locations.append([BoundingBox(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
+
+        if is_not_empty(zip(*locations)):
+            img_locations.append([BoundingBox(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
+            
+        
     return img_locations
 
 
@@ -637,6 +648,7 @@ def merge_boxes(boxes, threshold):
     return filtered_boxes
 
 
+
 if __name__ == "__main__":
 
     #-------------------------------------------------------------------------------
@@ -657,6 +669,7 @@ if __name__ == "__main__":
     # ============ Noise Removal ============
 
     img = cv2.fastNlMeansDenoising(img, None, 10, 7, 21)
+
 
     # ============ Binarization ============
 
@@ -708,9 +721,11 @@ if __name__ == "__main__":
 
     # ============ Show Detected Staffs ============
     staffs = []
-    print("all_staffline_vertical_vertices: ", all_staffline_vertical_indices)
-    half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
 
+    if len(all_staffline_vertical_indices) > 1:
+        half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
+    else:
+        half_dist_between_staffs = 0
     for i in range(len(all_staffline_vertical_indices)):
         # Create Bounding Box
         x = all_staffline_horizontal_indices[i][0]
@@ -767,7 +782,7 @@ if __name__ == "__main__":
 
     staff_imgs_color = []
 
-    for i in range(len(staffs)):
+    for i in range(len(staffs)): # only use the last detected staff
         red = (0, 0, 255)
         box_thickness = 2
         staff_img = staffs[i].getImage()
@@ -783,6 +798,7 @@ if __name__ == "__main__":
             if (len(clef_boxes) == 1):
                 print("[INFO] Clef Found: ", clef)
                 staffs[i].setClef(clef)
+
 
                 # print("[INFO] Displaying Matching Results on staff", i + 1)
                 clef_boxes_img = staffs[i].getImage()
@@ -833,6 +849,7 @@ if __name__ == "__main__":
 
     # always assert that notes in a bar equal duration dictated by time signature
     for i in range(len(staffs)):
+    # for i in range(1):
         print("[INFO] Finding Primitives on Staff ", i+1)
         staff_primitives = []
         staff_img = staffs[i].getImage()
@@ -1040,7 +1057,9 @@ if __name__ == "__main__":
 
         print("[INFO] Matching bar line template...")
         bar_boxes = locate_templates(staff_img, bar_imgs, bar_lower, bar_upper, bar_thresh)
+        print("bar boxes after locate_templates")
         bar_boxes = merge_boxes([j for i in bar_boxes for j in i], 0.5)
+        print("bar boxes", bar_boxes)
 
         print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in bar_boxes:
@@ -1059,6 +1078,7 @@ if __name__ == "__main__":
         # open_file("output/staff_{}_primitives.jpg".format(i+1))
 
         # ------- Sort primitives on staff from left to right -------
+        print("staff primitives", staff_primitives)
 
         staff_primitives.sort(key=lambda primitive: primitive.getBox().getCenter())
 
@@ -1180,6 +1200,7 @@ if __name__ == "__main__":
         # If number of pixels in center row of two notes
         # greater than 5 * line_width, then notes are
         # beamed
+
         for j in range(len(staff_primitives)):
             if (j+1 < len(staff_primitives)
                 and staff_primitives[j].getPrimitive() == "note"
@@ -1211,7 +1232,8 @@ if __name__ == "__main__":
         num_sharps = 0
         num_flats = 0
         j = 0
-        print("len; staff_primitives: ", len(staff_primitives), staff_primitives)        
+        
+        # if (len(staff_primitives) > 0) :        
         while (staff_primitives[j].getDuration() == 0):
             accidental = staff_primitives[j].getPrimitive()
             if (accidental == "sharp"):
@@ -1300,9 +1322,9 @@ if __name__ == "__main__":
 
         print("[INFO] Assembling current staff")
         bar = Bar()
+        
         while (len(staff_primitives) > 0):
             primitive = staff_primitives.pop(0)
-
             if (primitive.getPrimitive() != "line"):
                 bar.addPrimitive(primitive)
             else:
