@@ -165,7 +165,8 @@ sixteenth_flag_lower, sixteenth_flag_upper, sixteenth_flag_thresh = 50, 150, 0.8
 eighth_flag_lower, eighth_flag_upper, eighth_flag_thresh = 50, 150, 0.8
 
 # Bar line
-bar_lower, bar_upper, bar_thresh = 50, 150, 0.85
+# bar_lower, bar_upper, bar_thresh = 50, 150, 0.85
+bar_lower, bar_upper, bar_thresh = 50, 150, 0.65 # threshold is tuned for best results
 
 #-------------------------------------------------------------------------------
 # Mapping Functions
@@ -719,10 +720,7 @@ def parse(img):
 
     # ============ Show Detected Staffs ============
     staffs = []
-    print("all_staffline_vertical_vertices: ", all_staffline_vertical_indices)
 
-    print("line width - 1", line_width -1 )
-    print("shape", len(all_staffline_vertical_indices))
     if len(all_staffline_vertical_indices) > 1:
         half_dist_between_staffs = (all_staffline_vertical_indices[1][0][0] - all_staffline_vertical_indices[0][4][line_width - 1])//2
     else:
@@ -799,6 +797,7 @@ def parse(img):
             if (len(clef_boxes) == 1):
                 print("[INFO] Clef Found: ", clef)
                 staffs[i].setClef(clef)
+
 
                 # print("[INFO] Displaying Matching Results on staff", i + 1)
                 clef_boxes_img = staffs[i].getImage()
@@ -1057,7 +1056,9 @@ def parse(img):
 
         print("[INFO] Matching bar line template...")
         bar_boxes = locate_templates(staff_img, bar_imgs, bar_lower, bar_upper, bar_thresh)
+        print("bar boxes after locate_templates")
         bar_boxes = merge_boxes([j for i in bar_boxes for j in i], 0.5)
+        print("bar boxes", bar_boxes)
 
         print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in bar_boxes:
@@ -1076,6 +1077,7 @@ def parse(img):
         # open_file("output/staff_{}_primitives.jpg".format(i+1))
 
         # ------- Sort primitives on staff from left to right -------
+        print("staff primitives", staff_primitives)
 
         staff_primitives.sort(key=lambda primitive: primitive.getBox().getCenter())
 
@@ -1197,6 +1199,7 @@ def parse(img):
         # If number of pixels in center row of two notes
         # greater than 5 * line_width, then notes are
         # beamed
+
         for j in range(len(staff_primitives)):
             if (j+1 < len(staff_primitives)
                 and staff_primitives[j].getPrimitive() == "note"
@@ -1228,7 +1231,7 @@ def parse(img):
         num_sharps = 0
         num_flats = 0
         j = 0
-        print("len; staff_primitives: ", len(staff_primitives), staff_primitives)
+        
         # if (len(staff_primitives) > 0) :        
         while (staff_primitives[j].getDuration() == 0):
             accidental = staff_primitives[j].getPrimitive()
@@ -1318,9 +1321,9 @@ def parse(img):
 
         print("[INFO] Assembling current staff")
         bar = Bar()
+        
         while (len(staff_primitives) > 0):
             primitive = staff_primitives.pop(0)
-
             if (primitive.getPrimitive() != "line"):
                 bar.addPrimitive(primitive)
             else:
