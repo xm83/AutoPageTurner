@@ -158,7 +158,7 @@ def interact():
     # return render_template('interact.html', file_urls=img_results)
 
     # for i in range(len(img_results) - 1):
-    #     time.sleep(3) 
+    #     time.sleep(3) # placeholder
     #     return render_template('interact.html', file_url=img_results[i])
 
     return render_template('interact.html', file_url=img_results[0])
