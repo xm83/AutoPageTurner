@@ -659,7 +659,7 @@ def parse(img):
 
     # ============ Read Image ============
     
-    print("GOT AN IMAGE IN PARSE!")
+    print("Got an image in parse!")
     
     # cv2.imshow('image',img)
     # cv2.waitKey(0)
@@ -695,8 +695,8 @@ def parse(img):
 
     line_width, line_spacing = get_ref_lengths(img)
 
-    print("[INFO] Staff line Width: ", line_width)
-    print("[INFO] Staff line Spacing: ", line_spacing)
+    # print("[INFO] Staff line Width: ", line_width)
+    # print("[INFO] Staff line Spacing: ", line_spacing)
 
     #-------------------------------------------------------------------------------
     # Staff Line Detection
@@ -709,14 +709,14 @@ def parse(img):
     # ============ Find Staff Line Rows ============
 
     all_staffline_vertical_indices = find_staffline_rows(img, line_width, line_spacing)
-    print("[INFO] Found ", len(all_staffline_vertical_indices), " sets of staff lines")
+    # print("[INFO] Found ", len(all_staffline_vertical_indices), " sets of staff lines")
 
     # ============ Find Staff Line Columns ============
 
     # Find column with largest index that has no black pixels
 
     all_staffline_horizontal_indices = find_staffline_columns(img, all_staffline_vertical_indices, line_width, line_spacing)
-    print("[INFO] Found all staff line horizontal extremes")
+    # print("[INFO] Found all staff line horizontal extremes")
 
     # ============ Show Detected Staffs ============
     staffs = []
@@ -764,7 +764,7 @@ def parse(img):
 
     cv2.imwrite('output/detected_staffs.jpg', staff_boxes_img)
     # open_file('output/detected_staffs.jpg')
-    print("[INFO] Saving detected staffs onto disk")
+    # print("[INFO] Saving detected staffs onto disk")
 
     #-------------------------------------------------------------------------------
     # Symbol Segmentation, Object Recognition, and Semantic Reconstruction
@@ -790,12 +790,12 @@ def parse(img):
 
         # ------- Clef -------
         for clef in clef_imgs:
-            print("[INFO] Matching {} clef template on staff".format(clef), i + 1)
+            # print("[INFO] Matching {} clef template on staff".format(clef), i + 1)
             clef_boxes = locate_templates(staff_img, clef_imgs[clef], clef_lower, clef_upper, clef_thresh)
             clef_boxes = merge_boxes([j for i in clef_boxes for j in i], 0.5)
 
             if (len(clef_boxes) == 1):
-                print("[INFO] Clef Found: ", clef)
+                # print("[INFO] Clef Found: ", clef)
                 staffs[i].setClef(clef)
 
 
@@ -812,16 +812,16 @@ def parse(img):
 
         else:
             # A clef should always be found
-            print("[INFO] No clef found on staff", i+1)
+            # print("[INFO] No clef found on staff", i+1)
 
         # # ------- Time -------
         for time in time_imgs:
-            print("[INFO] Matching {} time signature template on staff".format(time), i + 1)
+            # print("[INFO] Matching {} time signature template on staff".format(time), i + 1)
             time_boxes = locate_templates(staff_img, time_imgs[time], time_lower, time_upper, time_thresh)
             time_boxes = merge_boxes([j for i in time_boxes for j in i], 0.5)
 
             if (len(time_boxes) == 1):
-                print("[INFO] Time Signature Found: ", time)
+                # print("[INFO] Time Signature Found: ", time)
                 staffs[i].setTimeSignature(time)
 
                 # print("[INFO] Displaying Matching Results on staff", i + 1)
@@ -837,10 +837,10 @@ def parse(img):
                 # Take time signature of previous staff
                 previousTime = staffs[i-1].getTimeSignature()
                 staffs[i].setTimeSignature(previousTime)
-                print("[INFO] No time signature found on staff", i + 1, ". Using time signature from previous staff line: ", previousTime)
+                # print("[INFO] No time signature found on staff", i + 1, ". Using time signature from previous staff line: ", previousTime)
                 break
         else:
-            print("[INFO] No time signature available for staff", i + 1)
+            # print("[INFO] No time signature available for staff", i + 1)
 
         staff_imgs_color.append(staff_img_color)
 
@@ -849,7 +849,7 @@ def parse(img):
     # always assert that notes in a bar equal duration dictated by time signature
     for i in range(len(staffs)):
     # for i in range(1):
-        print("[INFO] Finding Primitives on Staff ", i+1)
+        # print("[INFO] Finding Primitives on Staff ", i+1)
         staff_primitives = []
         staff_img = staffs[i].getImage()
         staff_img_color = staff_imgs_color[i]
@@ -857,11 +857,11 @@ def parse(img):
         box_thickness = 2
 
         # ------- Find primitives on staff -------
-        print("[INFO] Matching sharp accidental template...")
+        # print("[INFO] Matching sharp accidental template...")
         sharp_boxes = locate_templates(staff_img, sharp_imgs, sharp_lower, sharp_upper, sharp_thresh)
         sharp_boxes = merge_boxes([j for i in sharp_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in sharp_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "sharp"
@@ -873,11 +873,11 @@ def parse(img):
             sharp = Primitive("sharp", 0, box)
             staff_primitives.append(sharp)
 
-        print("[INFO] Matching flat accidental template...")
+        # print("[INFO] Matching flat accidental template...")
         flat_boxes = locate_templates(staff_img, flat_imgs, flat_lower, flat_upper, flat_thresh)
         flat_boxes = merge_boxes([j for i in flat_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in flat_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "flat"
@@ -889,11 +889,11 @@ def parse(img):
             flat = Primitive("flat", 0, box)
             staff_primitives.append(flat)
 
-        print("[INFO] Matching quarter note template...")
+        # print("[INFO] Matching quarter note template...")
         quarter_boxes = locate_templates(staff_img, quarter_note_imgs, quarter_note_lower, quarter_note_upper, quarter_note_thresh)
         quarter_boxes = merge_boxes([j for i in quarter_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in quarter_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/4 note"
@@ -906,11 +906,11 @@ def parse(img):
             quarter = Primitive("note", 1, box, pitch)
             staff_primitives.append(quarter)
 
-        print("[INFO] Matching half note template...")
+        # print("[INFO] Matching half note template...")
         half_boxes = locate_templates(staff_img, half_note_imgs, half_note_lower, half_note_upper, half_note_thresh)
         half_boxes = merge_boxes([j for i in half_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in half_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/2 note"
@@ -923,11 +923,11 @@ def parse(img):
             half = Primitive("note", 2, box, pitch)
             staff_primitives.append(half)
 
-        print("[INFO] Matching whole note template...")
+        # print("[INFO] Matching whole note template...")
         whole_boxes = locate_templates(staff_img, whole_note_imgs, whole_note_lower, whole_note_upper, whole_note_thresh)
         whole_boxes = merge_boxes([j for i in whole_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in whole_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1 note"
@@ -940,11 +940,11 @@ def parse(img):
             whole = Primitive("note", 4, box, pitch)
             staff_primitives.append(whole)
 
-        print("[INFO] Matching sixteenthh rest template...")
+        # print("[INFO] Matching sixteenthh rest template...")
         sixteenth_boxes = locate_templates(staff_img, sixteenth_rest_imgs, sixteenth_rest_lower, sixteenth_rest_upper, sixteenth_rest_thresh)
         sixteenth_boxes = merge_boxes([j for i in sixteenth_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in sixteenth_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/16 rest"
@@ -956,11 +956,11 @@ def parse(img):
             sixteenth = Primitive("rest", 0.25, box)
             staff_primitives.append(sixteenth)
 
-        print("[INFO] Matching eighth rest template...")
+        # print("[INFO] Matching eighth rest template...")
         eighth_boxes = locate_templates(staff_img, eighth_rest_imgs, eighth_rest_lower, eighth_rest_upper, eighth_rest_thresh)
         eighth_boxes = merge_boxes([j for i in eighth_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in eighth_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/8 rest"
@@ -972,11 +972,11 @@ def parse(img):
             eighth = Primitive("rest", 0.5, box)
             staff_primitives.append(eighth)
 
-        print("[INFO] Matching quarter rest template...")
+        # print("[INFO] Matching quarter rest template...")
         quarter_boxes = locate_templates(staff_img, quarter_rest_imgs, quarter_rest_lower, quarter_rest_upper, quarter_rest_thresh)
         quarter_boxes = merge_boxes([j for i in quarter_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in quarter_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/4 rest"
@@ -988,11 +988,11 @@ def parse(img):
             quarter = Primitive("rest", 1, box)
             staff_primitives.append(quarter)
 
-        print("[INFO] Matching half rest template...")
+        # print("[INFO] Matching half rest template...")
         half_boxes = locate_templates(staff_img, half_rest_imgs, half_rest_lower, half_rest_upper, half_rest_thresh)
         half_boxes = merge_boxes([j for i in half_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in half_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1/2 rest"
@@ -1004,11 +1004,11 @@ def parse(img):
             half = Primitive("rest", 2, box)
             staff_primitives.append(half)
 
-        print("[INFO] Matching whole rest template...")
+        # print("[INFO] Matching whole rest template...")
         whole_boxes = locate_templates(staff_img, whole_rest_imgs, whole_rest_lower, whole_rest_upper, whole_rest_thresh)
         whole_boxes = merge_boxes([j for i in whole_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in whole_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "1 rest"
@@ -1020,11 +1020,11 @@ def parse(img):
             whole = Primitive("rest", 4, box)
             staff_primitives.append(whole)
 
-        print("[INFO] Matching sixteenth flag template...")
+        # print("[INFO] Matching sixteenth flag template...")
         flag_boxes = locate_templates(staff_img, sixteenth_flag_imgs, sixteenth_flag_lower, sixteenth_flag_upper, sixteenth_flag_thresh)
         flag_boxes = merge_boxes([j for i in flag_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
 
         for box in flag_boxes:
             box.draw(staff_img_color, red, box_thickness)
@@ -1037,11 +1037,11 @@ def parse(img):
             flag = Primitive("sixteenth_flag", 0, box)
             staff_primitives.append(flag)
 
-        print("[INFO] Matching eighth flag template...")
+        # print("[INFO] Matching eighth flag template...")
         flag_boxes = locate_templates(staff_img, eighth_flag_imgs, eighth_flag_lower, eighth_flag_upper, eighth_flag_thresh)
         flag_boxes = merge_boxes([j for i in flag_boxes for j in i], 0.5)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
 
         for box in flag_boxes:
             box.draw(staff_img_color, red, box_thickness)
@@ -1054,13 +1054,13 @@ def parse(img):
             flag = Primitive("eighth_flag", 0, box)
             staff_primitives.append(flag)
 
-        print("[INFO] Matching bar line template...")
+        # print("[INFO] Matching bar line template...")
         bar_boxes = locate_templates(staff_img, bar_imgs, bar_lower, bar_upper, bar_thresh)
-        print("bar boxes after locate_templates")
+        # print("bar boxes after locate_templates")
         bar_boxes = merge_boxes([j for i in bar_boxes for j in i], 0.5)
-        print("bar boxes", bar_boxes)
+        # print("bar boxes", bar_boxes)
 
-        print("[INFO] Displaying Matching Results on staff", i + 1)
+        # print("[INFO] Displaying Matching Results on staff", i + 1)
         for box in bar_boxes:
             box.draw(staff_img_color, red, box_thickness)
             text = "line"
@@ -1072,16 +1072,16 @@ def parse(img):
             line = Primitive("line", 0, box)
             staff_primitives.append(line)
 
-        print("[INFO] Saving detected primitives in staff {} onto disk".format(i+1))
+        # print("[INFO] Saving detected primitives in staff {} onto disk".format(i+1))
         cv2.imwrite("output/staff_{}_primitives.jpg".format(i+1), staff_img_color)
         # open_file("output/staff_{}_primitives.jpg".format(i+1))
 
         # ------- Sort primitives on staff from left to right -------
-        print("staff primitives", staff_primitives)
+        # print("staff primitives", staff_primitives)
 
         staff_primitives.sort(key=lambda primitive: primitive.getBox().getCenter())
 
-        print("[INFO] Staff primitives sorted in time")
+        # print("[INFO] Staff primitives sorted in time")
 
         sixteenth_flag_indices = []
         for j in range(len(staff_primitives)):
@@ -1091,11 +1091,11 @@ def parse(img):
                 sixteenth_flag_indices.append(j)
 
             if (staff_primitives[j].getPrimitive() == "note"):
-                print(staff_primitives[j].getPitch(), end=", ")
+                # print(staff_primitives[j].getPitch(), end=", ")
             else:
-                print(staff_primitives[j].getPrimitive(), end=", ")
+                # print(staff_primitives[j].getPrimitive(), end=", ")
 
-        print("\n")
+        # print("\n")
 
         eighth_flag_indices = []
         for j in range(len(staff_primitives)):
@@ -1105,14 +1105,14 @@ def parse(img):
                 eighth_flag_indices.append(j)
 
             if (staff_primitives[j].getPrimitive() == "note"):
-                print(staff_primitives[j].getPitch(), end=", ")
+                # print(staff_primitives[j].getPitch(), end=", ")
             else:
-                print(staff_primitives[j].getPrimitive(), end=", ")
+                # print(staff_primitives[j].getPrimitive(), end=", ")
 
-        print("\n")
+        # print("\n")
 
         # ------- Correct for sixteenth notes -------
-        print("[INFO] Correcting for misclassified sixteenth notes")
+        # print("[INFO] Correcting for misclassified sixteenth notes")
         # Sort out sixteenth flags
         # Assign to closest note
         ctr = 0
@@ -1132,7 +1132,7 @@ def parse(img):
             else:
                 staff_primitives[j-1].setDuration(0.25)
 
-            print("[INFO] Primitive {} was a sixteenth note misclassified".format(j+1))
+            # print("[INFO] Primitive {} was a sixteenth note misclassified".format(j+1))
             del staff_primitives[j]
             ctr = ctr + 1
 
@@ -1170,10 +1170,10 @@ def parse(img):
 
 
         # ------- Correct for eighth notes -------
-        print("[INFO] Correcting for misclassified eighth notes")
+        # print("[INFO] Correcting for misclassified eighth notes")
         # Sort out eighth flags
         # Assign to closest note
-        print("eighth_flag_indices: ", eighth_flag_indices)
+        # print("eighth_flag_indices: ", eighth_flag_indices)
         ctr = 0
         for j in eighth_flag_indices:
             # reflect -1 of indice due to each deletion 
@@ -1191,7 +1191,7 @@ def parse(img):
             else:
                 staff_primitives[j-1].setDuration(0.5)
 
-            print("[INFO] Primitive {} was a eighth note misclassified as a quarter note".format(j+1))
+            # print("[INFO] Primitive {} was a eighth note misclassified as a quarter note".format(j+1))
             del staff_primitives[j]
             ctr = ctr + 1
 
@@ -1224,10 +1224,10 @@ def parse(img):
                     # Make eighth note length
                     staff_primitives[j].setDuration(0.5)
                     staff_primitives[j+1].setDuration(0.5)
-                    print("[INFO] Primitive {} and {} were eighth notes misclassified as quarter notes".format(j+1, j+2))
+                    # print("[INFO] Primitive {} and {} were eighth notes misclassified as quarter notes".format(j+1, j+2))
 
         # ------- Account for Key Signature -------
-        print("[INFO] Applying key signature note value changes")
+        # print("[INFO] Applying key signature note value changes")
         num_sharps = 0
         num_flats = 0
         j = 0
@@ -1253,24 +1253,24 @@ def parse(img):
             accidental_type = staff_primitives[j-1].getPrimitive()
 
             if (accidental_center_x > max_accidental_offset_x):
-                print("[INFO] Last accidental belongs to first note")
+                # print("[INFO] Last accidental belongs to first note")
                 num_sharps = num_sharps - 1 if accidental_type == "sharp" else num_sharps
                 num_flats = num_flats - 1 if accidental_type == "flat" else num_flats
 
             # Modify notes in staff
             notes_to_modify = []
             if (accidental_type == "sharp"):
-                print("[INFO] Key signature has {} sharp accidentals: ".format(num_sharps))
+                # print("[INFO] Key signature has {} sharp accidentals: ".format(num_sharps))
                 notes_to_modify = key_signature_changes[accidental_type][num_sharps]
                 # Remove accidentals from primitive list
                 staff_primitives = staff_primitives[num_sharps:]
             else:
-                print("[INFO] Key signature has {} flat accidentals: ".format(num_flats))
+                # print("[INFO] Key signature has {} flat accidentals: ".format(num_flats))
                 notes_to_modify = key_signature_changes[accidental_type][num_flats]
                 # Remove accidentals from primitive list
                 staff_primitives = staff_primitives[num_flats:]
 
-            print("[INFO] Corrected note values after key signature: ")
+            # print("[INFO] Corrected note values after key signature: ")
             for primitive in staff_primitives:
                 type = primitive.getPrimitive()
                 note = primitive.getPitch()
@@ -1279,14 +1279,14 @@ def parse(img):
                     primitive.setPitch(new_note)
 
                 if (primitive.getPrimitive() == "note"):
-                    print(primitive.getPitch(), end=", ")
+                    # print(primitive.getPitch(), end=", ")
                 else:
-                    print(primitive.getPrimitive(), end=", ")
+                    # print(primitive.getPrimitive(), end=", ")
 
-            print("\n")
+            # print("\n")
 
         # ------- Apply Sharps and Flats -------
-        print("[INFO] Applying any accidental to neighboring note")
+        # print("[INFO] Applying any accidental to neighboring note")
         primitive_indices_to_remove = []
         for j in range(len(staff_primitives)):
             accidental_type = staff_primitives[j].getPrimitive()
@@ -1297,7 +1297,7 @@ def parse(img):
                 primitive_type = staff_primitives[j+1].getPrimitive()
 
                 if (accidental_center_x > max_accidental_offset_x and primitive_type == "note"):
-                    print("Primitive has accidental associated with it")
+                    # print("Primitive has accidental associated with it")
                     note = staff_primitives[j+1].getPitch()
                     new_note = MIDI_to_pitch[pitch_to_MIDI[note] + 1] if accidental_type == "sharp" else MIDI_to_pitch[pitch_to_MIDI[note] - 1]
                     staff_primitives[j+1].setPitch(new_note)
@@ -1307,19 +1307,19 @@ def parse(img):
         for j in primitive_indices_to_remove:
             del staff_primitives[j]
 
-        print("[INFO] Corrected note values after accidentals: ")
+        # print("[INFO] Corrected note values after accidentals: ")
         for j in range(len(staff_primitives)):
             if (staff_primitives[j].getPrimitive() == "note"):
-                print(staff_primitives[j].getPitch(), end=", ")
+                # print(staff_primitives[j].getPitch(), end=", ")
             else:
-                print(staff_primitives[j].getPrimitive(), end=", ")
+                # print(staff_primitives[j].getPrimitive(), end=", ")
 
-        print("\n")
+        # print("\n")
 
 
         # ------- Assemble Staff -------
 
-        print("[INFO] Assembling current staff")
+        # print("[INFO] Assembling current staff")
         bar = Bar()
         
         while (len(staff_primitives) > 0):
@@ -1336,25 +1336,25 @@ def parse(img):
     # current duration -- sixteenth note: 0.25; eighth note: 0.5; quarter note: 1; half note: 2; whole note: 4
     result = []
     for i in range(len(staffs)):
-        print("==== Staff {} ====".format(i+1))
+        # print("==== Staff {} ====".format(i+1))
         bars = staffs[i].getBars()
 
         for j in range(len(bars)):
-            print("--- Bar {} ---".format(j + 1))
+            # print("--- Bar {} ---".format(j + 1))
             primitives = bars[j].getPrimitives()
 
             for k in range(len(primitives)):
                 duration = primitives[k].getDuration()
-                print("k and duration: ", k, duration)
+                # print("k and duration: ", k, duration)
                 primitive = primitives[k].getPrimitive()
-                print("k and primitive: ", k, primitive)
+                # print("k and primitive: ", k, primitive)
                 if (primitive == "note"):
                     pitch = primitives[k].getPitch()
-                    print("k and pitch: ", k, pitch)
+                    # print("k and pitch: ", k, pitch)
                 
                 time += duration
-                print("time: ", time)
-                print("-----")
+                # print("time: ", time)
+                # print("-----")
 
                 num_indices = int(duration * 4) # 0.25 => occupy 1 index ; 0.5 => occupy 2 indices, etc.
                 for i in range(num_indices):
