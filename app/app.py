@@ -5,9 +5,8 @@ import os
 import pyaudio
 import numpy
 import cv2
-import matplotlib
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
 
 from parse_img import parse
 from lastRow import lastRow
@@ -80,6 +79,8 @@ app.config['DROPZONE_REDIRECT_VIEW'] = 'results'
 
     # return Response(sound())
 
+music_results = []
+img_results = []
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -92,6 +93,7 @@ def index():
     # handle image upload from Dropzone
     if request.method == 'POST':
         file_obj = request.files
+
         for f in file_obj:
             file = request.files.get(f)
 
@@ -105,12 +107,12 @@ def index():
             if len(b_str) > 0:
                 # read in the uploaded image as a grayscale image (setting to 0)
                 img = cv2.imdecode(numpy.fromstring(b_str, numpy.uint8), 0)
-
                 # get last row of image
                 img = lastRow(img)
-                
                 # parse the image to get the pitch duration array
-                result = parse(img)
+                music_result = parse(img)
+                global music_results 
+                music_results.append(music_result)
                 # print("result from parse(img): ", result)
             else:
                 print("ERROR: reading an empty byte string from img file with name: ", file.filename)
@@ -118,17 +120,15 @@ def index():
             # append image urls
             file_urls.append(photos.url(filename))
 
+            global img_results
+            img_results.append(photos.url(filename))
+
             
         session['file_urls'] = file_urls
-        return "uploading..."
+        print("Done uploading and parsing!")
+
+        return "uploading and parsing...", 200
     # return dropzone template on GET request
-
-    # results = []
-    # for img in file_urls:
-    #     img = cv2.imdecode(numpy.fromstring(request.files['file'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
-    #     results.append(parse(img))
-    # print(results)
-
     return render_template('index.html')
 
 
@@ -136,17 +136,39 @@ def index():
 def results():
     
     # redirect to home if no images to display
-    if "file_urls" not in session or session['file_urls'] == []:
-        return redirect(url_for('index'))
+    # if "file_urls" not in session or session['file_urls'] == []:
+    #     return redirect(url_for('index'))
+        
+    # # set the file_urls and remove the session variable
+    # file_urls = session['file_urls']
+    # session.pop('file_urls', None)
+
+    # # print(file_urls)
+    # # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
+    # print("received parsed results: ", music_results)
+    
+    # return render_template('results.html', file_urls=file_urls)
+    return render_template('results.html')
+
+
+@app.route('/interact')
+def interact():
+    
+    # redirect to home if no images to display
+    # if "file_urls" not in session or session['file_urls'] == []:
+    #     return redirect(url_for('index'))
         
     # set the file_urls and remove the session variable
     file_urls = session['file_urls']
     session.pop('file_urls', None)
 
-    # print(file_urls)
+    print("file_urls: ", file_urls)
+    print("received img results: ", img_results)
     # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
+    print("received parsed results: ", music_results)
     
-    return render_template('results.html', file_urls=file_urls)
+    return render_template('interact.html', file_urls=img_results)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)

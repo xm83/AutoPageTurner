@@ -7,9 +7,13 @@
     <title>AutoPageTurner</title>
 </head>
 <body>
-	<h1>Images uploaded and parsed</h1>
+	<h1>Listening...</h1>
 	<a href="{{ url_for('index') }}">Back</a><p>
-	<a href="{{ url_for('interact') }}">Start Playing!</a><p>
+	<ul>
+	{% for file_url in file_urls %}
+	    <li><img style="height: 150px" src="{{ file_url }}"></li>
+	{% endfor %}
+	</ul>
 	
 </body>
 </html>
