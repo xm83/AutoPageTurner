@@ -11,12 +11,12 @@ from copy import deepcopy
 from PIL import Image
 # from midiutil.MidiFile import MIDIFile
 
-from best_match import match
-from box import BoundingBox
-from staff import Staff
-from primitive import Primitive
-from bar import Bar
-from lastRow import lastRow
+from app.best_match import match
+from app.box import BoundingBox
+from app.staff import Staff
+from app.primitive import Primitive
+from app.bar import Bar
+from app.last_row import lastRow
 
 #-------------------------------------------------------------------------------
 # Template Paths
