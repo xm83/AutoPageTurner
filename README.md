@@ -29,6 +29,13 @@ Then run:
 
 Then you'll be all set to use PyAudio!
 
+(Another easy way to manage all the requirements is to use an Anaconda virtual environment:
+conda create -n [name of virtual env]
+source activate [name of virtual env]
+pip install -r requirements.txt
+...etc.
+)
+
 ## II. Usage
 
 Requires Python 3.7.2. 
