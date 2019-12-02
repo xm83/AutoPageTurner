@@ -6,6 +6,11 @@ import pyaudio
 
 from .audio_pro import note_to_midi, midi_to_2d, smooth_audio, merge_duplicate
 
+buffer_size = 1024
+pyaudio_format = pyaudio.paFloat32
+n_channels = 1
+sr = 44100
+
 # File comparison
 def audio_sheet_compare(audio, sheet, co = 0.1):
     i = 0  # audio index
@@ -42,7 +47,7 @@ def file_compare(file, sheet):
 	# audio
 	x, sr = librosa.load(file)
 	bins_per_octave = 12
-	cqt = librosa.cqt(x, sr=sr, n_bins=60, bins_per_octave=bins_per_octave)
+	cqt = librosa.cqt(x, sr=44100, n_bins=60, bins_per_octave=bins_per_octave)
 	log_cqt = librosa.amplitude_to_db(np.abs(cqt))
 	a = []
 	for i in range(len(log_cqt.argmax(0))):
@@ -56,11 +61,11 @@ def file_compare(file, sheet):
 
 	return audio_sheet_compare(audio, sheet)
 
-def realtime_pitch(stream, sr, buffer_size):
+def realtime_pitch(stream, buffer_size):
     audiobuffer = stream.read(buffer_size, exception_on_overflow = False)
-    signal = np.frombuffer(audiobuffer, dtype=np.float32)
+    signal = np.fromstring(audiobuffer, dtype=np.float32)
     bins_per_octave = 12
-    cqt = librosa.cqt(signal, sr=sr, n_bins=60, bins_per_octave=bins_per_octave)
+    cqt = librosa.cqt(signal, sr=44100, n_bins=60, bins_per_octave=bins_per_octave)
     log_cqt = librosa.amplitude_to_db(np.abs(cqt))
     return log_cqt.argmax(0)[1]
 
@@ -68,8 +73,7 @@ def stream_compare(sheet):
 	# initialise pyaudio
 	# sheet 
 	midi = note_to_midi(sheet)
-	sheet = midi_to_2d(midi)[0:4]
-	print(sheet)
+	sheet = midi_to_2d(midi)[3:]
 
 	p = pyaudio.PyAudio()
 
@@ -94,38 +98,40 @@ def stream_compare(sheet):
 
 	while True:
 	    try:
-	        s = realtime_pitch(stream, sr, buffer_size)
-	        while s!= sheet[0, 0]: s = realtime_pitch(stream, sr, buffer_size)
+	        s = realtime_pitch(stream, buffer_size)
+	        while s!= sheet[0, 0]: s = realtime_pitch(stream, buffer_size)
+	        
 	        while index < sheet.shape[0]:
 	            l = 0
 	            while s == sheet[index, 0]: 
 	                l+=1
-	                s = realtime_pitch(stream, sr, buffer_size)
+	                s = realtime_pitch(stream, buffer_size)
 	            
-	            t = math.ceil(l/5)
+	            t = math.ceil(l/3)
 	            c = 0
 	            while c < t:
-	                s = realtime_pitch(stream, sr, buffer_size)
+	                s = realtime_pitch(stream, buffer_size)
 	                c += 1
 	                if index + 1 < sheet.shape[0] and s == sheet[index+1, 0]: 
 	                    break
 	                if s == sheet[index, 0]:
 	                    while s == sheet[index, 0]: 
 	                        l+=1
-	                        s = realtime_pitch(stream, sr, buffer_size)
+	                        s = realtime_pitch(stream, buffer_size)
 	                    c = 0
 	            
 	            if ratio == None: 
 	                ratio = l/sheet[index, 1]
 	                index += 1
-	            elif np.abs((ratio-l/sheet[index, 1])/ratio) < 0.25:
+	            elif np.abs((ratio-l/sheet[index, 1])/ratio) < 0.5:
 	                if index == sheet.shape[0] -1: 
 	                    return True
 	                else: 
 	                    index += 1
 	            else: 
-	                index = 0
-	                break
+	            	if index == sheet.shape[0] -1 and l > 15: return True
+	            	index = 0
+	            	break
 	    except KeyboardInterrupt:
 	        print("*** Ctrl+C pressed, exiting")
 	        break
@@ -134,3 +140,4 @@ def stream_compare(sheet):
 	stream.stop_stream()
 	stream.close()
 	p.terminate()
+	return False
