@@ -144,23 +144,26 @@ def results():
     return render_template('results.html')
 
 
-@app.route('/interact')
+@app.route('/interact', methods=['GET', 'POST'])
 def interact():
-        
-    # set the file_urls and remove the session variable
-    file_urls = session['file_urls']
-    session.pop('file_urls', None)
+    if request.method == 'GET':    
+        # set the file_urls and remove the session variable
+        file_urls = session['file_urls']
+        session.pop('file_urls', None)
 
-    print("file_urls: ", file_urls)
-    print("received img results: ", img_results)
-    # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
-    print("received parsed results: ", music_results)
+        print("file_urls: ", file_urls)
+        print("received img results: ", img_results)
+        # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
+        print("received parsed results: ", music_results)
 
-
-    # run audio files
-    print("convert to np array first: ", np.array(music_results[0]))
-    converted = np.array(music_results[0])
-    stream_compare(converted)
+        return render_template('interact.html', file_url=img_results[0])
+    elif request.method == 'POST':
+        # run audio files
+        print("stream compare")
+        converted = np.array(music_results[0])
+        if stream_compare(converted):
+            print("FLIPPPPP")
+        return render_template('interact.html', file_url=img_results[1])
 
 
 
@@ -171,7 +174,7 @@ def interact():
     #     time.sleep(3) # placeholder
     #     return render_template('interact.html', file_url=img_results[i])
 
-    return render_template('interact.html', file_url=img_results[0])
+    #return render_template('interact.html', file_url=img_results[0])
 
 # commenting this out to enforce the best practice of running the app through flask CLI
 # if __name__ == "__main__":
