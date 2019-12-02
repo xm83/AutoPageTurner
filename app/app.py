@@ -11,6 +11,7 @@ import time
 
 from .parse_img import parse
 from .last_row import lastRow
+from .audio_sheet_comparison import stream_compare
 
 app = Flask(__name__)
 # set the backend to a non-interactive one so that your server does not try to create (and then destroy) GUI windows
@@ -154,6 +155,15 @@ def interact():
     print("received img results: ", img_results)
     # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
     print("received parsed results: ", music_results)
+
+
+    # run audio files
+    print("convert to np array first: ", np.array(music_results[0]))
+    converted = np.array(music_results[0])
+    stream_compare(converted)
+
+
+
 
     # return render_template('interact.html', file_urls=img_results)
 

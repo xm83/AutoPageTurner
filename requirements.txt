@@ -5,3 +5,5 @@ opencv-python
 Flask
 flask-uploads 
 flask-dropzone
+scipy
+librosa
