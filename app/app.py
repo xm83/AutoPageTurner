@@ -158,12 +158,9 @@ def interact():
 
 
     # run audio files
-    print("convert to np array first: ", np.array(music_results[0]))
-    converted = np.array(music_results[0])
-    stream_compare(converted)
-
-
-
+    # print("convert to np array first: ", np.array(music_results[0]))
+    # converted = np.array(music_results[0])
+    # stream_compare(converted)
 
     # return render_template('interact.html', file_urls=img_results)
 
