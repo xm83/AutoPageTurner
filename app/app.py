@@ -144,18 +144,20 @@ def results():
     return render_template('results.html')
 
 
-@app.route('/interact')
+@app.route('/interact', methods=['GET', 'POST'])
 def interact():
         
     # set the file_urls and remove the session variable
-    file_urls = session['file_urls']
-    session.pop('file_urls', None)
+    # file_urls = session['file_urls']
+    # session.pop('file_urls', None)
 
-    print("file_urls: ", file_urls)
+    # print("file_urls: ", file_urls)
     print("received img results: ", img_results)
     # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
     print("received parsed results: ", music_results)
 
+    if request.method == 'POST':
+        return render_template('interact.html', file_url=img_results[1])
 
     # run audio files
     # print("convert to np array first: ", np.array(music_results[0]))
