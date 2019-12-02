@@ -24,6 +24,9 @@
 <body>
 	<h1>Listening...</h1>
 	<a href="{{ url_for('index') }}">Back</a><p>
+    <form role="Form" method='POST' action='/interact'>
+        <button type="submit" class="btn btn-default">Start Recording!</button>
+    </form>
     
 	<!-- <ul> {% for file_url in file_urls %} <li><img style="height: 150px" src="{{ file_url }}"></li> {% endfor %} </ul> -->
 	<div class="imgbox">
@@ -33,8 +36,5 @@
         </form>
 	</div>
 
-    <form role="Form" method='POST' action='/interact'>
-        <button type="submit" class="btn btn-default">Start Recording</button>
-    </form>
 </body>
 </html>
