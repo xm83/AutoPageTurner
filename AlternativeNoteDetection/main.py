@@ -7,7 +7,7 @@ from best_fit import fit
 from rectangle import Rectangle
 from note import Note
 from random import randint
-from midiutil.MidiFile import MIDIFile
+from lastRow import lastRow
 
 staff_files = [
     "resources/template/staff2.png", 
