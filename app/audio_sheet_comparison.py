@@ -5,8 +5,8 @@ import math
 import pyaudio
 
 from .audio_pro import note_to_midi, midi_to_2d, smooth_audio, merge_duplicate
-# File comparison
 
+# File comparison
 def audio_sheet_compare(audio, sheet, co = 0.1):
     i = 0  # audio index
     j = 0  # sheet index
@@ -56,17 +56,21 @@ def file_compare(file, sheet):
 
 	return audio_sheet_compare(audio, sheet)
 
-def realtime_pitch(stream, buffer_size):
-    audiobuffer = stream.read(buffer_size)
-    signal = np.fromstring(audiobuffer, dtype=np.float32)
+def realtime_pitch(stream, sr, buffer_size):
+    audiobuffer = stream.read(buffer_size, exception_on_overflow = False)
+    signal = np.frombuffer(audiobuffer, dtype=np.float32)
     bins_per_octave = 12
     cqt = librosa.cqt(signal, sr=sr, n_bins=60, bins_per_octave=bins_per_octave)
     log_cqt = librosa.amplitude_to_db(np.abs(cqt))
     return log_cqt.argmax(0)[1]
 
-
 def stream_compare(sheet):
-	# still in progress
+	# initialise pyaudio
+	# sheet 
+	midi = note_to_midi(sheet)
+	sheet = midi_to_2d(midi)[0:4]
+	print(sheet)
+
 	p = pyaudio.PyAudio()
 
 	# open stream
@@ -81,42 +85,50 @@ def stream_compare(sheet):
 	                input=True,
 	                frames_per_buffer=buffer_size)
 
-	status = False
+	# print(sheet)
 
 	print("*** starting recording")
 	num_frames = 0
 	index = 0
 	ratio = None
 
-	# while True: 
-	#     print(realtime_pitch(stream, buffer_size))
-
-	while index < sheet.shape[0]:
-	    if index == 0:    
-	        p = realtime_pitch(stream, buffer_size)
-	        print(p)
-	        num_frames +=1
-	        while p != sheet[index, 0]: p = realtime_pitch(stream, buffer_size)
-	        print("first note match!")
-	    
-	    audio_len = 0
-	    while p == sheet[index, 0]:
-	        audio_len += 1
-	        p = realtime_pitch(stream, buffer_size)
-	        num_frames += 1
-	    
-	    print("length of note = %d"%audio_len)
-	        
-	    if p == sheet[index+1, 0]: index += 1
-	        
-	    if ratio == None: ratio = sheet[0, 1]/audio_len
-	    elif ratio == sheet[index, 1]/audio_len:
-	        if index == sheet.shape[0] - 1: 
-	            return True
-	            break
-	    else: index = 0
-	        
-	    if num_frames > sr * record_duration / 3: break
+	while True:
+	    try:
+	        s = realtime_pitch(stream, sr, buffer_size)
+	        while s!= sheet[0, 0]: s = realtime_pitch(stream, sr, buffer_size)
+	        while index < sheet.shape[0]:
+	            l = 0
+	            while s == sheet[index, 0]: 
+	                l+=1
+	                s = realtime_pitch(stream, sr, buffer_size)
+	            
+	            t = math.ceil(l/5)
+	            c = 0
+	            while c < t:
+	                s = realtime_pitch(stream, sr, buffer_size)
+	                c += 1
+	                if index + 1 < sheet.shape[0] and s == sheet[index+1, 0]: 
+	                    break
+	                if s == sheet[index, 0]:
+	                    while s == sheet[index, 0]: 
+	                        l+=1
+	                        s = realtime_pitch(stream, sr, buffer_size)
+	                    c = 0
+	            
+	            if ratio == None: 
+	                ratio = l/sheet[index, 1]
+	                index += 1
+	            elif np.abs((ratio-l/sheet[index, 1])/ratio) < 0.25:
+	                if index == sheet.shape[0] -1: 
+	                    return True
+	                else: 
+	                    index += 1
+	            else: 
+	                index = 0
+	                break
+	    except KeyboardInterrupt:
+	        print("*** Ctrl+C pressed, exiting")
+	        break
 
 	print("*** done recording")
 	stream.stop_stream()
