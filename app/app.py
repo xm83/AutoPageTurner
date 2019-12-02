@@ -146,6 +146,7 @@ def results():
 
 @app.route('/interact', methods=['GET', 'POST'])
 def interact():
+
     if request.method == 'GET':    
         # set the file_urls and remove the session variable
         file_urls = session['file_urls']
@@ -164,11 +165,6 @@ def interact():
         if stream_compare(converted):
             print("FLIPPPPP")
         return render_template('interact.html', file_url=img_results[1])
-
-
-
-
-    # return render_template('interact.html', file_urls=img_results)
 
     # for i in range(len(img_results) - 1):
     #     time.sleep(3) # placeholder
