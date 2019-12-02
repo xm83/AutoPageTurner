@@ -149,30 +149,31 @@ def interact():
 
     if request.method == 'GET':    
         # set the file_urls and remove the session variable
-        file_urls = session['file_urls']
-        session.pop('file_urls', None)
-
-        print("file_urls: ", file_urls)
+        # file_urls = session['file_urls']
+        # session.pop('file_urls', None)
+        # print("file_urls: ", file_urls)
         print("received img results: ", img_results)
         # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
         print("received parsed results: ", music_results)
         session['current_page_index'] = 0
+
         return render_template('interact.html', file_url=img_results[0])
+
     elif request.method == 'POST':
         # run audio files
         print("stream compare")
         print("current music score page index, " , session['current_page_index'])
-
        
         converted = np.array(music_results[session['current_page_index']])
 
-        if stream_compare(converted):
+        if stream_compare(converted) and session['current_page_index'] < len(img_results) - 1:
             print("FLIPPPPP")
             session['current_page_index'] = session['current_page_index'] + 1
             print("updated session page index, " , session['current_page_index'])
-            return render_template('interact.html', file_url=img_results[session['current_page_index']])
+            return render_template('interact2.html', file_url=img_results[session['current_page_index']])
+
         else:
-            return render_template('interact.html', file_url=img_results[session['current_page_index']])
+            return render_template('interact2.html', file_url=img_results[session['current_page_index']])
         
 
     # for i in range(len(img_results) - 1):

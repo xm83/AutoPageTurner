@@ -3,6 +3,7 @@ import librosa
 import librosa.display
 import math
 import pyaudio
+import time # for debugging
 
 from .audio_pro import note_to_midi, midi_to_2d, smooth_audio, merge_duplicate
 
@@ -70,6 +71,9 @@ def realtime_pitch(stream, buffer_size):
     return log_cqt.argmax(0)[1]
 
 def stream_compare(sheet):
+	# time.sleep(4)
+	# return True
+
 	# initialise pyaudio
 	# sheet 
 	midi = note_to_midi(sheet)
