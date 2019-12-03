@@ -134,16 +134,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/results')
-def results():
-    # redirect to home if no images to display
-    # if "file_urls" not in session or session['file_urls'] == []:
-    #     return redirect(url_for('index'))
-    
-    # return render_template('results.html', file_urls=file_urls)
-    return render_template('results.html')
-
-
 @app.route('/interact', methods=['GET', 'POST'])
 def interact():
 
