@@ -39,7 +39,7 @@ dropzone = Dropzone(app)
 app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
 app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
 app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
-app.config['DROPZONE_REDIRECT_VIEW'] = 'results'
+app.config['DROPZONE_REDIRECT_VIEW'] = 'interact'
 
 # def genHeader(sampleRate, bitsPerSample, channels):
 #     datasize = 2000*10**6
