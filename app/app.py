@@ -82,16 +82,28 @@ app.config['DROPZONE_REDIRECT_VIEW'] = 'interact'
     # return Response(sound())
 
 music_results = []
-img_results = []
+file_urls = []
+curr_page_index = 0
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    
-    # set session for image results
-    if "file_urls" not in session:
-        session['file_urls'] = []
-    # list to hold our uploaded image urls
-    file_urls = session['file_urls']
+    # # reset
+    # session['curr_page_index'] = 0
+
+    # # set session for image results
+    # if "file_urls" not in session:
+    #     session['file_urls'] = []
+    # # list to hold our uploaded image urls
+    # file_urls = session['file_urls']
+
+    # if "music_results" not in session:
+    #     session['music_results'] = []
+    # # list to hold our uploaded image urls
+    # music_results = session['music_results']
+
+    global curr_page_index
+    curr_page_index = 0
+
     # handle image upload from Dropzone
     if request.method == 'POST':
         file_obj = request.files
@@ -113,57 +125,70 @@ def index():
                 img = lastRow(img)
                 # parse the image to get the pitch duration array
                 music_result = parse(img)
-                global music_results 
+                global music_results
                 music_results.append(music_result)
                 # print("result from parse(img): ", result)
             else:
                 print("ERROR: reading an empty byte string from img file with name: ", file.filename)
 
             # append image urls
+            global file_urls
             file_urls.append(photos.url(filename))
-
-            global img_results
-            img_results.append(photos.url(filename))
-
             
-        session['file_urls'] = file_urls
+        # session['file_urls'] = file_urls
+        # session['music_results'] = music_results
         print("Done uploading and parsing!")
 
         return "uploading and parsing...", 200
     # return dropzone template on GET request
     return render_template('index.html')
 
+@app.route('/clear')
+def clear():
+    global file_urls
+    file_urls = []
+    global music_results
+    music_results = []
+    global curr_page_index
+    curr_page_index = 0
+    print("cleared results")
+    return render_template('index.html')
 
 @app.route('/interact', methods=['GET', 'POST'])
 def interact():
-
-    if request.method == 'GET':    
+    global curr_page_index
+    if request.method == 'GET' and curr_page_index == 0:    
         # set the file_urls and remove the session variable
         # file_urls = session['file_urls']
         # session.pop('file_urls', None)
-        # print("file_urls: ", file_urls)
-        print("received img results: ", img_results)
+
+        # music_results = session['music_results']
+        # session.pop('music_results', None)
+
+        global file_urls
+        global music_results
+        print("received file_urls: ", file_urls)
         # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
         print("received parsed results: ", music_results)
-        session['current_page_index'] = 0
 
-        return render_template('interact.html', file_url=img_results[0])
+        return render_template('interact.html', file_url=file_urls[curr_page_index])
 
-    elif request.method == 'POST':
+    elif request.method == 'POST' or curr_page_index > 0:
         # run audio files
         print("stream compare")
-        print("current music score page index, " , session['current_page_index'])
+        print("current music score page index, ", curr_page_index)
        
-        converted = np.array(music_results[session['current_page_index']])
+        converted = np.array(music_results[curr_page_index])
 
-        if stream_compare(converted) and session['current_page_index'] < len(img_results) - 1:
-            print("FLIPPPPP")
-            session['current_page_index'] = session['current_page_index'] + 1
-            print("updated session page index, " , session['current_page_index'])
-            return render_template('interact2.html', file_url=img_results[session['current_page_index']])
+        if stream_compare(converted) and curr_page_index < len(file_urls) - 1:
+            print("FLIP")
+            curr_page_index = curr_page_index + 1
+            print("updated page index, " , curr_page_index)
+
+            return render_template('interact2.html', file_url=file_urls[curr_page_index])
 
         else:
-            return render_template('interact2.html', file_url=img_results[session['current_page_index']])
+            return render_template('interact2.html', file_url=file_urls[curr_page_index])
         
 
     # for i in range(len(img_results) - 1):
