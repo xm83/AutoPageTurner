@@ -135,7 +135,8 @@ def index():
                 music_result = note_detection(img)
                 global music_results
                 music_results.append(music_result)
-                print("result from parse(img): ", result)
+
+                print("result from parse(img): ", music_result)
             else:
                 print("ERROR: reading an empty byte string from img file with name: ", file.filename)
 

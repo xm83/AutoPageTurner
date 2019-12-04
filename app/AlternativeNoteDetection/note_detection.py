@@ -4,19 +4,20 @@ import time
 import numpy as np
 from random import randint
 import os
+import sys
 
 from .best_fit import fit
 from .rectangle import Rectangle
 from .note import Note
-from .lastRow import lastRow
-
-# import sys
-# sys.path.insert(0, sys.path[0] + '/app/AlternativeNoteDetection/')
 
 staff_files = [
-    "/AlternativeNoteDetection/resources/template/staff2.png",
-    "/AlternativeNoteDetection/resources/template/staff2.png", 
-    "/AlternativeNoteDetection/resources/template/staff.png"]
+    # "/AlternativeNoteDetection/resources/template/staff.png",
+    # "/AlternativeNoteDetection/resources/template/staff2.png", 
+    # "/AlternativeNoteDetection/resources/template/staff3.png",
+    "/AlternativeNoteDetection/resources/template/staff10.png",
+    # "/AlternativeNoteDetection/resources/template/staff10.png",
+    # "/AlternativeNoteDetection/resources/template/staff8.png",
+    ]
 quarter_files = [
     "/AlternativeNoteDetection/resources/template/quarter.png", 
     "/AlternativeNoteDetection/resources/template/solid-note.png"]
@@ -43,13 +44,19 @@ flat_imgs = [cv2.imread(os.getcwd() + flat_file, 0) for flat_file in flat_files]
 half_imgs = [cv2.imread(os.getcwd() + half_file, 0) for half_file in half_files]
 whole_imgs = [cv2.imread(os.getcwd() + whole_file, 0) for whole_file in whole_files]
 
-staff_lower, staff_upper, staff_thresh = 50, 150, 0.77
+# staff_lower, staff_upper, staff_thresh = 50, 150, 0.75
+staff_lower, staff_upper, staff_thresh = 50, 250, 0.75
 sharp_lower, sharp_upper, sharp_thresh = 50, 150, 0.70
 flat_lower, flat_upper, flat_thresh = 50, 150, 0.77
 quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
 half_lower, half_upper, half_thresh = 50, 150, 0.70
 whole_lower, whole_upper, whole_thresh = 50, 150, 0.70
 
+def is_not_empty(structure1):
+    if structure1 and len(list(structure1)) > 0:
+        return True
+    else:
+        return False
 
 def locate_images(img, templates, start, stop, threshold):
     locations, scale = fit(img, templates, start, stop, threshold)
@@ -58,11 +65,15 @@ def locate_images(img, templates, start, stop, threshold):
         w, h = templates[i].shape[::-1]
         w *= scale
         h *= scale
+        
         img_locations.append([Rectangle(pt[0], pt[1], w, h) for pt in zip(*locations[i][::-1])])
+          
     return img_locations
 
 def merge_recs(recs, threshold):
     filtered_recs = []
+    
+    
     while len(recs) > 0:
         r = recs.pop(0)
         recs.sort(key=lambda rec: rec.distance(r))
@@ -79,7 +90,9 @@ def merge_recs(recs, threshold):
                 else:
                     i += 1
         filtered_recs.append(r)
+
     return filtered_recs
+
 
 def open_file(path):
     # img = Image.open(path)
@@ -97,9 +110,9 @@ def note_detection(img):
 
     # # ============ Binarization ============
     
-    # # ret,img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
+    ret,img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
     # Otsu's Thresholding
-    ret, img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    # ret, img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     img_width, img_height = img.shape[::-1]
 
     # print(staff_imgs)
@@ -127,9 +140,11 @@ def note_detection(img):
     staff_boxes_img = img.copy()
     for r in staff_boxes:
         r.draw(staff_boxes_img, (0, 0, 255), 2)
-    # cv2.imwrite('staff_boxes_img.png', staff_boxes_img)
-    # open_file('staff_boxes_img.png')
+    cv2.imwrite('staff_boxes_img.png', staff_boxes_img)
+    open_file('staff_boxes_img.png')
     
+
+
     print("Matching sharp image...")
     sharp_recs = locate_images(img, sharp_imgs, sharp_lower, sharp_upper, sharp_thresh)
 
@@ -185,6 +200,8 @@ def note_detection(img):
     # cv2.imwrite('whole_recs_img.png', whole_recs_img)
     # open_file('whole_recs_img.png')
 
+    print("Combining results")
+
     note_groups = []
     for box in staff_boxes:
         staff_sharps = [Note(r, "sharp", box) 
@@ -204,14 +221,21 @@ def note_detection(img):
         note_color = (randint(0, 255), randint(0, 255), randint(0, 255))
         note_group = []
         i = 0; j = 0;
+
+        print("len(staff_notes)", len(staff_notes))
+        print("len(staffs)", len(staffs))
         while(i < len(staff_notes)):
-            if (staff_notes[i].rec.x > staffs[j].x and j < len(staffs)):
-                r = staffs[j]
-                j += 1;
-                if len(note_group) > 0:
-                    note_groups.append(note_group)
-                    note_group = []
-                note_color = (randint(0, 255), randint(0, 255), randint(0, 255))
+            # if (staff_notes[i].rec.x > staffs[j].x and j < len(staffs)):
+            if j < len(staffs):
+                print("staff_notes[i].rec.x", staff_notes[i].rec.x)
+                print("staffs[j].x", staffs[j].x)
+                if staff_notes[i].rec.x > staffs[j].x:
+                    r = staffs[j]
+                    j += 1;
+                    if len(note_group) > 0:
+                        note_groups.append(note_group)
+                        note_group = []
+                    note_color = (randint(0, 255), randint(0, 255), randint(0, 255))
             else:
                 note_group.append(staff_notes[i])
                 staff_notes[i].rec.draw(img, note_color, 2)
@@ -235,14 +259,14 @@ def note_detection(img):
         for note in note_group:
             if note.sym == "1":
                 duration = 4
-                
             elif note.sym == "2":
                 duration = 2
             elif note.sym == "4,8":
-                duration = 1 if len(note_group) == 1 else 0.5
+                duration = 1 
+                # duration = 1if len(note_group) == 1 else 0.5
             print(note.note + ", duration:" + str(duration))
-            for i in range(2*duration):
+
+            for i in range(4*duration):
                 notes_array.append(note.note)
     return notes_array
-    
     
