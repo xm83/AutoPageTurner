@@ -13,6 +13,8 @@ from .parse_img import parse
 from .last_row import lastRow
 from .audio_sheet_comparison import stream_compare
 
+from app.AlternativeNoteDetection.note_detection import note_detection
+
 app = Flask(__name__)
 # set the backend to a non-interactive one so that your server does not try to create (and then destroy) GUI windows
 matplotlib.pyplot.switch_backend('Agg')  
@@ -116,24 +118,29 @@ def index():
                 file,
                 name=file.filename    
             )
+            
+            global file_urls
+            file_urls.append(photos.url(filename))
+
             file.seek(0)
             b_str = file.read()
+
             if len(b_str) > 0:
                 # read in the uploaded image as a grayscale image (setting to 0)
                 img = cv2.imdecode(numpy.fromstring(b_str, numpy.uint8), 0)
                 # get last row of image
                 img = lastRow(img)
                 # parse the image to get the pitch duration array
-                music_result = parse(img)
+                # music_result = parse(img)
+                music_result = note_detection(img)
                 global music_results
                 music_results.append(music_result)
-                # print("result from parse(img): ", result)
+                print("result from parse(img): ", result)
             else:
                 print("ERROR: reading an empty byte string from img file with name: ", file.filename)
 
             # append image urls
-            global file_urls
-            file_urls.append(photos.url(filename))
+            
             
         # session['file_urls'] = file_urls
         # session['music_results'] = music_results
@@ -200,5 +207,3 @@ def interact():
 # commenting this out to enforce the best practice of running the app through flask CLI
 # if __name__ == "__main__":
 #     app.run(host='0.0.0.0', debug=True, threaded=True,port=5000)
-
-
