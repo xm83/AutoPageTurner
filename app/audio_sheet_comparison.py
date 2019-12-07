@@ -71,8 +71,9 @@ def realtime_pitch(stream, buffer_size):
 	return log_cqt.argmax(0)[1]
 
 def stream_compare(sheet):
-	time.sleep(8)
-	return True
+	# time.sleep(8)
+	# return True
+	
 	# initialise pyaudio
 	# sheet 
 	midi = note_to_midi(sheet)
