@@ -68,16 +68,13 @@ def realtime_pitch(stream, buffer_size):
 	bins_per_octave = 12
 	cqt = librosa.cqt(signal, sr=44100, n_bins=60, bins_per_octave=bins_per_octave)
 	log_cqt = librosa.amplitude_to_db(np.abs(cqt))
-	return log_cqt.argmax(0)[1]
+	return log_cqt.argmax(0)[1] + 24
 
 def stream_compare(sheet):
-	# time.sleep(8)
-	# return True
-	
 	# initialise pyaudio
 	# sheet 
 	midi = note_to_midi(sheet)
-	sheet = midi_to_2d(midi)[3:]
+	sheet = midi_to_2d(midi)
 
 	p = pyaudio.PyAudio()
 
@@ -89,7 +86,8 @@ def stream_compare(sheet):
 	record_duration = 5 # exit
 	stream = p.open(format=pyaudio_format, channels=n_channels, rate=sr, input=True, frames_per_buffer=buffer_size)
 
-	# print(sheet)
+	print("sheet")
+	print(sheet)
 
 	print("*** starting recording")
 	num_frames = 0
@@ -100,13 +98,18 @@ def stream_compare(sheet):
 		try:
 			ratio = None
 			s = realtime_pitch(stream, buffer_size)
-			while s!= sheet[0, 0]: s = realtime_pitch(stream, buffer_size)
+			print("s", s)
+			while s!= sheet[0, 0]: 
+				s = realtime_pitch(stream, buffer_size)
+			print("first note, pitch %d"%s)
 
 			while index < sheet.shape[0]:
 				l = 0
 				while s == sheet[index, 0]:
 					l+=1
 					s = realtime_pitch(stream, buffer_size)
+				print("l = %d, pitch = %d"%(l, sheet[index, 0]))
+
 				if ratio != None: t = math.ceil(sheet[index, 1]*ratio/5)
 				else: t = math.ceil(l/5)
 
@@ -124,6 +127,8 @@ def stream_compare(sheet):
 				if ratio == None: 
 					ratio = l/sheet[index, 1]
 					index += 1
+					print("initialize ratio to be", ratio)
+
 				elif np.abs((ratio-l/sheet[index, 1])/ratio) < 0.5:
 					if index == sheet.shape[0] -1: 
 						return True
@@ -131,6 +136,8 @@ def stream_compare(sheet):
 						index += 1
 				else: 
 					if index == sheet.shape[0] -1 and l > 15: return True
+					print("no way")
+					print("l = ", l, "pitch", sheet[index, 0], l/sheet[index, 1])
 					index = 0
 					break
 		except KeyboardInterrupt:
