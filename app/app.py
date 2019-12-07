@@ -178,7 +178,7 @@ def interact():
         print("received file_urls: ", file_urls)
         # ['http://127.0.0.1:5000/_uploads/photos/mary_3.jpg', 'http://127.0.0.1:5000/_uploads/photos/mhush_3.jpg']
         print("received parsed results: ", music_results)
-
+        
         return render_template('interact.html', file_url=file_urls[curr_page_index])
 
     elif request.method == 'POST' or curr_page_index > 0:
