@@ -61,6 +61,7 @@ note_paths = {
         "resources/template/note/whole-note-space.png"
     ]
 }
+
 rest_paths = {
     "sixteenth": ["resources/template/rest/sixteenth_rest.png"],
     "eighth": ["resources/template/rest/eighth_rest.jpg"],
@@ -106,6 +107,7 @@ time_imgs = {
     "24": [cv2.imread(time, 0) for time in ["resources/template/time/24.jpg"]],
     "68": [cv2.imread(time, 0) for time in ["resources/template/time/68.jpg"]],
     "32": [cv2.imread(time, 0) for time in ["resources/template/time/32.png"]],
+    "64": [cv2.imread(time, 0) for time in ["resources/template/time/64.jpg"]],
 }
 
 # Accidentals
