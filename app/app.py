@@ -187,6 +187,8 @@ def interact():
         print("current music score page index, ", curr_page_index)
        
         converted = np.array(music_results[curr_page_index])
+        print("converted input array")
+        print(converted)
 
         if stream_compare(converted) and curr_page_index < len(file_urls) - 1:
             print("FLIP")
