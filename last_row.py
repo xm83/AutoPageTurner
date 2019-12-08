@@ -10,7 +10,7 @@ def lastRow(gray_im):
     coords = cv2.findNonZero(inverted) # Find all non-zero points (text)
     x, y, w, h = cv2.boundingRect(coords) # Find minimum spanning bounding box
     rect = gray_im[y:y+h, x:x+w]
-    cv2.imwrite("rect.png", rect)
+    # cv2.imwrite("rect.png", rect)
 
     rowStepSize = 40
     bandHeight = 200
@@ -38,6 +38,8 @@ def lastRow(gray_im):
     	wantedFirstRow = height - rowStepSize * lasti - bandHeight
     	if wantedFirstRow >= 0:
             wantedImg = gray_im[height - rowStepSize * lasti - bandHeight: height - rowStepSize * (lasti-1), :]
-            cv2.imwrite("lastRow.png", wantedImg)
+            # cv2.imwrite("lastRow.png", wantedImg)
+            plt.imshow(wantedImg, cmap="Greys_r")
+            plt.show()
             return wantedImg
     return rect

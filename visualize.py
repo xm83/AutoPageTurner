@@ -1364,6 +1364,6 @@ if __name__ == "__main__":
                 for i in range(num_indices):
                     if (primitive == "note"):
                         result.append(pitch)
-                    else:
+                    elif (primitive == "rest"):
                         result.append("rest")
     print(result)

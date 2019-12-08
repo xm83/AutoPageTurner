@@ -8,7 +8,7 @@ def lastRow(gray_im):
     x, y, w, h = cv2.boundingRect(coords) # Find minimum spanning bounding box
     # if y + int(h/5) <= gray_im.shape[0]:
     rect = gray_im[y:y+h, :]
-    cv2.imwrite("rect.png", rect)
+    # cv2.imwrite("rect.png", rect)
     gray_im = rect
 
     rowStepSize = 40
@@ -36,7 +36,7 @@ def lastRow(gray_im):
         wantedFirstRow = height - rowStepSize * lasti - bandHeight
         if wantedFirstRow >= 0:
             wantedImg = gray_im[height - rowStepSize * lasti - bandHeight: height - rowStepSize * (lasti-1), :]
-            cv2.imwrite("lastRow.png", wantedImg)
+            # cv2.imwrite("lastRow.png", wantedImg)
             return wantedImg
 
         
