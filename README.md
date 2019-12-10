@@ -1,6 +1,6 @@
 # Automatic Page Turner
 
-Final project for CPSC459/559
+Final project for CPSC459/559 "Building Interactive Machines"
 
 ## I. Dependencies
 
