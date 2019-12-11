@@ -11,18 +11,16 @@ from .rectangle import Rectangle
 from .note import Note
 
 staff_files = [
-    # "/AlternativeNoteDetection/resources/template/staff.png",
-    # "/AlternativeNoteDetection/resources/template/staff2.png", 
-    # "/AlternativeNoteDetection/resources/template/staff3.png",
     "/AlternativeNoteDetection/resources/template/staff10.png",
-    # "/AlternativeNoteDetection/resources/template/staff10.png",
-    # "/AlternativeNoteDetection/resources/template/staff8.png",
+    "/AlternativeNoteDetection/resources/template/staff.png",
     ]
 quarter_files = [
     "/AlternativeNoteDetection/resources/template/quarter.png", 
     "/AlternativeNoteDetection/resources/template/solid-note.png"]
 sharp_files = [
-    "/AlternativeNoteDetection/resources/template/sharp.png"]
+    "/AlternativeNoteDetection/resources/template/sharp.png",
+    "/AlternativeNoteDetection/resources/template/f-sharp.png",
+    ]
 flat_files = [
     "/AlternativeNoteDetection/resources/template/flat-line.png", 
     "/AlternativeNoteDetection/resources/template/flat-space.png" ]
@@ -30,7 +28,8 @@ half_files = [
     "/AlternativeNoteDetection/resources/template/half-space.png", 
     "/AlternativeNoteDetection/resources/template/half-note-line.png",
     "/AlternativeNoteDetection/resources/template/half-line.png", 
-    "/AlternativeNoteDetection/resources/template/half-note-space.png"]
+    "/AlternativeNoteDetection/resources/template/half-note-space.png",
+    "/AlternativeNoteDetection/resources/template/half-line2.png"]
 whole_files = [
     "/AlternativeNoteDetection/resources/template/whole-space.png", 
     "/AlternativeNoteDetection/resources/template/whole-note-line.png",
@@ -44,11 +43,11 @@ flat_imgs = [cv2.imread(os.getcwd() + flat_file, 0) for flat_file in flat_files]
 half_imgs = [cv2.imread(os.getcwd() + half_file, 0) for half_file in half_files]
 whole_imgs = [cv2.imread(os.getcwd() + whole_file, 0) for whole_file in whole_files]
 
-# staff_lower, staff_upper, staff_thresh = 50, 150, 0.75
 staff_lower, staff_upper, staff_thresh = 50, 250, 0.75
 sharp_lower, sharp_upper, sharp_thresh = 50, 150, 0.70
 flat_lower, flat_upper, flat_thresh = 50, 150, 0.77
-quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
+# quarter_lower, quarter_upper, quarter_thresh = 50, 150, 0.70
+quarter_lower, quarter_upper, quarter_thresh = 50, 250, 0.70
 half_lower, half_upper, half_thresh = 50, 150, 0.70
 whole_lower, whole_upper, whole_thresh = 50, 150, 0.70
 
@@ -140,8 +139,8 @@ def note_detection(img):
     staff_boxes_img = img.copy()
     for r in staff_boxes:
         r.draw(staff_boxes_img, (0, 0, 255), 2)
-    cv2.imwrite('staff_boxes_img.png', staff_boxes_img)
-    open_file('staff_boxes_img.png')
+    # cv2.imwrite('staff_boxes_img.png', staff_boxes_img)
+    # open_file('staff_boxes_img.png')
     
 
 
@@ -232,6 +231,7 @@ def note_detection(img):
                 if staff_notes[i].rec.x > staffs[j].x:
                     r = staffs[j]
                     j += 1;
+                    print(len(note_group))
                     if len(note_group) > 0:
                         note_groups.append(note_group)
                         note_group = []
@@ -241,6 +241,7 @@ def note_detection(img):
                 staff_notes[i].rec.draw(img, note_color, 2)
                 i += 1
         note_groups.append(note_group)
+        print(len(note_group))
 
     for r in staff_boxes:
         r.draw(img, (0, 0, 255), 2)
@@ -262,11 +263,12 @@ def note_detection(img):
             elif note.sym == "2":
                 duration = 2
             elif note.sym == "4,8":
-                duration = 1 
-                # duration = 1if len(note_group) == 1 else 0.5
+                duration = 1
+                print("length of note group", len(note_group))
+                # duration = 1 if len(note_group) == 1 else 0.5
             print(note.note + ", duration:" + str(duration))
 
-            for i in range(4*duration):
+            for i in range(int(4*duration)):
                 notes_array.append(note.note)
     return notes_array
     
