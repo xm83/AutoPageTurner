@@ -1366,7 +1366,7 @@ def parse(img):
                 for i in range(num_indices):
                     if (primitive == "note"):
                         result.append(pitch)
-                    else:
+                    elif (primitive == "rest"):
                         result.append("rest")
     # print(result)
 
