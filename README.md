@@ -6,7 +6,7 @@ Do you play a musical instrument? Are you tired of scrambling to flip pages or c
 
 Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
-## :musical_note: I. Dependencies
+## I. Dependencies :musical_note: 
 
 Run the following command in the terminal to get the dependencies:
 
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 ...etc.
 )
 
-## :musical_note: II. Usage
+## II. Usage :musical_note: 
 
 Requires Python 3.7.2. 
 
