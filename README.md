@@ -1,4 +1,4 @@
-# Automatic Page Turner
+# :notes: Automatic Page Turner :notes:
 
 Final project for CPSC459/559 "Building Interactive Machines".
 
@@ -6,7 +6,7 @@ Do you play a musical instrument? Are you tired of scrambling to flip pages or c
 
 Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
-## I. Dependencies
+## :musical_note: I. Dependencies
 
 Run the following command in the terminal to get the dependencies:
 
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 ...etc.
 )
 
-## II. Usage
+## :musical_note: II. Usage
 
 Requires Python 3.7.2. 
 
