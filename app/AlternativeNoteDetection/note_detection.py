@@ -141,7 +141,7 @@ def note_detection(img):
     for r in staff_boxes:
         r.draw(staff_boxes_img, (0, 0, 255), 2)
     cv2.imwrite('staff_boxes_img.png', staff_boxes_img)
-    open_file('staff_boxes_img.png')
+    # open_file('staff_boxes_img.png')
     
 
 
@@ -251,7 +251,7 @@ def note_detection(img):
         r.draw(img, (0, 0, 255), 2)
         
     cv2.imwrite('res.png', img)
-    open_file('res.png')
+    # open_file('res.png')
    
     notes_array = []
     for note_group in note_groups:
