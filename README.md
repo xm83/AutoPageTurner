@@ -4,7 +4,7 @@ Final project for CPSC459/559 "Building Interactive Machines".
 
 Do you play a musical instrument? Are you tired of scrambling to flip pages or carrying around a foot pedal? Automatic Page Turner will solve your problem! Our app combines computer vision algorithms with audio processing techniques to create an integrated system that allows you to upload multiple sheet music images and, whenever you're ready, listens to you play and displays sheet music image to you one by one, timed to flip at the right time.
 
-Check out our demo vide: https://youtu.be/lQWgagWgHMw
+Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
 ## I. Dependencies
 
