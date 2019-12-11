@@ -1,8 +1,12 @@
-# Automatic Page Turner
+# :notes: Automatic Page Turner :notes:
 
-Final project for CPSC459/559 "Building Interactive Machines"
+Final project for CPSC459/559 "Building Interactive Machines".
 
-## I. Dependencies
+Do you play a musical instrument? Are you tired of scrambling to flip pages or carrying around a foot pedal? Automatic Page Turner will solve your problem! Our app combines computer vision algorithms with audio processing techniques to create an integrated system that allows you to upload multiple sheet music images and, whenever you're ready, listens to you play and displays sheet music image to you one by one, timed to flip at the right time.
+
+Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
+
+## :musical_note: Dependencies 
 
 Run the following command in the terminal to get the dependencies:
 
@@ -36,7 +40,7 @@ pip install -r requirements.txt
 ...etc.
 )
 
-## II. Usage
+## :musical_note:  Usage 
 
 Requires Python 3.7.2. 
 
@@ -52,7 +56,7 @@ For development purposes, if you want to be able to visualize results, such as t
 
     $ python visualize.py app/resources/samples/mary_1.jpg # you can replace the last command line argument with another path to an image in png or jpg
 
-Currently, we are restricting the scope: the system is only capable of recognizing and representing high resolution sheet music written for a single monophonic musical instrument using note or rest values equal to or greater than sixteenth notes, expressed on a staff consisting of either the treble or the bass clef and one of the common time signatures, i.e. common time, 2/4, 4/4, 3/4, 3/2 or 6/8. Consequently, the recognition system cannot perform *key* or *time signature alterations*, or *detect tempo demarcations*, *harmony*, *multi-instrumentation*, *braced-joined staffs*, *tuplets*, *repeats*, *slurs* and *ties*, *articulation* and *dynamic marks*, or *dotted rhythms*.
+Currently, we are restricting the scope: the system is only capable of recognizing and representing high resolution sheet music written for a single monophonic musical instrument using note or rest values equal to or greater than sixteenth notes, expressed on a staff consisting of either the treble or the bass clef and one of the common time signatures, i.e. common time, 2/4, 4/4, 3/4, 3/2, 6/4, or 6/8. Consequently, the recognition system cannot perform *key* or *time signature alterations*, or *detect tempo demarcations*, *harmony*, *multi-instrumentation*, *braced-joined staffs*, *tuplets*, *repeats*, *slurs* and *ties*, *articulation* and *dynamic marks*, or *dotted rhythms*.
 
 ![alt text](https://github.com/anyati/cadenCV/blob/master/resources/README/image4.jpg)
 Standard input to the recognition system.
