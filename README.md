@@ -6,6 +6,8 @@ Do you play a musical instrument? Are you tired of scrambling to flip pages or c
 
 Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
+(Update: We won the Class Choice Award!)
+
 ## :musical_note: Dependencies 
 
 Run the following command in the terminal to get the dependencies:
