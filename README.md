@@ -6,7 +6,7 @@ Do you play a musical instrument? Are you tired of scrambling to flip pages or c
 
 Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
-For more technical details, check out [accompanying paper](https://cpsc459-bim.gitlab.io/f19/assets/reports/music.pdf)
+For more technical details, check out the accompanying [paper](https://cpsc459-bim.gitlab.io/f19/assets/reports/music.pdf)
 
 (Update: We won the Class Choice Award!)
 
