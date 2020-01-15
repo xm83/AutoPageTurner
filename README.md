@@ -8,7 +8,7 @@ Check out our demo video: :clapper: https://youtu.be/lQWgagWgHMw :clapper:
 
 For more technical details, check out our accompanying [paper.](https://cpsc459-bim.gitlab.io/f19/assets/reports/music.pdf)
 
-(Update: We won the Class Choice Award!)
+(Update: We won the Class Choice Award! :trophy:)
 
 ## :musical_note: Dependencies 
 
