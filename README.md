@@ -1,4 +1,4 @@
-# :notes: Turnit: Automatic Page Turner :notes:
+# :notes: Turnit: an Automatic Page Turner for Musicians :notes:
 
 Final project for CPSC459/559 "Building Interactive Machines"
 
