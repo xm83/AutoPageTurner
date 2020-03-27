@@ -10,7 +10,7 @@ def get_network(file, network_name, n_actions, shapes=dict(), activation=None):
     :param network_name:
     :return:
     """
-    package = importlib.import_module("score_following_game.agents.{}".format(file))
+    package = importlib.import_module("score_following_game.recurrent_approach.{}".format(file))
     constructor = getattr(package, network_name)
 
     if activation is None:
