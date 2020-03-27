@@ -82,27 +82,30 @@ if __name__ == '__main__':
     # initialize model
     model = Model(net, optimizer, max_grad_norm=args.max_grad_norm, value_coef=args.value_coef,
                   entropy_coef=args.entropy_coef)
+
+    # initialize refinement scheduler
+    lr_scheduler = RefinementLRScheduler(optimizer=optimizer, model=model, n_refinement_steps=args.max_refinements,
+                                         patience=args.patience, learn_rate_multiplier=args.lr_multiplier,
+                                         high_is_better=not args.low_is_better)
+
     # use cuda if available
     if args.use_cuda:
         model.cuda()
 
-    # FIGURE OUT HOW TO LOAD TRAINING DATA
-    train_data = [] # REPLACE
-    test_data = [] # REPLACE
-    cost_fxn = nn.MSELoss()
-    num_epochs = 5
+    # initialize model evaluation
+    evaluation_pools = get_data_pools(config, directory=args.eval_set, real_perf=args.real_perf)
 
-    for epoch in range(num_epochs):
-        optimizer.zero_grad() # Clears existing gradients from previous epoch
-        for data,pos in train_data:
-            input_train_ex.to(device)
-            output = model(input_train_ex)
-            loss = cost_fxn(output, pos)
-            loss.backward() # Does backpropagation and calculates gradients
-            optimizer.step() # Updates the weights accordingly
-        if epoch%10 == 0:
-            print('Epoch: {}/{}.............'.format(epoch, n_epochs), end=' ')
-            print("Loss: {:.4f}".format(loss.item()))
+    evaluator = Evaluator(env_fnc, evaluation_pools, config=config, trials=args.eval_trials, render_mode=None)
+
+    args.model = model
+    args.env = env
+    args.lr_scheduler = lr_scheduler
+    args.evaluator = evaluator
+    args.n_actions = 1
+    agent = setup_agent(args=args)
+
+    max_updates = args.max_updates * args.t_max
+    agent.train(env, max_updates)
 
     # store the song history to a file
     if not args.no_log:
