@@ -17,7 +17,6 @@ class Agent(object):
 
         self.observation_space = observation_space
         self.model = model
-        self.n_actions = n_actions
 
         self.log_writer = log_writer
         self.log_interval = log_interval
@@ -27,20 +26,15 @@ class Agent(object):
 
         self.lr_scheduler = lr_scheduler
         self.score_name = score_name
-        self.high_is_better = high_is_better
-        self.best_score = -np.inf if self.high_is_better else np.inf
 
         self.dump_interval = dump_interval
         self.dump_dir = dump_dir
 
-        self.gamma = gamma
         self.use_cuda = use_cuda
 
         self.device = torch.device("cuda" if self.use_cuda else "cpu")
 
         self.log_dict = dict()
-
-        self.trained_agent = TrainedAgent
 
         self.n_worker = 1
         self.update_cnt = 0
@@ -49,17 +43,7 @@ class Agent(object):
         self.step_times = np.ones(11, dtype=np.float32) # 11 is just a random number to have a running avg
 
         self.distribution = distribution
-        self.action_tensor = torch.LongTensor if self.distribution == AdaptedCategorical else torch.FloatTensor
-
         self.buffer = buffer
-
-    def select_action(self, state, train=True):
-        self.step_cnt += 1*self.n_worker
-        if self.now is None:
-            self.now = self.after = time.time()
-
-        # return dummy values
-        return None, None
 
     def perform_update(self):
 
@@ -147,79 +131,3 @@ class Agent(object):
                 print('New best model at update {}'.format(self.update_cnt))
                 self.store_model('best_model', self.dump_dir)
                 self.best_score = stats[self.score_name]
-
-    def train(self, env, max_steps):
-        state = env.reset()
-        step_cnt = 0
-
-        while step_cnt < max_steps:
-            action, done = self.select_action(state)
-
-            if done:
-                state = env.reset()
-            else:
-                state = env.step(action)
-
-            step_cnt += 1
-
-            # stop training if learn rate scheduler stopped
-            if self.lr_scheduler is not None and self.lr_scheduler.learning_stopped():
-                    break
-
-
-class TrainedAgent(Agent):
-
-    def __init__(self, model, use_cuda=torch.cuda.is_available(), deterministic=False, distribution=AdaptedCategorical):
-
-        Agent.__init__(self, observation_space=None, model=None, use_cuda=use_cuda, distribution=distribution)
-        self.model = model
-        self.use_cuda = use_cuda
-        self.deterministic = deterministic
-        self.policy = None
-
-        if self.use_cuda:
-            self.model.cuda()
-
-    def prepare_state(self, observation):
-
-        state = OrderedDict()
-
-        for obs_key in observation.keys():
-            state[obs_key] = torch.from_numpy(observation[obs_key]).unsqueeze(0).to(self.device)
-
-        return state
-
-    def select_action(self, state, train=False):
-
-        with torch.no_grad():
-            model_returns = self.model(self.prepare_state(state))
-
-        self.policy = model_returns['policy']
-
-        return self.model.sample_action(self.policy, deterministic=self.deterministic)[1][0]
-
-    def get_policy(self):
-        return self.distribution(**self.policy)
-
-    def predict_value(self, state):
-
-        value = self.model(self.prepare_state(state))['value']
-
-        return value.data.cpu().numpy()[0, 0]
-
-
-def get_agent(agent, **params):
-    from score_following_game.reinforcement_learning.algorithms.a2c import A2CAgent
-    from score_following_game.reinforcement_learning.algorithms.ppo import PPOAgent
-    from score_following_game.reinforcement_learning.algorithms.reinforce import ReinforceAgent
-
-    if agent == 'reinforce':
-        agent_type = ReinforceAgent
-    elif agent == 'a2c':
-        agent_type = A2CAgent
-    elif agent == 'ppo':
-        agent_type = PPOAgent
-    else:
-        raise NotImplementedError('Invalid Algorithm')
-
-    return agent_type(**params)
