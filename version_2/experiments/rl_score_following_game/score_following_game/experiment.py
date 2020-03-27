@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
-        for data,pos in train_data:
+        for input_train_ex,pos in train_data:
             input_train_ex.to(device)
             output = model(input_train_ex)
             loss = cost_fxn(output, pos)
