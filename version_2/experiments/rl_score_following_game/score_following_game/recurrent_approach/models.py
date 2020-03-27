@@ -7,7 +7,7 @@ from score_following_game.reinforcement_learning.torch_extentions.distributions.
 
 class Model(nn.Module):
     """
-    Template for creating models used in the reinforcement learning algorithms
+    Template for creating models used in the rnn algorithms
     """
     def __init__(self, net, optimizer, max_grad_norm=0.5, value_coef=0.5,
                  entropy_coef=0.01, distribution=AdaptedCategorical):
@@ -22,12 +22,6 @@ class Model(nn.Module):
 
     def forward(self, x):
         return self.net.forward(**x)
-
-    def forward_policy(self, x):
-        return self.net.forward(**x)['policy']
-
-    def forward_value(self, x):
-        return self.net.forward(**x)['value']
 
     def update(self, losses):
 
