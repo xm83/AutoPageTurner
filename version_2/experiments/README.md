@@ -1,1 +1,1 @@
-Experiments for applying deep learning techniques to Turnit: An Automatic Music Page Turner
+Experiments for using deep learning techniques in Turnit: An Automatic Music Page Turner
