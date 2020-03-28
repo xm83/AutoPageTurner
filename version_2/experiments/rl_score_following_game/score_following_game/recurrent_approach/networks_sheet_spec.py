@@ -52,7 +52,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         # recurrent layer
         self.rnn = nn.RNN(512, rnn_hidden_dim, num_recurrent_layers, batch_first=True)   
         # fully connected layer
-        self.final_fc = nn.Linear(hidden_dim, 1)  # output is a single value representing distance on the score
+        self.final_fc = nn.Linear(rnn_hidden_dim, 1)  # output is a single value representing distance on the score
 
         self.apply(weights_init)
 
