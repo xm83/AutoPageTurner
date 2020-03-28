@@ -98,37 +98,30 @@ class RLScoreFollowPool(object):
         """ return the np arrays for performance + score to feed into the network 
 
         Returns results: each element is a tuple of (full score for a song, audio excerpt at a frame for the song, corresponding score position at a frame for the song)
-
         """
-
         results = []
-
-        self.audioThread = AudioThread(self.path_to_audio, self.rl_pool.spectrogram_params['fps'])
-        self.audioThread.start()
-
-
         for idx in range(self.cache.get_maxlen()):
             song = self.cache.get_elem(idx)
             curr_score = song.score['representation_padded']
             curr_perf = song.cur_perf['representation_padded']
 
-            for perf_frame_idx in range(len(song.get_perf_onsets_padded())):
-                curr_score_position = song.get_score_onsets_padded()[perf_frame_idx]
-                curr_perf_frame = self.first_onset + int(perf_frame_idx)
+            num_onsets = len(song.get_perf_onsets_padded())
+            for onset_idx in range(num_onsets):
+                curr_score_position = song.get_score_onsets_padded()[onset_idx]  # this is a time value, not a coordinates
+                curr_perf_frame = song.get_perf_onsets_padded()[onset_idx]
+                # consider curr_score_position = self.curr_song.get_true_score_position(curr_perf_frame) i think that's what we want
                 perf_frame_idx_pad = curr_perf_frame + self.perf_shape[2]
                 offset = self.score_shape[2] // 2
 
                 if self.target_frame == 'right_most':
                     perf_representation_excerpt = \
-                        curr_perf['representation_padded'][..., (perf_frame_idx_pad - self.perf_shape[2]):perf_frame_idx_pad]
+                        curr_perf[..., (perf_frame_idx_pad - self.perf_shape[2]):perf_frame_idx_pad]
                 else:
                     perf_representation_excerpt = \
-                        curr_perf['representation_padded'][..., (perf_frame_idx_pad - offset):(perf_frame_idx_pad + offset)]
+                        curr_perf[..., (perf_frame_idx_pad - offset):(perf_frame_idx_pad + offset)]
 
                 results.append((curr_score, perf_representation_excerpt, curr_score_position))
-
         return results
-
 
 
     def step(self, perf_frame_idx: int) -> (np.ndarray, np.ndarray):
