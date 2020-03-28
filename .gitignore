@@ -7,3 +7,6 @@ venv/
 **/baselines
 **/fluidsynth-2.1.1
 **/score_following_game.egg-info
+**/logs
+**/params
+**/__pycache__
