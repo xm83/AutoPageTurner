@@ -54,7 +54,7 @@ if __name__ == '__main__':
     config = load_game_config(args.game_config)
 
     # initialize song cache, producer and data pools
-    CACHE_SIZE = 50
+    CACHE_SIZE = 5#0
     cache = create_song_cache(CACHE_SIZE)
     producer_process = create_song_producer(cache, config=config, directory=args.train_set, real_perf=args.real_perf)
     rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set)
