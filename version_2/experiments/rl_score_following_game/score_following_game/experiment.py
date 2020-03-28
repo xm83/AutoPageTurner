@@ -86,6 +86,7 @@ if __name__ == '__main__':
     if args.use_cuda:
         model.cuda()
 
+    print("loading dataset!")
     # load data from rl_pools
     dataset = []
     for pool in rl_pools:
