@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch
 
 
-def get_network(file, network_name, n_actions, shapes=dict(), activation=None):
+def get_network(file, network_name, shapes=dict(), activation=None):
     """
     Compile network by name
 
@@ -14,9 +14,9 @@ def get_network(file, network_name, n_actions, shapes=dict(), activation=None):
     constructor = getattr(package, network_name)
 
     if activation is None:
-        network = constructor(n_actions, **shapes)
+        network = constructor(**shapes)
     else:
-        network = constructor(n_actions, activation=activation, **shapes)
+        network = constructor(activation=activation, **shapes)
 
     return network
 

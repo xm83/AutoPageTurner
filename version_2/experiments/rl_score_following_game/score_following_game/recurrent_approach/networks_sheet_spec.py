@@ -8,7 +8,7 @@ from score_following_game.agents.networks_utils import weights_init, num_flat_fe
 
 class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
-    def __init__(self,  n_actions, perf_shape, score_shape, rnn_hidden_dim=12, num_recurrent_layers=1):
+    def __init__(self,  perf_shape, score_shape, rnn_hidden_dim=12, num_recurrent_layers=1):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
         # spec part
