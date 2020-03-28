@@ -61,12 +61,12 @@ if __name__ == '__main__':
 
     producer_process.start()
 
-    env_fnc = make_env_tismir
+    # env_fnc = make_env_tismir
 
-    if args.agent == 'reinforce':
-        env = get_make_env(rl_pools[0], config, env_fnc, render_mode=None)()
-    else:
-        env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
+    # if args.agent == 'reinforce':
+    #     env = get_make_env(rl_pools[0], config, env_fnc, render_mode=None)()
+    # else:
+    #     env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
 
     # compile network architecture
     net = get_network('networks_sheet_spec', args.net, env.action_space.n,
