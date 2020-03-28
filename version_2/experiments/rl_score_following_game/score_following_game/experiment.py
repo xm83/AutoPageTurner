@@ -98,10 +98,11 @@ if __name__ == '__main__':
     num_epochs = 5
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
-        for input_train_ex,pos in train_data:
-            input_train_ex.to(device)
-            output = model(input_train_ex)
-            loss = cost_fxn(output, pos)
+        for score, audio, ans in train_data:
+            score.to(device)
+            audio.to(device)
+            output = model(score, audio)
+            loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
         if epoch%10 == 0:
