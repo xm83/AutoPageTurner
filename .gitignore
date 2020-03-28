@@ -8,3 +8,4 @@ venv/
 **/score_following_game.egg-info
 **/logs
 **/params
+**/__pycache__
