@@ -10,3 +10,4 @@ venv/
 **/logs
 **/params
 **/__pycache__
+**/sound_fonts/grand-piano-YDP-20160804.sf2
