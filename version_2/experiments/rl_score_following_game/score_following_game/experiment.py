@@ -86,12 +86,16 @@ if __name__ == '__main__':
     if args.use_cuda:
         model.cuda()
 
-    # FIGURE OUT HOW TO LOAD TRAINING DATA
-    train_data = [] # REPLACE
-    test_data = [] # REPLACE
+    # load data from rl_pools
+    dataset = []
+    for pool in rl_pools:
+        dataset += pool.get_data()
+    train_ind = len(dataset) // 5 * 4
+    train_data = dataset[:train_ind]
+    test_data = dataset[train_ind:]
     cost_fxn = nn.MSELoss()
+    
     num_epochs = 5
-
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         for input_train_ex,pos in train_data:
