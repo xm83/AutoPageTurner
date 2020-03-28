@@ -2,4 +2,8 @@
 venv/
 .idea
 *.log # ignore logs
-
+**/*.*~
+**/data
+**/baselines
+**/fluidsynth-2.1.1
+**/score_following_game.egg-info

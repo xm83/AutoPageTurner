@@ -61,12 +61,12 @@ if __name__ == '__main__':
 
     producer_process.start()
 
-    env_fnc = make_env_tismir
+    # env_fnc = make_env_tismir
 
-    if args.agent == 'reinforce':
-        env = get_make_env(rl_pools[0], config, env_fnc, render_mode=None)()
-    else:
-        env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
+    # if args.agent == 'reinforce':
+    #     env = get_make_env(rl_pools[0], config, env_fnc, render_mode=None)()
+    # else:
+    #     env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
 
     # compile network architecture
     net = get_network('networks_sheet_spec', args.net, env.action_space.n,
@@ -86,18 +86,23 @@ if __name__ == '__main__':
     if args.use_cuda:
         model.cuda()
 
-    # FIGURE OUT HOW TO LOAD TRAINING DATA
-    train_data = [] # REPLACE
-    test_data = [] # REPLACE
+    # load data from rl_pools
+    dataset = []
+    for pool in rl_pools:
+        dataset += pool.get_data()
+    train_ind = len(dataset) // 5 * 4
+    train_data = dataset[:train_ind]
+    test_data = dataset[train_ind:]
     cost_fxn = nn.MSELoss()
+    
     num_epochs = 5
-
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
-        for input_train_ex,pos in train_data:
-            input_train_ex.to(device)
-            output = model(input_train_ex)
-            loss = cost_fxn(output, pos)
+        for score, audio, ans in train_data:
+            score.to(device)
+            audio.to(device)
+            output = model(score, audio)
+            loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
         if epoch%10 == 0:
