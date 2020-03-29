@@ -51,9 +51,11 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         self.concat_fc = nn.Linear(512 + 512, 512)
 
         # recurrent layer
-        self.rnn = nn.RNN(512, rnn_hidden_dim, num_recurrent_layers, batch_first=True)   
+        self.num_recurrent_layers = num_recurrent_layers
+        self.rnn_hidden_dim = rnn_hidden_dim
+        self.rnn = nn.RNN(512, self.rnn_hidden_dim, self.num_recurrent_layers, batch_first=True)   
         # fully connected layer
-        self.final_fc = nn.Linear(rnn_hidden_dim, 1)  # output is a single value representing distance on the score
+        self.final_fc = nn.Linear(self.rnn_hidden_dim, 1)  # output is a single value representing distance on the score
 
         self.apply(weights_init)
 
@@ -95,10 +97,17 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         cat_x = F.elu(self.concat_fc(cat_x))
 
         # Passing in the input and hidden state into the model and obtaining outputs
-        out, _ = self.rnn(x, cat_x)
+        hidden = self.init_hidden(cat_x.size(0))
+        out, _ = self.rnn(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
         out = out.contiguous().view(-1, self.rnn_hidden_dim)
         out = self.final_fc(out)
         
         return out
+
+    def init_hidden(self, batch_size):
+        # This method generates the first hidden state of zeros which we'll use in the forward pass
+        # We'll send the tensor holding the hidden state to the device we specified earlier as well
+        hidden = torch.zeros(self.num_recurrent_layers, batch_size, self.rnn_hidden_dim)
+        return hidden
