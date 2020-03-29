@@ -85,6 +85,7 @@ if __name__ == '__main__':
     # use cuda if available
     device = torch.device("cuda" if args.use_cuda else "cpu")
 
+    print("loading dataset!")
     # load data from rl_pools
     dataset = []
     for pool in rl_pools:
