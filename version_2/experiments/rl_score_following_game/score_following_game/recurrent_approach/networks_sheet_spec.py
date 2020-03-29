@@ -61,8 +61,8 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
     def forward(self, perf, score):
 
-        print(perf.shape)
-        print(score.shape)
+        #print("Forward performance shape: ", perf.shape)
+        #print("Forward score shape: ", score.shape)
         spec_x = F.elu(self.spec_conv1(perf))
         spec_x = F.elu(self.spec_conv2(spec_x))
         spec_x = F.elu(self.spec_conv3(spec_x))
@@ -97,11 +97,13 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         cat_x = F.elu(self.concat_fc(cat_x))
 
         # Passing in the input and hidden state into the model and obtaining outputs
+        cat_x = cat_x.unsqueeze(0)  # Sketch
         hidden = self.init_hidden(cat_x.size(0))
         out, _ = self.rnn(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
         out = out.contiguous().view(-1, self.rnn_hidden_dim)
+        #print("Forward out shape: ", score.shape)
         out = self.final_fc(out)
         
         return out

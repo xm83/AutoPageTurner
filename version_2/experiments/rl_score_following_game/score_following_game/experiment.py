@@ -99,16 +99,7 @@ if __name__ == '__main__':
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         for score, audio, ans in train_data:
-            # torch.from_numpy(score).to(device)
-            # torch.from_numpy(audio).to(device)
-            print(score.shape)
-            print(audio.shape)
-            #observation = torch.from_numpy(np.append(score, audio, axis=0)).to_device()
-            #score = torch.tensor(score)
-            #audio = torch.tensor(audio)
-            ans = torch.tensor(ans)
-            #score.to(device)
-            #audio.to(device)
+            ans = torch.Tensor(ans.reshape((1, 1))).float()
             observation = dict(
                 perf=audio,
                 score=score
@@ -117,10 +108,11 @@ if __name__ == '__main__':
             for obs_key in observation:
                 model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
             output = model(model_in)
+
             loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
-        if epoch%10 == 0:
+        if epoch % 10 == 0:
             print('Epoch: {}/{}.............'.format(epoch, n_epochs), end=' ')
             print("Loss: {:.4f}".format(loss.item()))
 
