@@ -98,6 +98,7 @@ if __name__ == '__main__':
     num_epochs = 5
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
+        index = 0
         for score, audio, ans in train_data:
             ans = torch.Tensor(ans.reshape((1, 1))).float()
             observation = dict(
@@ -112,9 +113,12 @@ if __name__ == '__main__':
             loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
-        if epoch % 10 == 0:
-            print('Epoch: {}/{}.............'.format(epoch, n_epochs), end=' ')
-            print("Loss: {:.4f}".format(loss.item()))
+            if index % 100 == 0:
+                print("loss: ", loss)
+            index += 1
+
+        print('Epoch: {}/{}.............'.format(epoch, num_epochs), end=' ')
+        print("Loss: {:.4f}".format(loss.item()))
 
     # store the song history to a file
     if not args.no_log:

@@ -109,7 +109,7 @@ class RLScoreFollowPool(object):
             for onset_idx in range(num_onsets):
                 # curr_score_position = song.get_score_onsets_padded()[onset_idx]  # this is a time value, not a coordinates
                 curr_perf_frame = song.get_perf_onsets_padded()[onset_idx]
-                curr_score_position = song.get_true_score_position(curr_perf_frame) / song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1])
+                curr_score_position = song.get_true_score_position(curr_perf_frame) #/ song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1])
                 perf_frame_idx_pad = curr_perf_frame + self.perf_shape[2]
                 offset = self.score_shape[2] // 2
 
