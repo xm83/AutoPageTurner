@@ -12,8 +12,6 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
         # spec part
-        print(perf_shape)
-        print(score_shape)
         self.spec_conv1 = nn.Conv2d(perf_shape[0], out_channels=16, kernel_size=3, stride=1, padding=0)
         self.spec_conv2 = nn.Conv2d(self.spec_conv1.out_channels, out_channels=16, kernel_size=3, stride=1, padding=0)
 
@@ -46,6 +44,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         self.sheet_conv8 = nn.Conv2d(self.sheet_conv7.out_channels, out_channels=96, kernel_size=1, stride=1, padding=0)
         self.sheet_do8 = nn.Dropout(p=0.2)
 
+        self.sheet_fc_prior = nn.Linear(10752, 1728)    # Added (sketch)
         self.sheet_fc = nn.Linear(1728, 512)
 
         # multi-modal part
@@ -60,6 +59,8 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
     def forward(self, perf, score):
 
+        print(perf.shape)
+        print(score.shape)
         spec_x = F.elu(self.spec_conv1(perf))
         spec_x = F.elu(self.spec_conv2(spec_x))
         spec_x = F.elu(self.spec_conv3(spec_x))
@@ -86,6 +87,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         sheet_x = self.sheet_do8(sheet_x)
 
         sheet_x = sheet_x.view(-1, num_flat_features(sheet_x))  # flatten
+        sheet_x = F.elu(self.sheet_fc_prior(sheet_x))   # Added (sketch)
         sheet_x = F.elu(self.sheet_fc(sheet_x))
 
         cat_x = torch.cat((spec_x, sheet_x), dim=1)
