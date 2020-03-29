@@ -12,6 +12,8 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
         # spec part
+        print(perf_shape)
+        print(score_shape)
         self.spec_conv1 = nn.Conv2d(perf_shape[0], out_channels=16, kernel_size=3, stride=1, padding=0)
         self.spec_conv2 = nn.Conv2d(self.spec_conv1.out_channels, out_channels=16, kernel_size=3, stride=1, padding=0)
 

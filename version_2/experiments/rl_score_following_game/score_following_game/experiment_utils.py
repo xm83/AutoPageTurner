@@ -24,8 +24,8 @@ def setup_parser():
     parser.add_argument('--seed', help='random seed.', type=np.int, default=4711)
 
     # agent parameters
-    parser.add_argument('--agent', help='reinforcement learning algorithm [reinforce|a2c|ppo].',
-                        choices=['reinforce', 'a2c', 'ppo'], type=str, default="a2c")
+    parser.add_argument('--agent', help='reinforcement learning algorithm [reinforce|a2c|ppo|rnn].',
+                        choices=['reinforce', 'a2c', 'ppo', 'rnn'], type=str, default="a2c")
     parser.add_argument('--net', help='network architecture to optimize.', type=str)
     parser.add_argument('--ini_params', help='path to initial parameters.', type=str, default=None)
     parser.add_argument('--n_worker', help='number of parallel workers.', type=np.int, default=8)

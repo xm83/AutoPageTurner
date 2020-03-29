@@ -14,8 +14,10 @@ default_sf: 'sound_fonts/grand-piano-YDP-20160804.sf2'
 pitch_range: [0, 127]
 
 # network parameters
-spec_shape: [2, 78, 40]
-sheet_shape: [2, 80, 256]
+#spec_shape: [2, 78, 40]
+#sheet_shape: [2, 80, 256]
+spec_shape: [1, 78, 40]
+sheet_shape: [1, 80, 256]
 
 # game parameters (environment)
 target_frame: right_most

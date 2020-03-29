@@ -6,7 +6,6 @@ import torch
 
 import numpy as np
 
-from baselines.common.vec_env.shmem_vec_env import ShmemVecEnv
 from score_following_game.agents.networks_utils import get_network
 from score_following_game.agents.optim_utils import get_optimizer, cast_optim_params
 from score_following_game.data_processing.data_pools import get_data_pools, get_shared_cache_pools
@@ -17,6 +16,7 @@ from score_following_game.experiment_utils import setup_parser, setup_logger, se
 from score_following_game.reinforcement_learning.torch_extentions.optim.lr_scheduler import RefinementLRScheduler
 from score_following_game.reinforcement_learning.algorithms.models import Model
 from time import gmtime, strftime
+from collections import OrderedDict
 
 if __name__ == '__main__':
     """ main """
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     config = load_game_config(args.game_config)
 
     # initialize song cache, producer and data pools
-    CACHE_SIZE = 5#0
+    CACHE_SIZE = 2#0
     cache = create_song_cache(CACHE_SIZE)
     producer_process = create_song_producer(cache, config=config, directory=args.train_set, real_perf=args.real_perf)
     rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set)
@@ -83,8 +83,7 @@ if __name__ == '__main__':
     model = Model(net, optimizer, max_grad_norm=args.max_grad_norm, value_coef=args.value_coef,
                   entropy_coef=args.entropy_coef)
     # use cuda if available
-    if args.use_cuda:
-        model.cuda()
+    device = torch.device("cuda" if args.use_cuda else "cpu")
 
     # load data from rl_pools
     dataset = []
@@ -93,15 +92,30 @@ if __name__ == '__main__':
     train_ind = len(dataset) // 5 * 4
     train_data = dataset[:train_ind]
     test_data = dataset[train_ind:]
-    cost_fxn = nn.MSELoss()
+    cost_fxn = torch.nn.MSELoss()
     
     num_epochs = 5
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         for score, audio, ans in train_data:
-            score.to(device)
-            audio.to(device)
-            output = model(score, audio)
+            # torch.from_numpy(score).to(device)
+            # torch.from_numpy(audio).to(device)
+            print(score.shape)
+            print(audio.shape)
+            #observation = torch.from_numpy(np.append(score, audio, axis=0)).to_device()
+            #score = torch.tensor(score)
+            #audio = torch.tensor(audio)
+            ans = torch.tensor(ans)
+            #score.to(device)
+            #audio.to(device)
+            observation = dict(
+                perf=audio,
+                score=score
+            )
+            model_in = OrderedDict()
+            for obs_key in observation:
+                model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
+            output = model(model_in)
             loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
