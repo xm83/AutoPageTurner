@@ -120,7 +120,14 @@ class RLScoreFollowPool(object):
                     perf_representation_excerpt = \
                         curr_perf[..., (perf_frame_idx_pad - offset):(perf_frame_idx_pad + offset)]
 
-                results.append((curr_score, perf_representation_excerpt, curr_score_position))
+                # get score representation
+                r0 = curr_score.shape[1]//2 - self.score_shape[1]//2
+                r1 = r0 + self.score_shape[1]
+                c0 = int(curr_score_position - self.score_shape[2]//2)
+                c1 = c0 + self.score_shape[2]
+                score_representation_excerpt = curr_score[:, r0:r1, c0:c1]
+
+                results.append((score_representation_excerpt, perf_representation_excerpt, curr_score_position))
         return results
 
 
