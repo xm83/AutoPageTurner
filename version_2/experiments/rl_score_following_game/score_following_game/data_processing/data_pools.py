@@ -100,6 +100,7 @@ class RLScoreFollowPool(object):
         Returns results: each element is a tuple of (full score for a song, audio excerpt at a frame for the song, corresponding score position at a frame for the song)
         """
         results = []
+        # print("self.cache.get_maxlen(): ", self.cache.get_maxlen())
         for idx in range(self.cache.get_maxlen()):
             song = self.cache.get_elem(idx)
             curr_score = song.score['representation_padded']
@@ -108,8 +109,11 @@ class RLScoreFollowPool(object):
             num_onsets = len(song.get_perf_onsets_padded())
             for onset_idx in range(num_onsets):
                 curr_perf_frame = song.get_perf_onsets_padded()[onset_idx]
-                total_score_len = song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1])
-                curr_score_position = song.get_true_score_position(curr_perf_frame) / total_score_len if total_score_len != 0 else 0
+                total_score_len = song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1]) # e.g. 7957.
+                # print("song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']: ", song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']))
+                curr_score_position = song.get_true_score_position(curr_perf_frame)
+                # make it a float btwn 0. and 1.
+                normalized_curr_score_position = curr_score_position / total_score_len if total_score_len != 0 else 0
                 perf_frame_idx_pad = curr_perf_frame + self.perf_shape[2]
                 offset = self.score_shape[2] // 2
 
@@ -127,7 +131,14 @@ class RLScoreFollowPool(object):
                 c1 = c0 + self.score_shape[2]
                 score_representation_excerpt = curr_score[:, r0:r1, c0:c1]
 
-                results.append((score_representation_excerpt, perf_representation_excerpt, curr_score_position))
+                # print("self.score_shape: ", self.score_shape)
+                # print("curr_score.shape: ", curr_score.shape)
+                # print("curr_score_position: ", curr_score_position)
+                # print("normalized_curr_score_position: ", normalized_curr_score_position)
+                # print("r0, r1, c0, c1: ", r0, r1, c0, c1)
+
+                results.append((score_representation_excerpt, perf_representation_excerpt, normalized_curr_score_position))
+                
         return results
 
 

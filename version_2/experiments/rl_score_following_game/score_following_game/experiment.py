@@ -88,14 +88,19 @@ if __name__ == '__main__':
     print("loading dataset!")
     # load data from rl_pools
     dataset = []
+    num_rl_pools = 0
     for pool in rl_pools:
+        num_rl_pools += 1
         dataset += pool.get_data()
+    print("num_rl_pools: ", num_rl_pools) # 8
+
     train_ind = len(dataset) // 5 * 4
     train_data = dataset[:train_ind]
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
     
     num_epochs = 5
+    epoch_loss = 0.
     for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         index = 0
@@ -116,9 +121,10 @@ if __name__ == '__main__':
             if index % 100 == 0:
                 print("loss: ", loss)
             index += 1
+            epoch_loss += loss.item()
 
         print('Epoch: {}/{}.............'.format(epoch, num_epochs), end=' ')
-        print("Loss: {:.4f}".format(loss.item()))
+        print("Loss: {:.4f}".format(epoch_loss))
 
     # store the song history to a file
     if not args.no_log:
