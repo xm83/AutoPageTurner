@@ -120,6 +120,7 @@ if __name__ == '__main__':
             optimizer.step() # Updates the weights accordingly
             if index % 100 == 0:
                 print("loss: ", loss)
+                print("epoch loss: ", epoch_loss)
             index += 1
             epoch_loss += loss.item()
 
