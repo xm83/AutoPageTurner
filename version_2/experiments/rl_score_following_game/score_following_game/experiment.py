@@ -128,7 +128,7 @@ if __name__ == '__main__':
                     print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
 
-            print("song_num, song_loss: ", song_num, song_loss)
+            print(f"song_num: {song_num}, song_loss: {song_loss}")
 
         print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
         print("Loss: {:.4f}".format(epoch_loss))
