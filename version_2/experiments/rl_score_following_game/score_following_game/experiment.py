@@ -99,39 +99,41 @@ if __name__ == '__main__':
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
     
-    # num_epochs = 5
-    epoch_loss = 0.
-    # one song per epoch
-    for epoch, song in enumerate(train_data):
-    # for epoch in range(num_epochs):
-        optimizer.zero_grad() # Clears existing gradients from previous epoch
-        index = 0
-        
-        for score, audio, ans in song:
-            ans = torch.Tensor(ans.reshape((1, 1))).float()
-            observation = dict(
-                perf=audio,
-                score=score
-            )
-            model_in = OrderedDict()
-            for obs_key in observation:
-                model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
-            output = model(model_in)
+    num_epochs = 5
+    for epoch in range(num_epochs):
+        epoch_loss = 0.
+        # iterate thru all songs in an epoch
+        for song_num, song in enumerate(train_data):
+            song_loss = 0.
+            optimizer.zero_grad() # Clears existing gradients from previous epoch
+            index = 0
+            
+            for score, audio, ans in song:
+                ans = torch.Tensor(ans.reshape((1, 1))).float()
+                observation = dict(
+                    perf=audio,
+                    score=score
+                )
+                model_in = OrderedDict()
+                for obs_key in observation:
+                    model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
+                output = model(model_in)
 
-            loss = cost_fxn(output, ans)
-            print()
-            loss.backward() # Does backpropagation and calculates gradients
-            optimizer.step() # Updates the weights accordingly
-            epoch_loss += loss.item()
-            if index % 100 == 0:
-                print("loss: ", loss)
-                # print("epoch loss: ", epoch_loss)
-            index += 1
+                loss = cost_fxn(output, ans)
+                print()
+                loss.backward() # Does backpropagation and calculates gradients
+                optimizer.step() # Updates the weights accordingly
+                epoch_loss += loss.item()
+                song_loss += loss.item()
+                if index % 100 == 0:
+                    print("data point index, loss: ", index, loss.item())
+                index += 1
+
+            print("song_num, song_loss: ", song_num, song_loss)
 
         print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
         print("Loss: {:.4f}".format(epoch_loss))
 
-        epoch_loss = 0.
 
     # store the song history to a file
     if not args.no_log:
