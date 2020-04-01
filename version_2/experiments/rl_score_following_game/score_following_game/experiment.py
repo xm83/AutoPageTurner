@@ -101,7 +101,8 @@ if __name__ == '__main__':
     
     # num_epochs = 5
     epoch_loss = 0.
-    for song, epoch in enumerate(train_data):
+    # one song per epoch
+    for epoch, song in enumerate(train_data):
     # for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         index = 0
@@ -118,16 +119,19 @@ if __name__ == '__main__':
             output = model(model_in)
 
             loss = cost_fxn(output, ans)
+            print()
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
             epoch_loss += loss.item()
             if index % 100 == 0:
                 print("loss: ", loss)
-                print("epoch loss: ", epoch_loss)
+                # print("epoch loss: ", epoch_loss)
             index += 1
 
         print('Epoch: {}/{}.............'.format(epoch, num_epochs), end=' ')
         print("Loss: {:.4f}".format(epoch_loss))
+
+        epoch_loss = 0.
 
     # store the song history to a file
     if not args.no_log:
