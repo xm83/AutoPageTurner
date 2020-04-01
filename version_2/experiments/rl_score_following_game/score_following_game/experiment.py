@@ -120,7 +120,6 @@ if __name__ == '__main__':
                 output = model(model_in)
 
                 loss = cost_fxn(output, ans)
-                print()
                 loss.backward() # Does backpropagation and calculates gradients
                 optimizer.step() # Updates the weights accordingly
                 epoch_loss += loss.item()
