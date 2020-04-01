@@ -128,7 +128,7 @@ if __name__ == '__main__':
                 # print("epoch loss: ", epoch_loss)
             index += 1
 
-        print('Epoch: {}/{}.............'.format(epoch + 1, num_epochs), end=' ')
+        print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
         print("Loss: {:.4f}".format(epoch_loss))
 
         epoch_loss = 0.
