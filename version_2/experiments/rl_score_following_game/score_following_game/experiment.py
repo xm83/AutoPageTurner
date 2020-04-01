@@ -125,7 +125,7 @@ if __name__ == '__main__':
                 epoch_loss += loss.item()
                 song_loss += loss.item()
                 if index % 100 == 0:
-                    print("data point index, loss: ", index, loss.item())
+                    print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
 
             print("song_num, song_loss: ", song_num, song_loss)
