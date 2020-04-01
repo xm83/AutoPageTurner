@@ -99,12 +99,14 @@ if __name__ == '__main__':
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
     
-    num_epochs = 5
+    # num_epochs = 5
     epoch_loss = 0.
-    for epoch in range(num_epochs):
+    for song, epoch in enumerate(train_data):
+    # for epoch in range(num_epochs):
         optimizer.zero_grad() # Clears existing gradients from previous epoch
         index = 0
-        for score, audio, ans in train_data:
+        
+        for score, audio, ans in song:
             ans = torch.Tensor(ans.reshape((1, 1))).float()
             observation = dict(
                 perf=audio,
@@ -118,11 +120,11 @@ if __name__ == '__main__':
             loss = cost_fxn(output, ans)
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
+            epoch_loss += loss.item()
             if index % 100 == 0:
                 print("loss: ", loss)
                 print("epoch loss: ", epoch_loss)
             index += 1
-            epoch_loss += loss.item()
 
         print('Epoch: {}/{}.............'.format(epoch, num_epochs), end=' ')
         print("Loss: {:.4f}".format(epoch_loss))

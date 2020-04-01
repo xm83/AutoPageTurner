@@ -102,6 +102,7 @@ class RLScoreFollowPool(object):
         results = []
         # print("self.cache.get_maxlen(): ", self.cache.get_maxlen())
         for idx in range(self.cache.get_maxlen()):
+            song_arr = []
             song = self.cache.get_elem(idx)
             curr_score = song.score['representation_padded']
             curr_perf = song.cur_perf['representation_padded']
@@ -137,8 +138,9 @@ class RLScoreFollowPool(object):
                 # print("normalized_curr_score_position: ", normalized_curr_score_position)
                 # print("r0, r1, c0, c1: ", r0, r1, c0, c1)
 
-                results.append((score_representation_excerpt, perf_representation_excerpt, normalized_curr_score_position))
-                
+                song_arr.append((score_representation_excerpt, perf_representation_excerpt, normalized_curr_score_position))
+            results.append(song_arr)
+
         return results
 
 
