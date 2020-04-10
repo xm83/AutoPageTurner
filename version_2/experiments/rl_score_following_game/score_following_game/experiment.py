@@ -69,9 +69,14 @@ if __name__ == '__main__':
     #     env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
 
     # compile network architecture
-    # net = get_network('networks_rnn', args.net,
-    #                   shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
-    net = get_network('networks_lstm', args.net,
+    if args.network == 'rnn':
+        net = get_network('networks_rnn', args.net,
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+    elif args.network == 'lstm':
+        net = get_network('networks_lstm', args.net,
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+    elif args.network == 'gru':
+        net = get_network('networks_gru', args.net,
                       shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
 
     # load initial parameters
