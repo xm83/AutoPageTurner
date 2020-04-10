@@ -99,9 +99,9 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
         hidden_state = self.init_hidden(cat_x.size(0))
-        cell_state = self.init_hidden(cat_x.size(0))
-        hidden = (hidden_state, cell_state)
-        out, _ = self.gru_layer(cat_x, hidden)
+        # cell_state = self.init_hidden(cat_x.size(0))
+        # hidden = (hidden_state, cell_state)
+        out, _ = self.gru_layer(cat_x, hidden_state)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
         out = out.contiguous().view(-1, self.gru_hidden_dim)
