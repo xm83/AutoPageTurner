@@ -22,6 +22,8 @@ if __name__ == '__main__':
     """ main """
 
     parser = setup_parser()
+    parser.add_argument('--network', help='which network to use [rnn|lstm|gru].',
+                        choices=['rnn', 'lstm', 'gru'], type=str, default="rnn")
     args = parser.parse_args()
 
     np.random.seed(args.seed)

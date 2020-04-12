@@ -52,7 +52,7 @@ class RLScoreFollowPool(object):
         self.next_onset_idx = 0
         self.current_score_onset_idx = 0
 
-        self.sheet_speed = 0
+        self.new_position = 0
         self.next_onset = None
         self.current_onset = None
         self.use_rate = config.get('use_rate', True)
@@ -92,7 +92,7 @@ class RLScoreFollowPool(object):
         self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1])
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
-        self.sheet_speed = 0
+        self.new_position = 0
 
     def get_data(self):
         """ return the np arrays for performance + score to feed into the network 
@@ -169,7 +169,7 @@ class RLScoreFollowPool(object):
         self.curr_perf_frame = perf_frame_idx_pad
 
         # update estimated score position
-        self.est_score_position += self.sheet_speed
+        self.est_score_position = self.new_position
         self.est_score_position = self.clip_coord(self.est_score_position,
                                                   self.curr_song.score['representation_padded'])
 
@@ -206,13 +206,9 @@ class RLScoreFollowPool(object):
     def get_current_song_timesteps(self):
         return self.curr_song.cur_perf['representation_padded'].shape[-1]
 
-    def update_position(self, step=1):
+    def update_position(self, newPos=0):
         """update the sheet speed"""
-
-        if self.use_rate:
-            self.sheet_speed += step
-        else:
-            self.sheet_speed = step
+        self.new_position = newPos
 
     def tracking_error(self):
         """Compute distance between score and performance position."""

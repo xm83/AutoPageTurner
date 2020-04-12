@@ -9,6 +9,7 @@ from gym import Env, spaces
 from gym.utils import seeding
 from score_following_game.environment.audio_thread import AudioThread
 from score_following_game.environment.render_utils import write_text, prepare_sheet_for_render, prepare_spec_for_render
+from score_following_game.environment.reward import Reward
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +19,7 @@ TEXT_COLOR = (255, 255, 255)
 BORDER_COLOR = (0, 0, 255)
 
 
-class ScoreFollowingSupervisedEnv(Env):
+class ScoreFollowingEnv(Env):
     metadata = {
         'render.modes': {'human': 'human',
                          'computer': 'computer',
@@ -28,11 +29,11 @@ class ScoreFollowingSupervisedEnv(Env):
     def __init__(self, rl_pool, config, render_mode=None):
 
         self.rl_pool = rl_pool
-        # self.actions = config["actions"]
+        self.actions = config["actions"]
         self.render_mode = render_mode
 
         # distance of tracker to true score position to fail the episode
-        # self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
+        self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
 
         self.interpolationFunction = None
         self.spectrogram_positions = []
@@ -58,28 +59,28 @@ class ScoreFollowingSupervisedEnv(Env):
 
         self.step_id = 0
         self.frame_id = 0
-        # self.last_reward = None
-        # self.cum_reward = None
+        self.last_reward = None
+        self.cum_reward = None
         self.time_stamp = time.time()
         self.step_times = np.zeros(25)
 
-        # self.last_action = None
+        self.last_action = None
 
         # setup observation space
         self.observation_space = spaces.Dict({'perf': spaces.Box(0, 255, self.rl_pool.perf_shape, dtype=np.float32),
                                               'score': spaces.Box(0, 255, self.rl_pool.score_shape, dtype=np.float32)})
 
-        # if len(config['actions']) == 0:
-        #     self.action_space = spaces.Box(low=-128, high=128, shape=(1,), dtype=np.float32)
-        # else:
-        #     self.action_space = spaces.Discrete(len(self.actions))
-        # self.reward_range = (-1, 1)
+        if len(config['actions']) == 0:
+            self.action_space = spaces.Box(low=-128, high=128, shape=(1,), dtype=np.float32)
+        else:
+            self.action_space = spaces.Discrete(len(self.actions))
+        self.reward_range = (-1, 1)
         self.obs_image = None
-        # self.prev_reward = 0.0
+        self.prev_reward = 0.0
         self.debug_info = {'song_history': self.rl_pool.get_song_history()}
 
-        # self.reward = Reward(config['reward_name'], threshold=self.score_dist_threshold, pool=self.rl_pool,
-                             # params=config['reward_params'])
+        self.reward = Reward(config['reward_name'], threshold=self.score_dist_threshold, pool=self.rl_pool,
+                             params=config['reward_params'])
 
         # resize factors for rendering
         self.resz_spec = 4
@@ -87,18 +88,18 @@ class ScoreFollowingSupervisedEnv(Env):
         self.resz_x, self.resz_y = self.resz_imag, self.resz_imag
         self.text_position = 0
 
-    def step(self, newPos):
+    def step(self, action):
 
-        # if len(self.actions) > 0:
-        #     # assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
-        #     # decode action if specific action space is given
-        #     action = self.actions[action]
-        # else:
-        #     action = action[0]
+        if len(self.actions) > 0:
+            # assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
+            # decode action if specific action space is given
+            action = self.actions[action]
+        else:
+            action = action[0]
 
-        self.rl_pool.update_position(newPos)
+        self.rl_pool.update_position(action)
 
-        # self.last_action = action
+        self.last_action = action
 
         # get current frame from "pace-maker"
         if self.render_mode == 'computer' or self.render_mode == 'human':
@@ -125,24 +126,24 @@ class ScoreFollowingSupervisedEnv(Env):
         )
 
         # check if score follower lost its target
-        # abs_err = np.abs(self.rl_pool.tracking_error())
-        # target_lost = abs_err > self.score_dist_threshold
+        abs_err = np.abs(self.rl_pool.tracking_error())
+        target_lost = abs_err > self.score_dist_threshold
 
         # check if score follower reached end of song
         end_of_song = self.rl_pool.last_onset_reached()
 
-        # reward = self.reward.get_reward(abs_err)
+        reward = self.reward.get_reward(abs_err)
 
         # end of score following
         done = False
-        if end_of_song:
+        if target_lost or end_of_song:
             done = True
             if self.render_mode == 'computer' or self.render_mode == 'human':
                 self.audioThread.end_stream()
 
         # no reward if target is lost
-        # if target_lost:
-        #     reward = np.float32(0.0)
+        if target_lost:
+            reward = np.float32(0.0)
 
         # check if env is still used even if done
         if not done:
@@ -162,22 +163,22 @@ class ScoreFollowingSupervisedEnv(Env):
         self.step_times[0] = time.time() - self.time_stamp
         self.time_stamp = time.time()
 
-        # self.last_reward = reward
+        self.last_reward = reward
         self.step_id += 1
-        # self.cum_reward += reward
+        self.cum_reward += reward
 
-        return self.state, done, {}
+        return self.state, reward, done, {}
 
     def reset(self):
 
         self.steps_beyond_done = None
         self.step_id = 0
-        # self.cum_reward = 0
+        self.cum_reward = 0
         self.first_execution = True
         self.curr_frame = 0
         self.prev_frame = -1
 
-        # self.last_action = None
+        self.last_action = None
 
         # reset data pool
         self.rl_pool.reset()
@@ -274,6 +275,19 @@ class ScoreFollowingSupervisedEnv(Env):
     def _seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
+
+    def _write_text(self, obs_image, pos, color):
+
+        # write reward to observation image
+        write_text('reward: {:6.2f}'.format(self.last_reward if self.last_reward is not None else 0),
+                   pos, obs_image, color=color)
+
+        # write cumulative reward (score) to observation image
+        write_text("score: {:6.2f}".format(self.cum_reward if self.cum_reward is not None else 0),
+                   pos + 2, obs_image, color=color)
+
+        # write last action
+        write_text("action: {:+6.1f}".format(self.last_action), pos + 4, obs_image, color=color)
 
     def prepare_score_for_render(self):
         return prepare_sheet_for_render(self.score, resz_x=self.resz_imag, resz_y=self.resz_imag)

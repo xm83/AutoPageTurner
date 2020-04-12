@@ -13,7 +13,7 @@ from score_following_game.agents.optimal_agent import OptimalAgent
 from score_following_game.agents.networks_utils import get_network
 from score_following_game.data_processing.data_pools import get_single_song_pool
 from score_following_game.data_processing.utils import load_game_config
-from score_following_game.environment.score_following_env import ScoreFollowingEnv
+from score_following_game.environment.score_following_supervised_env import ScoreFollowingSupervisedEnv
 from score_following_game.environment.render_utils import prepare_sheet_for_render, prepare_spec_for_render
 from score_following_game.experiment_utils import initialize_trained_agent, get_make_env, make_env_tismir,\
     setup_evaluation_parser
@@ -81,8 +81,7 @@ if __name__ == "__main__":
         observation_images = []
 
         # get observations
-        episode_reward = 0
-        observation = env.reset()
+        observation = env.reset()  # (perf, score)
 
         reward = 0
         done = False
@@ -100,11 +99,14 @@ if __name__ == "__main__":
         tempo_curve = []
 
         while True:
-            # choose action
-            action = agent.select_action(observation)
+            # feed state to model to get estimated pos
+            model_in = OrderedDict()
+            for obs_key in observation:
+                model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
+            newPos = model(model_in)
+
             # perform step and observe
-            observation, reward, done, info = env.step(action)
-            episode_reward += reward
+            observation, done, info = env.step(newPos)
 
             if env.obs_image is not None:
                 bar_img = env.obs_image

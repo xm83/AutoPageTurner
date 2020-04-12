@@ -163,12 +163,12 @@ def initialize_trained_agent(model, use_cuda=True, deterministic=False, distribu
 
 
 def make_env_tismir(rl_pool, config, render_mode=None):
-    from score_following_game.environment.score_following_env import ScoreFollowingEnv
+    from score_following_game.environment.score_following_supervised_env import ScoreFollowingSupervisedEnv
     from score_following_game.environment.env_wrappers import ConvertToFloatWrapper, ResizeSizeWrapper, InvertWrapper, \
         DifferenceWrapper
 
     # initialize environment
-    env = ScoreFollowingEnv(rl_pool, config, render_mode=render_mode)
+    env = ScoreFollowingSupervisedEnv(rl_pool, config, render_mode=render_mode)
     env = ResizeSizeWrapper(env, key='score', factor=config['score_factor'], dim=config['score_dim'])
     env = ResizeSizeWrapper(env, key='perf', factor=config['perf_factor'], dim=config['perf_dim'])
     env = ConvertToFloatWrapper(env, key='score')
