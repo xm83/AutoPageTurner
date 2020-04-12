@@ -92,6 +92,7 @@ if __name__ == '__main__':
                   entropy_coef=args.entropy_coef)
     # use cuda if available
     device = torch.device("cuda" if args.use_cuda else "cpu")
+    model.to(device)
 
     print("loading dataset!")
     # load data from rl_pools
@@ -117,7 +118,7 @@ if __name__ == '__main__':
             index = 0
             
             for score, audio, ans in song:
-                ans = torch.Tensor(ans.reshape((1, 1))).float()
+                ans = torch.Tensor(ans.reshape((1, 1))).float().to(device)
                 observation = dict(
                     perf=audio,
                     score=score
