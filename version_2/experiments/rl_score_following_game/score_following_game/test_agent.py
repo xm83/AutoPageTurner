@@ -75,9 +75,6 @@ if __name__ == "__main__":
 
         model = Model(net, optimizer=None)
 
-        # REPLACE THIS WITH SUPERVISED STUFF
-        agent = initialize_trained_agent(model, use_cuda=use_cuda, deterministic=False)
-
         observation_images = []
 
         # get observations
