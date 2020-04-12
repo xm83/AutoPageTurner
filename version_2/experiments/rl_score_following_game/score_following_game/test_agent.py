@@ -33,9 +33,6 @@ if __name__ == "__main__":
     parser = setup_evaluation_parser()
     parser.add_argument('--agent_type', help='which agent to test [rl|optimal|human].',
                         choices=['rl', 'optimal', 'human'], type=str, default="rl")
-    parser.add_argument('--plot_stats', help='plot additional statistics.', action='store_true', default=False)
-    parser.add_argument('--plot_ig', help='plot integrated gradients.', action='store_true', default=False)
-
     args = parser.parse_args()
 
 
@@ -96,15 +93,6 @@ if __name__ == "__main__":
         reward = 0
         done = False
 
-        if args.plot_ig:
-            IG = IntegratedGradients(net, 'cuda', steps=20)
-            plain_env = get_make_env(copy.deepcopy(pool), config, make_env_fnc=make_env_tismir, render_mode=render_mode)()
-
-            while not isinstance(plain_env, ScoreFollowingEnv):
-                plain_env = plain_env.env
-
-            plain_env.reset()
-
         colors = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#000000', '#e0f3f8', '#abd9e9', '#74add1',
                   '#4575b4', '#313695']
         colors = list(reversed(colors))
@@ -125,87 +113,7 @@ if __name__ == "__main__":
             episode_reward += reward
 
             if env.obs_image is not None:
-
                 bar_img = env.obs_image
-
-                if args.plot_ig or args.plot_stats:
-                    observation_tensor = agent.prepare_state(observation)
-                    model_return = model(observation_tensor)
-
-                    bar_height = env.obs_image.shape[0]
-                    spacer = 255 * np.ones((bar_height, 5, 3), np.uint8)
-
-                    if args.plot_ig:
-                        obs_org, r, d, _ = plain_env.step(action)
-
-                        # invert and create grayscale score
-                        org_score = 1 - obs_org['score'][0]
-                        org_score = np.uint8(cm.gray(org_score) * 255)
-
-                        # create grayscale perf
-                        org_perf = np.uint8(cm.gray(obs_org['perf'][0]) * 255)
-
-                        # get gradients
-                        guided_score_grads, guided_perf_grads = IG.generate_gradients([observation_tensor['perf'],
-                                                                                       observation_tensor['score']])
-                        # prepare saliency map for score and delta-score
-                        grads_score = guided_score_grads[0]
-                        grads_score = prepare_grad_for_render(grads_score, (config['score_shape'][2], config['score_shape'][1]), norm, cmap)
-
-                        # prepare saliency map for performance and delta-performance
-                        grads_perf = guided_perf_grads[0]
-                        grads_perf = prepare_grad_for_render(grads_perf, (config['perf_shape'][2], config['perf_shape'][1]),
-                                                             norm, cmap)
-
-                        # add score gradients to score
-                        added_image_score = cv2.addWeighted(grads_score, 1.0, org_score[:, :, :-1], 0.4, 0)
-                        added_image_score = prepare_sheet_for_render(added_image_score, plain_env.resz_x, plain_env.resz_y, transform_to_bgr=False)
-
-                        # add performance gradients to performance
-                        added_image_perf = cv2.addWeighted(grads_perf, 1.0, org_perf[:, :, :-1], 0.4, 0)
-                        added_image_perf = prepare_spec_for_render(added_image_perf, plain_env.resz_spec, transform_to_bgr=False)
-
-                        org_img = copy.copy(env.obs_image)
-                        env.obs_image[0:added_image_score.shape[0], 0:added_image_score.shape[1], :] = added_image_score
-
-                        c0 = env.obs_image.shape[1] // 2 - added_image_perf.shape[1] // 2
-                        c1 = c0 + added_image_perf.shape[1]
-                        env.obs_image[added_image_score.shape[0]:, c0:c1, :] = added_image_perf
-
-                        # bar_img = np.concatenate((e.obs_image, spacer, spacer, spacer, value_bgr, spacer, speed_bgr, spacer, error_bgr, spacer, score_bgr, spacer, pot_score_bgr), axis=1)
-                        bar_img = np.concatenate((bar_img, spacer, org_img), axis=1)
-
-                    if args.plot_stats:
-
-                        value = model_return['value'].detach().cpu().item()
-                        values.append(value)
-                        tempo_curve.append(pool.sheet_speed)
-
-                        # get value function bar plot
-                        value_bgr = get_opencv_bar(value, bar_heigth=bar_height, max_value=25,
-                                                   color=(255, 255, 0), title="value")
-
-                        # get pixel speed bar plot
-                        speed_bgr = get_opencv_bar(pool.sheet_speed, bar_heigth=bar_height, min_value=-15, max_value=15,
-                                                   color=(255, 0, 255), title="speed")
-
-                        # get tracking error bar
-                        error_bgr = get_opencv_bar(np.abs(pool.tracking_error()),
-                                                   bar_heigth=bar_height, max_value=config['score_shape'][-1] // 2,
-                                                   color=(0, 0, 255), title="error")
-
-                        # get score progress bar
-                        score_bgr = get_opencv_bar(episode_reward, bar_heigth=bar_height, max_value=pool.get_current_song_timesteps(),
-                                                   color=(0, 255, 255), title="reward")
-
-                        # get potential score progress bar
-                        pot_score_bgr = get_opencv_bar(len(tempo_curve), bar_heigth=bar_height,
-                                                       max_value=pool.get_current_song_timesteps(),
-                                                       color=(0, 255, 255), title="max")
-
-                        bar_img = np.concatenate((bar_img, spacer, value_bgr, spacer, speed_bgr, spacer, error_bgr, spacer,
-                                                  score_bgr, spacer, pot_score_bgr), axis=1)
-
                 if render_mode == 'video':
                     observation_images.append(bar_img)
                 else:
