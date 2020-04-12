@@ -31,12 +31,12 @@ if __name__ == "__main__":
     """ main """
 
     parser = setup_evaluation_parser()
-    parser.add_argument('--agent_type', help='which agent to test [rl|optimal|human].',
-                        choices=['rl', 'optimal', 'human'], type=str, default="rl")
+    parser.add_argument('--agent_type', help='which agent to test [rnn|lstm|gru|optimal].',
+                        choices=['rnn', 'lstm', 'gru', 'optimal'], type=str, default="rnn")
     args = parser.parse_args()
 
 
-    if args.agent_type == 'rl':
+    if args.agent_type != 'optimal':
         exp_name = os.path.basename(os.path.split(args.params)[0])
 
         if args.net is None:
@@ -47,29 +47,22 @@ if __name__ == "__main__":
 
     config = load_game_config(args.game_config)
 
-    if args.agent_type == 'optimal':
-        # the action space for the optimal agent needs to be continuous
-        config['actions'] = []
-
     pool = get_single_song_pool(
         dict(config=config, song_name=args.piece, directory=args.data_set, real_perf=args.real_perf))
 
     observation_images = []
 
-    # initialize environment
-    env = make_env_tismir(pool, config, render_mode='human' if args.agent_type == 'human' else 'video')
+    # initialize environment -- MODIFY THIS
+    env = make_env_tismir(pool, config, render_mode='video')
 
-    if args.agent_type == 'human' or args.agent_type == 'optimal':
-
-        agent = HumanAgent(pool) if args.agent_type == 'human' else OptimalAgent(pool)
+    if args.agent_type == 'optimal':  # MODIFY THIS
+        agent = OptimalAgent(pool)
         alignment_errors, action_sequence, observation_images, episode_reward = agent.play_episode(env, render_mode)
-
     else:
-
         # compile network architecture
         n_actions = len(config["actions"])
-        net = get_network("networks_sheet_spec", args.net, n_actions=n_actions,
-                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+        net = get_network("networks_{}".format(args.agent_type), args.net, 
+            shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
 
         # load network parameters
         net.load_state_dict(torch.load(args.params))
@@ -82,6 +75,7 @@ if __name__ == "__main__":
 
         model = Model(net, optimizer=None)
 
+        # REPLACE THIS WITH SUPERVISED STUFF
         agent = initialize_trained_agent(model, use_cuda=use_cuda, deterministic=False)
 
         observation_images = []
@@ -124,6 +118,6 @@ if __name__ == "__main__":
                 break
 
     # write video
-    if args.agent_type != 'human' and render_mode == 'video':
+    if render_mode == 'video':
         render_video(observation_images, pool, fps=config['spectrogram_params']['fps'], mux_audio=mux_audio,
                      real_perf=args.real_perf)
