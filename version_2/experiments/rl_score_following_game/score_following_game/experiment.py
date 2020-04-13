@@ -110,7 +110,7 @@ if __name__ == '__main__':
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
     
-    num_epochs = 5
+    num_epochs = 10
     for epoch in range(num_epochs):
         epoch_loss = 0.
         # iterate thru all songs in an epoch
