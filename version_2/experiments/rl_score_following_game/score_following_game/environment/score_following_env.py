@@ -28,7 +28,6 @@ class ScoreFollowingSupervisedEnv(Env):
     def __init__(self, rl_pool, config, render_mode=None):
 
         self.rl_pool = rl_pool
-        # self.actions = config["actions"]
         self.render_mode = render_mode
 
         # distance of tracker to true score position to fail the episode
@@ -58,28 +57,15 @@ class ScoreFollowingSupervisedEnv(Env):
 
         self.step_id = 0
         self.frame_id = 0
-        # self.last_reward = None
-        # self.cum_reward = None
         self.time_stamp = time.time()
         self.step_times = np.zeros(25)
-
-        # self.last_action = None
 
         # setup observation space
         self.observation_space = spaces.Dict({'perf': spaces.Box(0, 255, self.rl_pool.perf_shape, dtype=np.float32),
                                               'score': spaces.Box(0, 255, self.rl_pool.score_shape, dtype=np.float32)})
 
-        # if len(config['actions']) == 0:
-        #     self.action_space = spaces.Box(low=-128, high=128, shape=(1,), dtype=np.float32)
-        # else:
-        #     self.action_space = spaces.Discrete(len(self.actions))
-        # self.reward_range = (-1, 1)
         self.obs_image = None
-        # self.prev_reward = 0.0
         self.debug_info = {'song_history': self.rl_pool.get_song_history()}
-
-        # self.reward = Reward(config['reward_name'], threshold=self.score_dist_threshold, pool=self.rl_pool,
-                             # params=config['reward_params'])
 
         # resize factors for rendering
         self.resz_spec = 4
@@ -88,17 +74,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.text_position = 0
 
     def step(self, newPos):
-
-        # if len(self.actions) > 0:
-        #     # assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
-        #     # decode action if specific action space is given
-        #     action = self.actions[action]
-        # else:
-        #     action = action[0]
-
         self.rl_pool.update_position(newPos)
-
-        # self.last_action = action
 
         # get current frame from "pace-maker"
         if self.render_mode == 'computer' or self.render_mode == 'human':
@@ -124,14 +100,8 @@ class ScoreFollowingSupervisedEnv(Env):
             score=self.score
         )
 
-        # check if score follower lost its target
-        # abs_err = np.abs(self.rl_pool.tracking_error())
-        # target_lost = abs_err > self.score_dist_threshold
-
         # check if score follower reached end of song
         end_of_song = self.rl_pool.last_onset_reached()
-
-        # reward = self.reward.get_reward(abs_err)
 
         # end of score following
         done = False
@@ -139,10 +109,6 @@ class ScoreFollowingSupervisedEnv(Env):
             done = True
             if self.render_mode == 'computer' or self.render_mode == 'human':
                 self.audioThread.end_stream()
-
-        # no reward if target is lost
-        # if target_lost:
-        #     reward = np.float32(0.0)
 
         # check if env is still used even if done
         if not done:
@@ -162,9 +128,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.step_times[0] = time.time() - self.time_stamp
         self.time_stamp = time.time()
 
-        # self.last_reward = reward
         self.step_id += 1
-        # self.cum_reward += reward
 
         return self.state, done, {}
 
@@ -176,8 +140,6 @@ class ScoreFollowingSupervisedEnv(Env):
         self.first_execution = True
         self.curr_frame = 0
         self.prev_frame = -1
-
-        # self.last_action = None
 
         # reset data pool
         self.rl_pool.reset()
