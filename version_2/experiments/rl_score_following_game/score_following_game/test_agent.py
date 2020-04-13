@@ -35,7 +35,7 @@ if __name__ == "__main__":
                         choices=['rnn', 'lstm', 'gru', 'optimal'], type=str, default="rnn")
     args = parser.parse_args()
 
-
+    # FIGURE OUT A WAY TO INCORPORATE THE OPTIMAL "AGENT" (answers)
     if args.agent_type != 'optimal':
         exp_name = os.path.basename(os.path.split(args.params)[0])
 
@@ -55,66 +55,62 @@ if __name__ == "__main__":
     # initialize environment -- MODIFY THIS
     env = make_env_tismir(pool, config, render_mode='video')
 
-    if args.agent_type == 'optimal':  # MODIFY THIS
-        agent = OptimalAgent(pool)
-        alignment_errors, action_sequence, observation_images, episode_reward = agent.play_episode(env, render_mode)
-    else:
-        # compile network architecture
-        n_actions = len(config["actions"])
-        net = get_network("networks_{}".format(args.agent_type), args.net, 
-            shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+    # compile network architecture
+    n_actions = len(config["actions"])
+    net = get_network("networks_{}".format(args.agent_type), args.net, 
+        shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
 
-        # load network parameters
-        net.load_state_dict(torch.load(args.params))
+    # load network parameters
+    net.load_state_dict(torch.load(args.params))
 
-        # set model to evaluation mode
-        net.eval()
+    # set model to evaluation mode
+    net.eval()
 
-        # create agent
-        use_cuda = torch.cuda.is_available()
+    # create agent
+    use_cuda = torch.cuda.is_available()
 
-        model = Model(net, optimizer=None)
+    model = Model(net, optimizer=None)
 
-        observation_images = []
+    observation_images = []
 
-        # get observations
-        observation = env.reset()  # (perf, score)
+    # get observations
+    observation = env.reset()  # (perf, score)
 
-        reward = 0
-        done = False
+    reward = 0
+    done = False
 
-        colors = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#000000', '#e0f3f8', '#abd9e9', '#74add1',
-                  '#4575b4', '#313695']
-        colors = list(reversed(colors))
-        cmap = LinearSegmentedColormap.from_list('cmap', colors)
-        norm = Normalize(vmin=-1, vmax=1)
+    colors = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#000000', '#e0f3f8', '#abd9e9', '#74add1',
+              '#4575b4', '#313695']
+    colors = list(reversed(colors))
+    cmap = LinearSegmentedColormap.from_list('cmap', colors)
+    norm = Normalize(vmin=-1, vmax=1)
 
-        pos_grads = []
-        neg_grads = []
-        abs_grads = []
-        values = []
-        tempo_curve = []
+    pos_grads = []
+    neg_grads = []
+    abs_grads = []
+    values = []
+    tempo_curve = []
 
-        while True:
-            # feed state to model to get estimated pos
-            model_in = OrderedDict()
-            for obs_key in observation:
-                model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
-            newPos = model(model_in)
+    while True:
+        # feed state to model to get estimated pos
+        model_in = OrderedDict()
+        for obs_key in observation:
+            model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
+        newPos = model(model_in)
 
-            # perform step and observe
-            observation, done, info = env.step(newPos)
+        # perform step and observe
+        observation, done, info = env.step(newPos)
 
-            if env.obs_image is not None:
-                bar_img = env.obs_image
-                if render_mode == 'video':
-                    observation_images.append(bar_img)
-                else:
-                    cv2.imshow("Stats Plot", bar_img)
-                    cv2.waitKey(1)
+        if env.obs_image is not None:
+            bar_img = env.obs_image
+            if render_mode == 'video':
+                observation_images.append(bar_img)
+            else:
+                cv2.imshow("Stats Plot", bar_img)
+                cv2.waitKey(1)
 
-            if done:
-                break
+        if done:
+            break
 
     # write video
     if render_mode == 'video':
