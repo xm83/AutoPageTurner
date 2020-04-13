@@ -72,17 +72,21 @@ if __name__ == '__main__':
     # compile network architecture
     if args.network == 'rnn':
         net = get_network('networks_rnn', args.net,
-                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
     elif args.network == 'lstm':
         net = get_network('networks_lstm', args.net,
-                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
     elif args.network == 'gru':
         net = get_network('networks_gru', args.net,
-                      shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+                      shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
 
     # load initial parameters
     if args.ini_params:
         net.load_state_dict(torch.load(args.ini_params))
+
+    # use cuda if available
+    device = torch.device("cuda" if args.use_cuda else "cpu")
+    #net.to(device)
 
     # initialize optimizer
     optimizer = get_optimizer(args.optim, net.parameters(), **args.optim_params)
@@ -90,8 +94,6 @@ if __name__ == '__main__':
     # initialize model
     model = Model(net, optimizer, max_grad_norm=args.max_grad_norm, value_coef=args.value_coef,
                   entropy_coef=args.entropy_coef)
-    # use cuda if available
-    device = torch.device("cuda" if args.use_cuda else "cpu")
     model.to(device)
 
     print("loading dataset!")
