@@ -8,9 +8,10 @@ from score_following_game.agents.networks_utils import weights_init, num_flat_fe
 
 class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
-    def __init__(self,  perf_shape, score_shape, lstm_hidden_dim=12, num_lstm_layers=1):
+    def __init__(self,  perf_shape, score_shape, use_cuda=False, lstm_hidden_dim=12, num_lstm_layers=1):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
+        self.use_cuda = use_cuda
         # spec part
         self.spec_conv1 = nn.Conv2d(perf_shape[0], out_channels=16, kernel_size=3, stride=1, padding=0)
         self.spec_conv2 = nn.Conv2d(self.spec_conv1.out_channels, out_channels=16, kernel_size=3, stride=1, padding=0)
@@ -98,8 +99,8 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
-        hidden_state = self.init_hidden(cat_x.size(0))
-        cell_state = self.init_hidden(cat_x.size(0))
+        hidden_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
+        cell_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
         hidden = (hidden_state, cell_state)
         out, _ = self.lstm_layer(cat_x, hidden)
         
