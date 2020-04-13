@@ -11,6 +11,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
     def __init__(self,  perf_shape, score_shape, use_cuda=False, gru_hidden_dim=12, num_gru_layers=1):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
+        self.use_cuda = use_cuda
         # spec part
         self.spec_conv1 = nn.Conv2d(perf_shape[0], out_channels=16, kernel_size=3, stride=1, padding=0)
         self.spec_conv2 = nn.Conv2d(self.spec_conv1.out_channels, out_channels=16, kernel_size=3, stride=1, padding=0)
@@ -118,6 +119,4 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
         hidden = torch.randn(self.num_gru_layers, batch_size, self.gru_hidden_dim)
-        if self.use_cuda:
-            hidden.cuda()
         return hidden
