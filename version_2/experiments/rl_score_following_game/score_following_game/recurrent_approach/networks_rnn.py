@@ -99,10 +99,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
-        if self.use_cuda:
-            hidden = self.init_hidden(cat_x.size(0)).cuda()
-        else:
-            hidden = self.init_hidden(cat_x.size(0))
+        hidden = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
         out, _ = self.rnn(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
