@@ -99,7 +99,10 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
-        hidden = self.init_hidden(cat_x.size(0))
+        if self.use_cuda:
+            hidden = self.init_hidden(cat_x.size(0)).cuda()
+        else:
+            hidden = self.init_hidden(cat_x.size(0))
         out, _ = self.rnn(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
@@ -113,6 +116,4 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
         hidden = torch.zeros(self.num_recurrent_layers, batch_size, self.rnn_hidden_dim)
-        if self.use_cuda:
-            hidden.cuda()
         return hidden
