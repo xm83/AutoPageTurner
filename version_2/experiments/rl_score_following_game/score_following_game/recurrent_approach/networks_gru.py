@@ -8,7 +8,7 @@ from score_following_game.agents.networks_utils import weights_init, num_flat_fe
 
 class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
-    def __init__(self,  perf_shape, score_shape, gru_hidden_dim=12, num_gru_layers=1):
+    def __init__(self,  perf_shape, score_shape, use_cuda=False, gru_hidden_dim=12, num_gru_layers=1):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
         # spec part
@@ -98,10 +98,14 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
-        hidden_state = self.init_hidden(cat_x.size(0))
+        if self.use_cuda:
+            hidden = self.init_hidden(cat_x.size(0)).cuda()
+        else:
+            hidden = self.init_hidden(cat_x.size(0))
+
         # cell_state = self.init_hidden(cat_x.size(0))
         # hidden = (hidden_state, cell_state)
-        out, _ = self.gru_layer(cat_x, hidden_state)
+        out, _ = self.gru_layer(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
         out = out.contiguous().view(-1, self.gru_hidden_dim)
@@ -114,4 +118,6 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
         hidden = torch.randn(self.num_gru_layers, batch_size, self.gru_hidden_dim)
+        if self.use_cuda:
+            hidden.cuda()
         return hidden
