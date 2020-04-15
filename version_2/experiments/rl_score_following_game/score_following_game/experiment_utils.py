@@ -23,6 +23,10 @@ def setup_parser():
     parser.add_argument('--use_cuda', help='if set use gpu instead of cpu.', action='store_true')
     parser.add_argument('--seed', help='random seed.', type=np.int, default=4711)
 
+    parser.add_argument('--network', help='gru, rnn, lstm', type=str, default="rnn")
+    parser.add_argument('--num_epochs', help='how many epochs to train the network', type=int, default=10)
+    parser.add_argument('--cache_size', help='how many songs to load', type=int, default=5)
+
     # agent parameters
     parser.add_argument('--agent', help='reinforcement learning algorithm [reinforce|a2c|ppo|rnn].',
                         choices=['reinforce', 'a2c', 'ppo', 'rnn'], type=str, default="a2c")
@@ -54,7 +58,6 @@ def setup_parser():
     parser.add_argument('--max_refinements', help='max number of learning rate refinements.', type=np.int, default=2)
     parser.add_argument('--lr_multiplier', help='after patience expires multiply the learning rate with this factor.',
                         type=np.float32, default=0.1)
-    parser.add_argument('--network', help='gru, rnn, lstm', type=str, default="rnn")
 
     # evaluation
     parser.add_argument('--eval_interval', help='', type=np.int, default=5000)

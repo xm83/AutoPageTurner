@@ -55,7 +55,7 @@ if __name__ == '__main__':
     config = load_game_config(args.game_config)
 
     # initialize song cache, producer and data pools
-    CACHE_SIZE = 10
+    CACHE_SIZE = args.cache_size
     cache = create_song_cache(CACHE_SIZE)
     producer_process = create_song_producer(cache, config=config, directory=args.train_set, real_perf=args.real_perf)
     rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set)
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
     
-    num_epochs = 10
+    num_epochs = args.num_epochs
     for epoch in range(num_epochs):
         epoch_loss = 0.
         # iterate thru all songs in an epoch
@@ -143,6 +143,10 @@ if __name__ == '__main__':
 
         print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
         print("Loss: {:.4f}".format(epoch_loss))
+
+        # if loss decreased, save model thus far to args.dump_dir
+        # in the future, maybe only save if validation loss keep decreasing
+        torch.save(model.state_dict(), args.dump_dir)
 
 
     # store the song history to a file
