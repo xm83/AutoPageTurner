@@ -111,6 +111,8 @@ if __name__ == '__main__':
     cost_fxn = torch.nn.MSELoss()
     
     num_epochs = args.num_epochs
+    best_epoch_loss = None
+
     for epoch in range(num_epochs):
         epoch_loss = 0.
         # iterate thru all songs in an epoch
@@ -144,8 +146,13 @@ if __name__ == '__main__':
         print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
         print("Loss: {:.4f}".format(epoch_loss))
 
+        if best_epoch_loss == None or epoch_loss < best_epoch_loss:
+            print(f"New best epoch loss: {epoch_loss}")
+            best_epoch_loss = epoch_loss
+
         # if loss decreased, save model thus far to args.dump_dir
         # in the future, maybe only save if validation loss keep decreasing
+        print(f"saving model.state_dict to {args.dump_dir}")
         torch.save(model.state_dict(), args.dump_dir)
 
 
