@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if not os.path.exists(dump_dir):
         os.makedirs(dump_dir)
     # do we need to do this?
-    dump_path = dump_dir + "/best_model.pt"
+    args.dump_path = dump_dir + "/best_model.pt"
 
     args.log_dir = os.path.join(args.log_root, args.experiment_directory)
 
@@ -115,6 +115,8 @@ if __name__ == '__main__':
     num_epochs = args.num_epochs
     best_epoch_loss = None
 
+    print(f"args: {str(args)}")
+
     for epoch in range(num_epochs):
         epoch_loss = 0.
         # iterate thru all songs in an epoch
@@ -142,6 +144,7 @@ if __name__ == '__main__':
                 if index % 100 == 0:
                     print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
+                exit()
 
             print(f"song_num: {song_num}, song_loss: {song_loss}")
 
@@ -152,10 +155,10 @@ if __name__ == '__main__':
             print(f"New best epoch loss: {epoch_loss}")
             best_epoch_loss = epoch_loss
 
-        # if loss decreased, save model thus far to dump_path
+        # if loss decreased, save model's net thus far to dump_path
         # in the future, maybe only save if validation loss keep decreasing
-        print(f"saving model.state_dict to {dump_path}")
-        torch.save(model.state_dict(), dump_path)
+        print(f"saving model.net.state_dict() to {args.dump_path}")
+        torch.save(model.net.state_dict(), args.dump_path)
 
 
     # store the song history to a file
