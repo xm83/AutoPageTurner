@@ -144,7 +144,6 @@ if __name__ == '__main__':
                 if index % 100 == 0:
                     print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
-                exit()
 
             print(f"song_num: {song_num}, song_loss: {song_loss}")
 
