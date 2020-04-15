@@ -37,9 +37,11 @@ if __name__ == '__main__':
     args.experiment_directory = exp_dir
 
     # create model parameter directory
-    args.dump_dir = os.path.join(args.param_root, exp_dir)
-    if not os.path.exists(args.dump_dir):
-        os.makedirs(args.dump_dir)
+    dump_dir = os.path.join(args.param_root, exp_dir)
+    if not os.path.exists(dump_dir):
+        os.makedirs(dump_dir)
+    # do we need to do this?
+    dump_path = dump_dir + "/best_model.pt"
 
     args.log_dir = os.path.join(args.log_root, args.experiment_directory)
 
@@ -150,10 +152,10 @@ if __name__ == '__main__':
             print(f"New best epoch loss: {epoch_loss}")
             best_epoch_loss = epoch_loss
 
-        # if loss decreased, save model thus far to args.dump_dir
+        # if loss decreased, save model thus far to dump_path
         # in the future, maybe only save if validation loss keep decreasing
-        print(f"saving model.state_dict to {args.dump_dir}")
-        torch.save(model.state_dict(), args.dump_dir)
+        print(f"saving model.state_dict to {dump_path}")
+        torch.save(model.state_dict(), dump_path)
 
 
     # store the song history to a file
