@@ -56,7 +56,7 @@ if __name__ == "__main__":
     env = make_env_tismir(pool, config, render_mode='video')
 
     # compile network architecture
-    n_actions = len(config["actions"])
+    # n_actions = len(config["actions"])
     net = get_network("networks_{}".format(args.agent_type), args.net, 
         shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
 
