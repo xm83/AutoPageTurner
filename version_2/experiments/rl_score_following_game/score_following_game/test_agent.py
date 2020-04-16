@@ -21,6 +21,7 @@ from score_following_game.integrated_gradients import IntegratedGradients, prepa
 from score_following_game.reinforcement_learning.algorithms.models import Model
 from score_following_game.utils import render_video, get_opencv_bar
 
+from collections import OrderedDict
 
 # render mode for the environment ('human', 'computer', 'video')
 # render_mode = 'computer'
@@ -33,6 +34,8 @@ if __name__ == "__main__":
     parser = setup_evaluation_parser()
     parser.add_argument('--agent_type', help='which agent to test [rnn|lstm|gru|optimal].',
                         choices=['rnn', 'lstm', 'gru', 'optimal'], type=str, default="rnn")
+    parser.add_argument('--use_cuda', help='if set use gpu instead of cpu.', action='store_true')
+    
     args = parser.parse_args()
 
     # FIGURE OUT A WAY TO INCORPORATE THE OPTIMAL "AGENT" (answers)
@@ -90,6 +93,8 @@ if __name__ == "__main__":
     abs_grads = []
     values = []
     tempo_curve = []
+
+    device = torch.device("cuda" if args.use_cuda else "cpu")
 
     while True:
         # feed state to model to get estimated pos

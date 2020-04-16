@@ -18,7 +18,7 @@ TEXT_COLOR = (255, 255, 255)
 BORDER_COLOR = (0, 0, 255)
 
 
-class ScoreFollowingEnv(Env):
+class ScoreFollowingSupervisedEnv(Env):
     metadata = {
         'render.modes': {'human': 'human',
                          'computer': 'computer',
