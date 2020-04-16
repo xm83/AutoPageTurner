@@ -154,10 +154,10 @@ if __name__ == '__main__':
             print(f"New best epoch loss: {epoch_loss}")
             best_epoch_loss = epoch_loss
 
-        # if loss decreased, save model's net thus far to dump_path
-        # in the future, maybe only save if validation loss keep decreasing
-        print(f"saving model.net.state_dict() to {args.dump_path}")
-        torch.save(model.net.state_dict(), args.dump_path)
+            # if loss decreased, save model's net thus far to dump_path
+            # in the future, maybe only save if validation loss keep decreasing
+            print(f"saving model.net.state_dict() to {args.dump_path}")
+            torch.save(model.net.state_dict(), args.dump_path)
 
 
     # store the song history to a file
