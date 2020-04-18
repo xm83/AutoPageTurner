@@ -8,8 +8,8 @@ import matplotlib.cm as cm
 import numpy as np
 
 from matplotlib.colors import LinearSegmentedColormap, Normalize
-from score_following_game.agents.human_agent import HumanAgent
-from score_following_game.agents.optimal_agent import OptimalAgent
+# from score_following_game.agents.human_agent import HumanAgent
+# from score_following_game.agents.optimal_agent import OptimalAgent
 from score_following_game.agents.networks_utils import get_network
 from score_following_game.data_processing.data_pools import get_single_song_pool
 from score_following_game.data_processing.utils import load_game_config
