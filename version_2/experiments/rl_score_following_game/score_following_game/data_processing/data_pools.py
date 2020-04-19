@@ -113,47 +113,6 @@ class RLScoreFollowPool(object):
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
                 frame_idx += 1
             results.append(song_arr)
-
-        # for idx in range(self.cache.get_maxlen()):
-        #     song_arr = []
-        #     song = self.cache.get_elem(idx)
-        #     curr_score = song.score['representation_padded']
-        #     curr_perf = song.cur_perf['representation_padded']
-
-        #     num_onsets = len(song.get_perf_onsets_padded())
-        #     for onset_idx in range(num_onsets):
-        #         curr_perf_frame = song.get_perf_onsets_padded()[onset_idx]
-        #         total_score_len = song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1]) # e.g. 7957.
-        #         # print("song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']: ", song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']))
-        #         curr_score_position = song.get_true_score_position(curr_perf_frame)
-        #         # make it a float btwn 0. and 1.
-        #         normalized_curr_score_position = curr_score_position / total_score_len if total_score_len != 0 else 0
-        #         perf_frame_idx_pad = curr_perf_frame + self.perf_shape[2]
-        #         offset = self.score_shape[2] // 2
-
-        #         if self.target_frame == 'right_most':
-        #             perf_representation_excerpt = \
-        #                 curr_perf[..., (perf_frame_idx_pad - self.perf_shape[2]):perf_frame_idx_pad]
-        #         else:
-        #             perf_representation_excerpt = \
-        #                 curr_perf[..., (perf_frame_idx_pad - offset):(perf_frame_idx_pad + offset)]
-
-        #         # get score representation
-        #         r0 = curr_score.shape[1]//2 - self.score_shape[1]//2
-        #         r1 = r0 + self.score_shape[1]
-        #         c0 = int(curr_score_position - self.score_shape[2]//2)
-        #         c1 = c0 + self.score_shape[2]
-        #         score_representation_excerpt = curr_score[:, r0:r1, c0:c1]
-
-        #         # print("self.score_shape: ", self.score_shape)
-        #         # print("curr_score.shape: ", curr_score.shape)
-        #         # print("curr_score_position: ", curr_score_position)
-        #         # print("normalized_curr_score_position: ", normalized_curr_score_position)
-        #         # print("r0, r1, c0, c1: ", r0, r1, c0, c1)
-
-        #         song_arr.append((score_representation_excerpt, perf_representation_excerpt, normalized_curr_score_position))
-        #     results.append(song_arr)
-
         return results
 
 

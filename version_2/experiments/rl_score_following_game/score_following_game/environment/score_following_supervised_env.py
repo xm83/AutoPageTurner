@@ -31,7 +31,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.render_mode = render_mode
 
         # distance of tracker to true score position to fail the episode
-        # self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
+        self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
 
         self.interpolationFunction = None
         self.spectrogram_positions = []
