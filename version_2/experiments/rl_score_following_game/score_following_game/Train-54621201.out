@@ -1,0 +1,3069 @@
+Starting training
+
+
+The following have been reloaded with a version change:
+  1) GCC/6.4.0-2.28 => GCC/7.3.0-2.30
+  2) GCCcore/6.4.0 => GCCcore/7.3.0
+  3) binutils/2.28-GCCcore-6.4.0 => binutils/2.30-GCCcore-7.3.0
+
+Load data to memory...
+  0%|          | 0/354 [00:00<?, ?it/s]  0%|          | 1/354 [00:00<00:39,  8.90it/s]  1%|          | 3/354 [00:00<00:29, 12.02it/s]  1%|          | 4/354 [00:00<00:39,  8.89it/s]  2%|▏         | 6/354 [00:00<00:35,  9.86it/s]  2%|▏         | 8/354 [00:00<00:31, 10.96it/s]  3%|▎         | 10/354 [00:00<00:31, 10.93it/s]  3%|▎         | 12/354 [00:01<00:31, 10.97it/s]  4%|▍         | 14/354 [00:01<00:29, 11.47it/s]  5%|▍         | 16/354 [00:01<00:29, 11.47it/s]  5%|▌         | 18/354 [00:01<00:29, 11.23it/s]  6%|▌         | 20/354 [00:01<00:29, 11.40it/s]  6%|▌         | 22/354 [00:01<00:28, 11.53it/s]  7%|▋         | 24/354 [00:02<00:30, 10.90it/s]  7%|▋         | 26/354 [00:02<00:29, 11.15it/s]  8%|▊         | 28/354 [00:02<00:30, 10.62it/s]  8%|▊         | 30/354 [00:02<00:31, 10.20it/s]  9%|▉         | 31/354 [00:03<00:32, 10.04it/s]  9%|▉         | 32/354 [00:03<00:33,  9.56it/s] 10%|▉         | 34/354 [00:03<00:32,  9.81it/s] 10%|█         | 36/354 [00:03<00:32,  9.90it/s] 11%|█         | 39/354 [00:03<00:30, 10.31it/s] 12%|█▏        | 41/354 [00:04<00:31,  9.91it/s] 12%|█▏        | 43/354 [00:04<00:31,  9.81it/s] 13%|█▎        | 46/354 [00:04<00:30, 10.17it/s] 14%|█▎        | 48/354 [00:04<00:29, 10.21it/s] 14%|█▍        | 50/354 [00:04<00:29, 10.40it/s] 15%|█▍        | 52/354 [00:04<00:29, 10.41it/s] 15%|█▌        | 54/354 [00:05<00:30,  9.73it/s] 16%|█▌        | 56/354 [00:05<00:30,  9.79it/s] 16%|█▋        | 58/354 [00:05<00:30,  9.79it/s] 17%|█▋        | 60/354 [00:06<00:29,  9.85it/s] 18%|█▊        | 62/354 [00:06<00:29,  9.81it/s] 18%|█▊        | 64/354 [00:06<00:29,  9.77it/s] 19%|█▊        | 66/354 [00:06<00:29,  9.84it/s] 19%|█▉        | 68/354 [00:06<00:28,  9.90it/s] 20%|█▉        | 70/354 [00:07<00:28,  9.89it/s] 20%|██        | 72/354 [00:07<00:28,  9.99it/s] 21%|██        | 74/354 [00:07<00:27, 10.05it/s] 22%|██▏       | 77/354 [00:07<00:27, 10.25it/s] 22%|██▏       | 79/354 [00:07<00:26, 10.28it/s] 23%|██▎       | 81/354 [00:07<00:26, 10.36it/s] 23%|██▎       | 83/354 [00:08<00:26, 10.28it/s] 24%|██▍       | 85/354 [00:08<00:26, 10.33it/s] 25%|██▍       | 87/354 [00:08<00:25, 10.41it/s] 25%|██▌       | 89/354 [00:08<00:25, 10.45it/s] 26%|██▌       | 91/354 [00:08<00:25, 10.38it/s] 26%|██▋       | 93/354 [00:08<00:25, 10.39it/s] 27%|██▋       | 95/354 [00:09<00:25, 10.35it/s] 27%|██▋       | 97/354 [00:09<00:24, 10.44it/s] 28%|██▊       | 99/354 [00:09<00:24, 10.48it/s] 29%|██▉       | 102/354 [00:09<00:23, 10.64it/s] 29%|██▉       | 104/354 [00:09<00:23, 10.66it/s] 30%|██▉       | 106/354 [00:09<00:23, 10.66it/s] 31%|███       | 108/354 [00:10<00:23, 10.63it/s] 31%|███       | 110/354 [00:10<00:23, 10.51it/s] 32%|███▏      | 112/354 [00:10<00:22, 10.54it/s] 32%|███▏      | 114/354 [00:10<00:22, 10.56it/s] 33%|███▎      | 116/354 [00:11<00:22, 10.49it/s] 33%|███▎      | 118/354 [00:11<00:22, 10.50it/s] 34%|███▍      | 120/354 [00:11<00:22, 10.53it/s] 34%|███▍      | 122/354 [00:11<00:22, 10.52it/s] 35%|███▌      | 124/354 [00:11<00:21, 10.48it/s] 36%|███▌      | 126/354 [00:11<00:21, 10.52it/s] 36%|███▌      | 128/354 [00:12<00:21, 10.44it/s] 36%|███▋      | 129/354 [00:12<00:21, 10.41it/s] 37%|███▋      | 130/354 [00:12<00:21, 10.40it/s] 37%|███▋      | 132/354 [00:12<00:21, 10.44it/s] 38%|███▊      | 134/354 [00:12<00:21, 10.46it/s] 38%|███▊      | 136/354 [00:13<00:21, 10.37it/s] 39%|███▉      | 138/354 [00:13<00:20, 10.39it/s] 40%|███▉      | 140/354 [00:13<00:20, 10.45it/s] 40%|████      | 142/354 [00:13<00:20, 10.48it/s] 41%|████      | 144/354 [00:13<00:20, 10.35it/s] 41%|████      | 146/354 [00:14<00:20, 10.23it/s] 42%|████▏     | 147/354 [00:14<00:20, 10.21it/s] 42%|████▏     | 149/354 [00:14<00:20, 10.25it/s] 43%|████▎     | 152/354 [00:14<00:19, 10.32it/s] 44%|████▎     | 154/354 [00:14<00:19, 10.35it/s] 44%|████▍     | 156/354 [00:15<00:19, 10.39it/s] 45%|████▍     | 158/354 [00:15<00:19, 10.23it/s] 45%|████▌     | 160/354 [00:15<00:18, 10.21it/s] 46%|████▌     | 162/354 [00:15<00:18, 10.18it/s] 46%|████▋     | 164/354 [00:16<00:18, 10.22it/s] 47%|████▋     | 166/354 [00:16<00:18, 10.21it/s] 47%|████▋     | 168/354 [00:16<00:18, 10.24it/s] 48%|████▊     | 170/354 [00:16<00:17, 10.30it/s] 49%|████▊     | 172/354 [00:16<00:17, 10.35it/s] 49%|████▉     | 174/354 [00:16<00:17, 10.38it/s] 50%|████▉     | 176/354 [00:16<00:17, 10.38it/s] 50%|█████     | 178/354 [00:17<00:16, 10.37it/s] 51%|█████     | 180/354 [00:17<00:16, 10.32it/s] 51%|█████▏    | 182/354 [00:17<00:16, 10.34it/s] 52%|█████▏    | 184/354 [00:17<00:16, 10.32it/s] 53%|█████▎    | 186/354 [00:17<00:16, 10.37it/s] 53%|█████▎    | 188/354 [00:18<00:15, 10.39it/s] 54%|█████▎    | 190/354 [00:18<00:15, 10.36it/s] 54%|█████▍    | 192/354 [00:18<00:15, 10.39it/s] 55%|█████▍    | 194/354 [00:18<00:15, 10.41it/s] 55%|█████▌    | 196/354 [00:18<00:15, 10.44it/s] 56%|█████▌    | 198/354 [00:19<00:15, 10.37it/s] 56%|█████▋    | 200/354 [00:19<00:14, 10.39it/s] 57%|█████▋    | 202/354 [00:19<00:14, 10.41it/s] 58%|█████▊    | 204/354 [00:19<00:14, 10.39it/s] 58%|█████▊    | 206/354 [00:19<00:14, 10.39it/s] 59%|█████▉    | 209/354 [00:20<00:13, 10.42it/s] 60%|█████▉    | 211/354 [00:20<00:13, 10.44it/s] 60%|██████    | 213/354 [00:20<00:13, 10.47it/s] 61%|██████    | 216/354 [00:20<00:13, 10.54it/s] 62%|██████▏   | 218/354 [00:20<00:12, 10.55it/s] 62%|██████▏   | 220/354 [00:20<00:12, 10.50it/s] 63%|██████▎   | 222/354 [00:21<00:12, 10.53it/s] 64%|██████▎   | 225/354 [00:21<00:12, 10.61it/s] 64%|██████▍   | 228/354 [00:21<00:11, 10.67it/s] 65%|██████▍   | 230/354 [00:21<00:11, 10.66it/s] 66%|██████▌   | 233/354 [00:21<00:11, 10.73it/s] 66%|██████▋   | 235/354 [00:21<00:11, 10.73it/s] 67%|██████▋   | 237/354 [00:22<00:10, 10.76it/s] 68%|██████▊   | 239/354 [00:22<00:10, 10.73it/s] 68%|██████▊   | 241/354 [00:22<00:10, 10.74it/s] 69%|██████▊   | 243/354 [00:22<00:10, 10.74it/s] 69%|██████▉   | 245/354 [00:22<00:10, 10.67it/s] 70%|██████▉   | 247/354 [00:23<00:10, 10.68it/s] 71%|███████   | 250/354 [00:23<00:09, 10.75it/s] 71%|███████   | 252/354 [00:23<00:09, 10.72it/s] 72%|███████▏  | 254/354 [00:23<00:09, 10.76it/s] 72%|███████▏  | 256/354 [00:23<00:09, 10.77it/s] 73%|███████▎  | 258/354 [00:24<00:08, 10.74it/s] 73%|███████▎  | 260/354 [00:24<00:08, 10.76it/s] 74%|███████▍  | 263/354 [00:24<00:08, 10.82it/s] 75%|███████▍  | 265/354 [00:24<00:08, 10.81it/s] 75%|███████▌  | 267/354 [00:24<00:08, 10.78it/s] 76%|███████▌  | 269/354 [00:24<00:07, 10.78it/s] 77%|███████▋  | 271/354 [00:25<00:07, 10.81it/s] 77%|███████▋  | 273/354 [00:25<00:07, 10.79it/s] 78%|███████▊  | 275/354 [00:25<00:07, 10.81it/s] 78%|███████▊  | 277/354 [00:25<00:07, 10.82it/s] 79%|███████▉  | 279/354 [00:25<00:06, 10.80it/s] 80%|███████▉  | 282/354 [00:26<00:06, 10.81it/s] 80%|████████  | 284/354 [00:26<00:06, 10.83it/s] 81%|████████  | 286/354 [00:26<00:06, 10.83it/s] 81%|████████▏ | 288/354 [00:26<00:06, 10.86it/s] 82%|████████▏ | 290/354 [00:26<00:05, 10.86it/s] 82%|████████▏ | 292/354 [00:26<00:05, 10.85it/s] 83%|████████▎ | 295/354 [00:27<00:05, 10.91it/s] 84%|████████▍ | 297/354 [00:27<00:05, 10.89it/s] 84%|████████▍ | 299/354 [00:27<00:05, 10.77it/s] 85%|████████▌ | 301/354 [00:28<00:04, 10.73it/s] 86%|████████▌ | 303/354 [00:28<00:04, 10.76it/s] 86%|████████▌ | 305/354 [00:28<00:04, 10.79it/s] 87%|████████▋ | 307/354 [00:28<00:04, 10.77it/s] 87%|████████▋ | 309/354 [00:28<00:04, 10.78it/s] 88%|████████▊ | 311/354 [00:28<00:03, 10.79it/s] 88%|████████▊ | 313/354 [00:28<00:03, 10.80it/s] 89%|████████▉ | 316/354 [00:29<00:03, 10.85it/s] 90%|█████████ | 319/354 [00:29<00:03, 10.87it/s] 91%|█████████ | 321/354 [00:29<00:03, 10.90it/s] 91%|█████████ | 323/354 [00:29<00:02, 10.89it/s] 92%|█████████▏| 325/354 [00:29<00:02, 10.88it/s] 92%|█████████▏| 327/354 [00:30<00:02, 10.86it/s] 93%|█████████▎| 329/354 [00:30<00:02, 10.86it/s] 94%|█████████▎| 331/354 [00:30<00:02, 10.86it/s] 94%|█████████▍| 333/354 [00:30<00:01, 10.85it/s] 95%|█████████▍| 335/354 [00:30<00:01, 10.84it/s] 95%|█████████▌| 337/354 [00:31<00:01, 10.85it/s] 96%|█████████▌| 339/354 [00:31<00:01, 10.84it/s] 96%|█████████▋| 341/354 [00:31<00:01, 10.82it/s] 97%|█████████▋| 343/354 [00:31<00:01, 10.81it/s] 97%|█████████▋| 345/354 [00:31<00:00, 10.82it/s] 98%|█████████▊| 347/354 [00:31<00:00, 10.85it/s] 99%|█████████▊| 349/354 [00:32<00:00, 10.85it/s] 99%|█████████▉| 351/354 [00:32<00:00, 10.81it/s]100%|█████████▉| 353/354 [00:32<00:00, 10.82it/s]100%|██████████| 354/354 [00:32<00:00, 10.84it/s]
+Initial fill of cache
+Song 0/5fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+Song 1/5fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+Song 2/5fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+Song 3/5fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+Song 4/5fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+loading dataset!
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+num_rl_pools:  8
+args: Namespace(agent='rnn', batch_size=32, cache_size=5, clip_value=False, discounting=0.9, dump_interval=100000, dump_path='recurrent_approach/params/rnn-ScoreFollowingNetMSMDLCHSDeepDoLight-msmd_all_train-mutopia_lchs1_20200418_182105-cpsc424_xm83/best_model.pt', entropy_coef=0.05, eval_interval=5000, eval_score_name='global_tracking_ratio', eval_set='msmd/msmd_all/msmd_all_valid', eval_trials=1, experiment_directory='rnn-ScoreFollowingNetMSMDLCHSDeepDoLight-msmd_all_train-mutopia_lchs1_20200418_182105-cpsc424_xm83', gae=False, gae_lambda=0.95, game_config='game_configs/mutopia_lchs1.yaml', ini_params=None, log_dir='recurrent_approach/logs/rnn-ScoreFollowingNetMSMDLCHSDeepDoLight-msmd_all_train-mutopia_lchs1_20200418_182105-cpsc424_xm83', log_gradients=False, log_interval=100, log_root='recurrent_approach/logs', log_writer=<torch.utils.tensorboard.writer.SummaryWriter object at 0x2b3936c50e10>, low_is_better=False, lr_multiplier=0.1, max_grad_norm=0.5, max_refinements=2, max_updates=1000000000, n_worker=8, net='ScoreFollowingNetMSMDLCHSDeepDoLight', network='gru', no_log=False, num_epochs=10, optim='Adam', optim_params={'lr': 0.0001, 'betas': (0.9, 0.999)}, param_root='recurrent_approach/params', patience=50, ppo_epochs=4, ppo_epsilon=0.2, real_perf=None, seed=4711, t_max=15, train_set='msmd/msmd_all/msmd_all_train', use_cuda=True, value_coef=0.5)
+data point index: 0, loss: 0.4349631369113922
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.2129817008972168
+data point index: 200, loss: 2.667858362197876
+data point index: 300, loss: 0.4066084921360016
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 1.3205671310424805
+data point index: 500, loss: 0.9773898720741272
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.18192388117313385
+data point index: 700, loss: 0.17222009599208832
+data point index: 800, loss: 0.010112140327692032
+data point index: 900, loss: 0.05494510754942894
+data point index: 1000, loss: 0.04255126789212227
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.32611626386642456
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 3.545708417892456
+data point index: 1300, loss: 1.0391955375671387
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.730022132396698
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.1522543728351593
+data point index: 1600, loss: 0.2270137220621109
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.04739980772137642
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.07916320115327835
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.13645800948143005
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.45051637291908264
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.1542886346578598
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.5163663029670715
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.010528297163546085
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.11900129169225693
+data point index: 2500, loss: 1.9791533946990967
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.47546783089637756
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.3135654926300049
+data point index: 2800, loss: 0.41795220971107483
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.36681878566741943
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.00018588665989227593
+data point index: 3100, loss: 0.24010716378688812
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.8171700835227966
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.685486912727356
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.7769529223442078
+data point index: 3500, loss: 0.11190995573997498
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.6193361878395081
+data point index: 3700, loss: 2.1611107513308525e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.12580272555351257
+data point index: 3900, loss: 0.0003080095339100808
+data point index: 4000, loss: 0.2135496586561203
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 1.3259209394454956
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 1.2100509405136108
+data point index: 4300, loss: 0.0074852644465863705
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.12170005589723587
+data point index: 4500, loss: 0.007494874764233828
+data point index: 4600, loss: 0.16287191212177277
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.11984197050333023
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.4022933840751648
+data point index: 4900, loss: 0.004819448105990887
+data point index: 5000, loss: 0.47855275869369507
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.019201721996068954
+data point index: 5200, loss: 0.22551049292087555
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.006043936125934124
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.10007648169994354
+data point index: 5500, loss: 0.29487040638923645
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.08363943547010422
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5700, loss: 0.24701572954654694
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5800, loss: 0.1656757891178131
+data point index: 5900, loss: 0.018038945272564888
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6000, loss: 0.207680806517601
+data point index: 6100, loss: 0.0009078509756363928
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6200, loss: 1.4536347389221191
+data point index: 6300, loss: 0.10034800320863724
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6400, loss: 0.3507779836654663
+data point index: 6500, loss: 0.21615968644618988
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6600, loss: 0.19789531826972961
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6700, loss: 0.4301636219024658
+data point index: 6800, loss: 0.24815477430820465
+data point index: 6900, loss: 0.05278951674699783
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7000, loss: 0.10645731538534164
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7100, loss: 0.5792309045791626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7200, loss: 0.46902668476104736
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7300, loss: 0.012617792002856731
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7400, loss: 1.589742660522461
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7500, loss: 0.48722514510154724
+data point index: 7600, loss: 0.04159737378358841
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7700, loss: 0.31649261713027954
+data point index: 7800, loss: 0.6756225228309631
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7900, loss: 0.002850055694580078
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8000, loss: 0.07213862240314484
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8100, loss: 0.002326327608898282
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8200, loss: 0.1006394773721695
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8300, loss: 0.018194464966654778
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8400, loss: 1.9694832563400269
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8500, loss: 2.0116422176361084
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8600, loss: 0.4625139832496643
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8700, loss: 0.08385729044675827
+data point index: 8800, loss: 0.4566607177257538
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8900, loss: 0.052000004798173904
+data point index: 9000, loss: 0.30138179659843445
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9100, loss: 0.002457795897498727
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9200, loss: 0.3355947732925415
+data point index: 9300, loss: 0.0008150020730681717
+data point index: 9400, loss: 0.1143285483121872
+song_num: 0, song_loss: 3752.748548736525
+data point index: 0, loss: 0.09620152413845062
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 2.0253913402557373
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.32739463448524475
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.2980891764163971
+data point index: 400, loss: 0.3919696509838104
+data point index: 500, loss: 0.16467474400997162
+song_num: 1, song_loss: 369.4215193870033
+data point index: 0, loss: 0.9873247146606445
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.03022913821041584
+data point index: 200, loss: 0.9285767078399658
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 2.103070020675659
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.12701557576656342
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.1488295942544937
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.9832087159156799
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.44327643513679504
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0004812076804228127
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.4711359441280365
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.6993654370307922
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.27034953236579895
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.06582309305667877
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.05293441191315651
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.0902937725186348
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.005704194772988558
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.08250407874584198
+data point index: 1700, loss: 0.032200124114751816
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.027140090242028236
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.023098766803741455
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.07973675429821014
+data point index: 2100, loss: 0.004335432313382626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.03904303163290024
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.0050237965770065784
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.4674758017063141
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.35530534386634827
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.500525176525116
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.7487311959266663
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.6191242337226868
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.19002193212509155
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.6025954484939575
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 1.010966181755066
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.31284862756729126
+data point index: 3300, loss: 0.42486435174942017
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.5092435479164124
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.3772285282611847
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.5374791026115417
+data point index: 3700, loss: 2.2977869510650635
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 2, song_loss: 2028.061195199366
+data point index: 0, loss: 0.07953323423862457
+data point index: 100, loss: 0.056209076195955276
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.11118362843990326
+data point index: 300, loss: 0.16644252836704254
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.24120144546031952
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.6405755281448364
+data point index: 600, loss: 0.12814295291900635
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.5467711091041565
+data point index: 800, loss: 0.5793516635894775
+song_num: 3, song_loss: 312.5904142037882
+data point index: 0, loss: 0.0131381219252944
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 4.072649608133361e-05
+data point index: 200, loss: 0.0002742422220762819
+data point index: 300, loss: 0.01427195593714714
+data point index: 400, loss: 0.041820231825113297
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.10834136605262756
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.1432267725467682
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.000294393947115168
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.03575858846306801
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.027943886816501617
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.002976441290229559
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.12335093319416046
+data point index: 1200, loss: 0.02409038133919239
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.010011211037635803
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.01597701571881771
+data point index: 1500, loss: 0.03469924256205559
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.053477440029382706
+data point index: 1700, loss: 0.016805721446871758
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.005821211729198694
+data point index: 1900, loss: 0.034634288400411606
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.0019100867211818695
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.10269563645124435
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.026433810591697693
+data point index: 2300, loss: 0.41231489181518555
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.047090716660022736
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.00714528514072299
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.022404367104172707
+data point index: 2700, loss: 0.011729193851351738
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.00022658843954559416
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.10113488882780075
+data point index: 3000, loss: 0.003170439973473549
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.04530252516269684
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.025296026840806007
+data point index: 3300, loss: 0.010272029787302017
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.030774032697081566
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.017642168328166008
+data point index: 3600, loss: 0.08461809158325195
+data point index: 3700, loss: 0.09808273613452911
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.0010300326393917203
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 7.43973214412108e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.08204187452793121
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.04489041864871979
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.02035496011376381
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.07211527973413467
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.00049712008330971
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.018191955983638763
+data point index: 4600, loss: 0.035954032093286514
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.005459296051412821
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.18186821043491364
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.008216205053031445
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.016396870836615562
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.033644624054431915
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.006679394748061895
+song_num: 4, song_loss: 228.83883295771827
+data point index: 0, loss: 1.6099944114685059
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.0337235927581787
+data point index: 200, loss: 1.0408438444137573
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.7650962471961975
+data point index: 400, loss: 0.9516417384147644
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.28034740686416626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.6175126433372498
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.4872587025165558
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.1355741173028946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.4993504583835602
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.23880715668201447
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.5331228971481323
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.08994124084711075
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.0010058977641165257
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.0005511745694093406
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.030224956572055817
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.021833058446645737
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0262833870947361
+data point index: 1800, loss: 0.002828771248459816
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.0032887826673686504
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.023391593247652054
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.05362013354897499
+data point index: 2200, loss: 0.057692695409059525
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.015212923288345337
+data point index: 2400, loss: 0.021714357659220695
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.030206385999917984
+data point index: 2600, loss: 0.22322231531143188
+data point index: 2700, loss: 0.10600338131189346
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.30552569031715393
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.2955610454082489
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.33144083619117737
+data point index: 3100, loss: 0.7602415680885315
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.4213591516017914
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.09530812501907349
+data point index: 3400, loss: 0.14035603404045105
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.25137853622436523
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.4672315716743469
+data point index: 3700, loss: 0.4206833243370056
+data point index: 3800, loss: 0.8384114503860474
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.3731226921081543
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 1.5101611614227295
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.44790762662887573
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.8048097491264343
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.2643929123878479
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.46659448742866516
+data point index: 4500, loss: 0.28747648000717163
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.35311877727508545
+data point index: 4700, loss: 0.0642620176076889
+data point index: 4800, loss: 0.1809147745370865
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.5281692147254944
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.2389819473028183
+data point index: 5100, loss: 0.3015490174293518
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.7626948952674866
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.4854160249233246
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.21943888068199158
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5500, loss: 0.31936895847320557
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.1546221673488617
+data point index: 5700, loss: 0.3228116035461426
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5800, loss: 0.03716772049665451
+data point index: 5900, loss: 0.15404292941093445
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6000, loss: 0.00014399342762771994
+data point index: 6100, loss: 0.26953965425491333
+data point index: 6200, loss: 0.012518802657723427
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6300, loss: 0.0078750504180789
+data point index: 6400, loss: 0.0428200289607048
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6500, loss: 0.06268928200006485
+data point index: 6600, loss: 0.05595409870147705
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6700, loss: 0.0004906585672870278
+data point index: 6800, loss: 0.05239924043416977
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6900, loss: 0.02387036196887493
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7000, loss: 0.0017724612262099981
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7100, loss: 0.025341417640447617
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7200, loss: 2.217248584202025e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7300, loss: 0.010562806390225887
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7400, loss: 0.027212558314204216
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7500, loss: 0.06469441205263138
+data point index: 7600, loss: 0.06343089044094086
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7700, loss: 0.04615548253059387
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7800, loss: 0.02570725604891777
+data point index: 7900, loss: 0.007521721068769693
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8000, loss: 0.04940570518374443
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8100, loss: 0.005363719537854195
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8200, loss: 0.09916413575410843
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8300, loss: 0.13420982658863068
+data point index: 8400, loss: 0.05707830935716629
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8500, loss: 0.015111665241420269
+data point index: 8600, loss: 0.21119679510593414
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8700, loss: 0.00019140428048558533
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8800, loss: 0.1654796153306961
+data point index: 8900, loss: 0.052428267896175385
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9000, loss: 0.14371895790100098
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9100, loss: 0.1551583707332611
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9200, loss: 0.03933310508728027
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9300, loss: 5.473177466797097e-08
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9400, loss: 0.19258429110050201
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 5, song_loss: 2268.921841452636
+data point index: 0, loss: 2.0704407691955566
+data point index: 100, loss: 2.098451852798462
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.8838797807693481
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 2.3601911067962646
+data point index: 400, loss: 1.9731333255767822
+data point index: 500, loss: 1.4462769031524658
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 1.5312467813491821
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 1.0094401836395264
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.5896551012992859
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.2887525260448456
+data point index: 1000, loss: 1.0579298734664917
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.7443035840988159
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.15607444941997528
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 1.1023797988891602
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.5670487284660339
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.30940383672714233
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.43739235401153564
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.4625221788883209
+data point index: 1800, loss: 0.1428099423646927
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.028092429041862488
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.13061487674713135
+data point index: 2100, loss: 0.1486692726612091
+data point index: 2200, loss: 0.026387566700577736
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.024621665477752686
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.00010677707905415446
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.0005592459347099066
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.0007795934216119349
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.15831823647022247
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.1481378972530365
+data point index: 2900, loss: 0.19459201395511627
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.10487853735685349
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.3516780436038971
+data point index: 3200, loss: 0.12448454648256302
+data point index: 3300, loss: 0.35332247614860535
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.09363190829753876
+data point index: 3500, loss: 0.8736265897750854
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.7887551188468933
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.17889554798603058
+song_num: 6, song_loss: 2064.731263011192
+data point index: 0, loss: 0.06792587786912918
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.014997497200965881
+data point index: 200, loss: 0.2573978304862976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.13033725321292877
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.04698013514280319
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.11226698011159897
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.3760569393634796
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.5583223700523376
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.45178675651550293
+song_num: 7, song_loss: 163.6654758112357
+data point index: 0, loss: 0.03878476098179817
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.02072351984679699
+data point index: 200, loss: 0.045230016112327576
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.0009857402183115482
+data point index: 400, loss: 0.005853565409779549
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.030391249805688858
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.01912715844810009
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.01084822416305542
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0020932145416736603
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.0005194880068302155
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.0007748716743662953
+data point index: 1100, loss: 0.0010071671567857265
+data point index: 1200, loss: 0.003725592279806733
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.040269143879413605
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.01459698285907507
+data point index: 1500, loss: 0.005884632468223572
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.002927252557128668
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.09277407824993134
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.03805645555257797
+data point index: 1900, loss: 0.1807556450366974
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.008339186199009418
+data point index: 2100, loss: 0.0996704176068306
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.10999546945095062
+data point index: 2300, loss: 0.16559574007987976
+data point index: 2400, loss: 0.07852176576852798
+data point index: 2500, loss: 0.19359928369522095
+data point index: 2600, loss: 0.17568711936473846
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.14538376033306122
+data point index: 2800, loss: 0.23627503216266632
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.0506814606487751
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.11327673494815826
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.07123446464538574
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.04573738947510719
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.1415300816297531
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.013108923099935055
+data point index: 3500, loss: 0.007018237840384245
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.055374983698129654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.21338343620300293
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.04470830783247948
+data point index: 3900, loss: 0.007931950502097607
+data point index: 4000, loss: 0.0005359596107155085
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.057537078857421875
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.049728650599718094
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.015061120502650738
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.006928634829819202
+data point index: 4500, loss: 0.004028108902275562
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 1.005616650218144e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.0014307162491604686
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.007158849388360977
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.02296667918562889
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.14636388421058655
+data point index: 5100, loss: 2.9923671718279365e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.04329591989517212
+song_num: 8, song_loss: 236.88651720844325
+data point index: 0, loss: 0.8648688793182373
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.1637541055679321
+data point index: 200, loss: 0.9195887446403503
+data point index: 300, loss: 1.2387346029281616
+data point index: 400, loss: 0.5125154852867126
+data point index: 500, loss: 0.410460501909256
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.6808592677116394
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.4398403465747833
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.3011900782585144
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.13662894070148468
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.19113418459892273
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.12172430008649826
+data point index: 1200, loss: 0.46328556537628174
+data point index: 1300, loss: 0.08714941889047623
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.03032763861119747
+data point index: 1500, loss: 0.014523503370583057
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.004115448798984289
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.17424634099006653
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.16142286360263824
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.1088028997182846
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.06893081218004227
+data point index: 2100, loss: 0.31316864490509033
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.1001918762922287
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.02404957264661789
+data point index: 2400, loss: 0.31658920645713806
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.6006776094436646
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.959748387336731
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.954559862613678
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 9, song_loss: 1026.8810493025007
+data point index: 0, loss: 0.019546790048480034
+data point index: 100, loss: 3.948654011765029e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.01377957221120596
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.009803060442209244
+data point index: 400, loss: 0.0029764575883746147
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.016009747982025146
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.001874648965895176
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.0007093362510204315
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.05750945210456848
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.0035058262292295694
+data point index: 1000, loss: 0.017991572618484497
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.001031969441100955
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.15278814733028412
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.07374979555606842
+data point index: 1400, loss: 0.12127499282360077
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.06898066401481628
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.00018569573876447976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.05069182068109512
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.1321820467710495
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.014144673943519592
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.062298551201820374
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.2412133514881134
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.08917227387428284
+data point index: 2300, loss: 0.02432393841445446
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.07856569439172745
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.00989269558340311
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.0761527493596077
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.030932186171412468
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.05098947882652283
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.02206249162554741
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.04804932698607445
+data point index: 3100, loss: 0.017024219036102295
+data point index: 3200, loss: 0.014936193823814392
+data point index: 3300, loss: 0.055021028965711594
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.0001044811142492108
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.0362032875418663
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.0016971193253993988
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.06703037768602371
+song_num: 10, song_loss: 195.685376709682
+data point index: 0, loss: 0.6868730187416077
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.7260185480117798
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.3429156541824341
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.16170130670070648
+data point index: 400, loss: 0.15742932260036469
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.12440859526395798
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.002445754362270236
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.012679357081651688
+data point index: 800, loss: 0.0002984906896017492
+song_num: 11, song_loss: 160.75743089651837
+data point index: 0, loss: 0.4740625321865082
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.6499101519584656
+data point index: 200, loss: 0.42935359477996826
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.6083059310913086
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.5752364993095398
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.2409861534833908
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.5706285238265991
+data point index: 700, loss: 0.07622557133436203
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.2183109074831009
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.10669618844985962
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.06355365365743637
+data point index: 1100, loss: 0.014315817505121231
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.2206031233072281
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.00677050044760108
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.0040949368849396706
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.018714776262640953
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.3166620433330536
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0667993426322937
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.005949812475591898
+data point index: 1900, loss: 0.1361832320690155
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.03458860144019127
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.058852825313806534
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.20281405746936798
+data point index: 2300, loss: 0.1019938662648201
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.18650580942630768
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.29322099685668945
+data point index: 2600, loss: 0.5470370054244995
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.20143859088420868
+data point index: 2800, loss: 0.4205396771430969
+data point index: 2900, loss: 0.3378540575504303
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.6087077856063843
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 1.0530248880386353
+data point index: 3200, loss: 0.628406822681427
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.5903536081314087
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.6388550996780396
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.6119692921638489
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.6021892428398132
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.38467293977737427
+data point index: 3800, loss: 0.823039174079895
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.2670622169971466
+data point index: 4000, loss: 0.12627723813056946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.12382059544324875
+data point index: 4200, loss: 0.8345759510993958
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.0018719054060056806
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.03641417622566223
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.02548198401927948
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.18495193123817444
+data point index: 4700, loss: 0.3623526096343994
+data point index: 4800, loss: 0.16279231011867523
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.3486748933792114
+data point index: 5000, loss: 0.09507885575294495
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.14291825890541077
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.19940851628780365
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 12, song_loss: 1575.4709531609071
+data point index: 0, loss: 0.49904268980026245
+data point index: 100, loss: 0.18059952557086945
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.07967202365398407
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.25360095500946045
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.3740725517272949
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.26204368472099304
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.10146452486515045
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.04542487859725952
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0542864091694355
+data point index: 900, loss: 0.0692046731710434
+data point index: 1000, loss: 0.0007108920253813267
+data point index: 1100, loss: 0.00017023146210704
+data point index: 1200, loss: 0.020379288122057915
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.004697340540587902
+data point index: 1400, loss: 0.005723996553570032
+data point index: 1500, loss: 0.1090894490480423
+data point index: 1600, loss: 0.04646522179245949
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.05409104749560356
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.057172078639268875
+data point index: 1900, loss: 0.17329378426074982
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.19252105057239532
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.16553999483585358
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.4446447789669037
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.1844785064458847
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.5221278071403503
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.35678935050964355
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.6998318433761597
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.19617319107055664
+song_num: 13, song_loss: 577.2989406092877
+data point index: 0, loss: 0.01273603830486536
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 8.513535249221604e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.0231527928262949
+data point index: 300, loss: 0.0036856115330010653
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.005155645776540041
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.005577343050390482
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.011389520950615406
+data point index: 700, loss: 0.024415524676442146
+data point index: 800, loss: 0.039340563118457794
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.08832909166812897
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.04221484437584877
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.08668699860572815
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.17163994908332825
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.1905791163444519
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.03455718234181404
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.18014855682849884
+data point index: 1600, loss: 0.2319529503583908
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.25503799319267273
+data point index: 1800, loss: 0.29519087076187134
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.07536894083023071
+song_num: 14, song_loss: 185.72975670856675
+data point index: 0, loss: 0.141462042927742
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.19881199300289154
+data point index: 200, loss: 0.24900603294372559
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.03361714631319046
+data point index: 400, loss: 0.004006009083241224
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.00034637204953469336
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.03120294399559498
+data point index: 700, loss: 0.15269501507282257
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.25847190618515015
+song_num: 15, song_loss: 70.07209372181731
+data point index: 0, loss: 0.3938947916030884
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.29514870047569275
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.2460988312959671
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.1364535540342331
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.18153196573257446
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.3872614800930023
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.111231729388237
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.01382008008658886
+data point index: 800, loss: 0.010497748851776123
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.005694342311471701
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.008140698075294495
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.004642706364393234
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.001736520091071725
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.012295746244490147
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.06348392367362976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.1345851719379425
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.1340809017419815
+data point index: 1700, loss: 0.14372722804546356
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.22795481979846954
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.052050184458494186
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.17085111141204834
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.3171957731246948
+data point index: 2200, loss: 0.19075196981430054
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.3733351230621338
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.5293776988983154
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.2697126567363739
+data point index: 2600, loss: 0.31510430574417114
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.4319499731063843
+data point index: 2800, loss: 0.07262720912694931
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.18093949556350708
+data point index: 3000, loss: 0.08201698213815689
+data point index: 3100, loss: 0.0023676950950175524
+data point index: 3200, loss: 0.15663796663284302
+data point index: 3300, loss: 0.06433503329753876
+data point index: 3400, loss: 0.04328217729926109
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.047353800386190414
+data point index: 3600, loss: 0.28859880566596985
+data point index: 3700, loss: 0.007607143372297287
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.08686758577823639
+data point index: 3900, loss: 0.011090339161455631
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.003200575476512313
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.005842377431690693
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.013629866763949394
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.00015079662261996418
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.013641072437167168
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.006048876792192459
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.02760462462902069
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.005232025403529406
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.020383628085255623
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.005705968476831913
+data point index: 5000, loss: 0.0011420657392591238
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.002574681071564555
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.015496370382606983
+song_num: 16, song_loss: 581.6209186189251
+data point index: 0, loss: 1.0995959043502808
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.030914545059204
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.114656925201416
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.8960868120193481
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.7759157419204712
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.671546995639801
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.9347859621047974
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.42946287989616394
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.47874921560287476
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.32807818055152893
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.31728455424308777
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.5834715366363525
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.3732150197029114
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.217278391122818
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.3251503109931946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.2332986295223236
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.07370104640722275
+data point index: 1700, loss: 0.12172671407461166
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.11755672842264175
+data point index: 1900, loss: 0.009922312572598457
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.00390312890522182
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.004831152968108654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 5.356671408662805e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.00026940330280922353
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.011004360392689705
+data point index: 2500, loss: 0.014716556295752525
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.050704460591077805
+data point index: 2700, loss: 0.05558830127120018
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.009666290134191513
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.12970075011253357
+data point index: 3000, loss: 0.16132047772407532
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.17805644869804382
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.3112756311893463
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.47403484582901
+data point index: 3400, loss: 0.552700400352478
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.38440120220184326
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.34251701831817627
+data point index: 3700, loss: 0.18287822604179382
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.31598636507987976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.689853310585022
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.5754917860031128
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.4941881597042084
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 1.074556589126587
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.8788899183273315
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.5989203453063965
+data point index: 4500, loss: 1.3763811588287354
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.9481261372566223
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 1.5655789375305176
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.7011187076568604
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 1.005683183670044
+data point index: 5000, loss: 1.1330236196517944
+data point index: 5100, loss: 0.9307805895805359
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 1.0398703813552856
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.6990224123001099
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.55171799659729
+data point index: 5500, loss: 0.9763529300689697
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.2377530336380005
+song_num: 17, song_loss: 2933.2508861236647
+data point index: 0, loss: 0.04109232500195503
+data point index: 100, loss: 0.001246400992386043
+data point index: 200, loss: 0.1285923272371292
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.07906398177146912
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.014942437410354614
+data point index: 500, loss: 0.00025172843015752733
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.010426497086882591
+data point index: 700, loss: 0.000371388130588457
+data point index: 800, loss: 0.008607598952949047
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.06344719231128693
+data point index: 1000, loss: 0.03829597309231758
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.12713275849819183
+data point index: 1200, loss: 0.07419761270284653
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.1372581273317337
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.3897286057472229
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.00012854067608714104
+data point index: 1600, loss: 0.23536153137683868
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.04838767275214195
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.04668227583169937
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.1298958659172058
+data point index: 2000, loss: 0.13592256605625153
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.5086864829063416
+data point index: 2200, loss: 0.08153512328863144
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.16972553730010986
+data point index: 2400, loss: 0.26693791151046753
+data point index: 2500, loss: 0.12453994154930115
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.1217956617474556
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.07753762602806091
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 18, song_loss: 312.83833620864493
+data point index: 0, loss: 0.39971640706062317
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.34475910663604736
+data point index: 200, loss: 0.25135543942451477
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.2426413893699646
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.2049417346715927
+data point index: 500, loss: 0.1638779491186142
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.14502498507499695
+data point index: 700, loss: 0.09990604221820831
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.041711967438459396
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.010829015634953976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.016592996194958687
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.00969225075095892
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.003187643364071846
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.0037889883387833834
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.015330619178712368
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 4.349339178588707e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.07760507613420486
+data point index: 1700, loss: 0.0847003310918808
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.13136640191078186
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.25398728251457214
+data point index: 2000, loss: 0.24161404371261597
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.05452010780572891
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.327210009098053
+data point index: 2300, loss: 0.1880270540714264
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.7238317728042603
+data point index: 2500, loss: 0.36456573009490967
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.6575911641120911
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.4655992090702057
+data point index: 2800, loss: 0.39805498719215393
+data point index: 2900, loss: 0.45083391666412354
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.06860522925853729
+song_num: 19, song_loss: 723.1357500947909
+data point index: 0, loss: 0.10314429551362991
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.19748371839523315
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.007227137219160795
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.005505432840436697
+data point index: 400, loss: 0.021676737815141678
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.029222596436738968
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.015926020219922066
+data point index: 700, loss: 0.033784206956624985
+data point index: 800, loss: 0.0037306509912014008
+data point index: 900, loss: 0.011581631377339363
+data point index: 1000, loss: 0.006670376285910606
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.023176956921815872
+data point index: 1200, loss: 0.021449195221066475
+data point index: 1300, loss: 0.039851997047662735
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.047957565635442734
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.0073243072256445885
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.0426468700170517
+data point index: 1700, loss: 0.026398180052638054
+data point index: 1800, loss: 0.14401639997959137
+data point index: 1900, loss: 0.03862503170967102
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.21787278354167938
+data point index: 2100, loss: 0.09281952679157257
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.09532003104686737
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.1040622815489769
+data point index: 2400, loss: 0.11733285337686539
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.13983216881752014
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.001285204547457397
+data point index: 2700, loss: 0.30602121353149414
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.1679002344608307
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.044864166527986526
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.018728623166680336
+data point index: 3100, loss: 0.007605152670294046
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.021737469360232353
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.003795613767579198
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.03150828555226326
+data point index: 3500, loss: 0.007384239695966244
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.0005417708307504654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.0044694095849990845
+data point index: 3800, loss: 3.5288794606458396e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.0001684753515291959
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.00045112730003893375
+data point index: 4100, loss: 0.0024835714139044285
+data point index: 4200, loss: 0.003814357565715909
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.028645727783441544
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.0010672289645299315
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.002053570467978716
+data point index: 4600, loss: 0.10841481387615204
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.00920393317937851
+data point index: 4800, loss: 0.0021939866710454226
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.0008039824897423387
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.06418191641569138
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.008477672003209591
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.00542024988681078
+song_num: 20, song_loss: 311.39685337799085
+data point index: 0, loss: 1.0196162462234497
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.3008753061294556
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.2952014207839966
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 1.2311162948608398
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.6598065495491028
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.9109145402908325
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.6600182056427002
+data point index: 700, loss: 0.49035996198654175
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.1506730616092682
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.7655565738677979
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.4541102945804596
+data point index: 1100, loss: 0.25010955333709717
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.3951534032821655
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.4964589476585388
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.02562657557427883
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.011006592772901058
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 2.3796768800821155e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0444159209728241
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.03667079284787178
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.002171744592487812
+data point index: 2000, loss: 0.0008788204868324101
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.005730862263590097
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.036508191376924515
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 6.113578274380416e-05
+data point index: 2400, loss: 0.07832159847021103
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.03689443692564964
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.028922544792294502
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.03022136725485325
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.2463422417640686
+data point index: 2900, loss: 0.3072526752948761
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.5129572749137878
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.24406681954860687
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.8743787407875061
+data point index: 3300, loss: 0.27083978056907654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.32656702399253845
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.4852413833141327
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.46823060512542725
+data point index: 3700, loss: 0.9162634015083313
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.7834669351577759
+data point index: 3900, loss: 0.9275757670402527
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.7384960651397705
+data point index: 4100, loss: 0.9193271994590759
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.733641505241394
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.6251442432403564
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.5696245431900024
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 2.0726897716522217
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 1.1363821029663086
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 1.3233745098114014
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 1.0663957595825195
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.49977585673332214
+data point index: 5000, loss: 0.6330134272575378
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.7438669204711914
+data point index: 5200, loss: 0.7689671516418457
+data point index: 5300, loss: 0.7466728687286377
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.35393255949020386
+data point index: 5500, loss: 0.9104225039482117
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.7266504764556885
+song_num: 21, song_loss: 2975.4880223795167
+data point index: 0, loss: 0.05139084532856941
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.030908573418855667
+data point index: 200, loss: 0.03263256326317787
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.0026091409381479025
+data point index: 400, loss: 0.00012176191376056522
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.03917799890041351
+data point index: 600, loss: 0.009057026356458664
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.04103205353021622
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.051870960742235184
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.13378657400608063
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.1655031144618988
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.2611946761608124
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.2834944427013397
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.08170095086097717
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.17853860557079315
+data point index: 1500, loss: 0.2952499985694885
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.09684307873249054
+data point index: 1700, loss: 0.10502428561449051
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.3131318688392639
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.23151665925979614
+song_num: 22, song_loss: 275.2974117367072
+data point index: 0, loss: 0.14676804840564728
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.271748811006546
+data point index: 200, loss: 0.029870739206671715
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.03769860789179802
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.08563274890184402
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.12083370238542557
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.07411100715398788
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.028075018897652626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0076448386535048485
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.0017704342026263475
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.015276195481419563
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.0029076654464006424
+data point index: 1200, loss: 0.02282240055501461
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.00032535885111428797
+data point index: 1400, loss: 0.09126412123441696
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.09102002531290054
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.07824604958295822
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.2714979350566864
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.24140463769435883
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.2568720877170563
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.2907060384750366
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.24436867237091064
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.16975954174995422
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.17650441825389862
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.5040574073791504
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.22546206414699554
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.20748569071292877
+data point index: 2700, loss: 0.16279399394989014
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.36910825967788696
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.15031075477600098
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.1468336433172226
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 23, song_loss: 468.0805355392163
+data point index: 0, loss: 0.1915217638015747
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.14374224841594696
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.01194058544933796
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 6.513487460324541e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.00225774641148746
+data point index: 500, loss: 0.019955119118094444
+data point index: 600, loss: 0.03436892107129097
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.1315412074327469
+data point index: 800, loss: 0.14580386877059937
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 24, song_loss: 58.22307976231118
+data point index: 0, loss: 0.24721339344978333
+data point index: 100, loss: 0.3132063150405884
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.19413916766643524
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.18789492547512054
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.1863832324743271
+data point index: 500, loss: 0.0920616015791893
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.047381360083818436
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.061396293342113495
+data point index: 800, loss: 0.007315520662814379
+data point index: 900, loss: 0.01698858104646206
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.04742605611681938
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.003464882494881749
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.11447985470294952
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.010621951892971992
+data point index: 1400, loss: 0.01434665359556675
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.035308003425598145
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.06254001706838608
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.12065985053777695
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.15045703947544098
+data point index: 1900, loss: 0.04950179159641266
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.4008551239967346
+data point index: 2100, loss: 0.1787194311618805
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.09935583174228668
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.3083854913711548
+data point index: 2400, loss: 0.15056635439395905
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.25588351488113403
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.1502886563539505
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.5805662870407104
+data point index: 2800, loss: 0.2052209973335266
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.319921612739563
+data point index: 3000, loss: 0.355350524187088
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.09131492674350739
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.058163221925497055
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.11636067926883698
+data point index: 3400, loss: 0.020453639328479767
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.015511095523834229
+data point index: 3600, loss: 0.014794033952057362
+data point index: 3700, loss: 0.040250249207019806
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.0021788976155221462
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.0002098256372846663
+data point index: 4000, loss: 0.0012265293626114726
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.009098141454160213
+data point index: 4200, loss: 0.00043561786878854036
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.020345760509371758
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.06043868884444237
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.010166103951632977
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.03266862779855728
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.009633764624595642
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.032702162861824036
+data point index: 4900, loss: 0.01927206665277481
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.02731485292315483
+data point index: 5100, loss: 0.011870353482663631
+data point index: 5200, loss: 0.007262973114848137
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.004812267608940601
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.08298533409833908
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5500, loss: 3.4924334613606334e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.005848556756973267
+song_num: 25, song_loss: 553.7889114228209
+data point index: 0, loss: 1.4930733442306519
+data point index: 100, loss: 1.1908849477767944
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.4282245635986328
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.6487546563148499
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.7712104320526123
+data point index: 500, loss: 0.6874085068702698
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.5229544639587402
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.867622435092926
+data point index: 800, loss: 0.5416548252105713
+data point index: 900, loss: 0.16383174061775208
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.2561402916908264
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.24862392246723175
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.3049382269382477
+data point index: 1300, loss: 0.03997853025794029
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 8.80176287409995e-07
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.01693480834364891
+data point index: 1600, loss: 0.005962499417364597
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.021225634962320328
+data point index: 1800, loss: 0.04325361177325249
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.1021050289273262
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.06516615301370621
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.18409880995750427
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.0901680663228035
+data point index: 2300, loss: 0.25413304567337036
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.5559812784194946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.24124819040298462
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.32520821690559387
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.4816727340221405
+song_num: 26, song_loss: 1092.6690091616633
+data point index: 0, loss: 0.11606034636497498
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.03781026601791382
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.026382092386484146
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.03758392855525017
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.004258279222995043
+data point index: 500, loss: 0.0014671508688479662
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.03749676048755646
+data point index: 700, loss: 0.009347866289317608
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.05053427070379257
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.139939546585083
+data point index: 1000, loss: 0.0683365911245346
+data point index: 1100, loss: 0.14948537945747375
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.2217322140932083
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.17642900347709656
+data point index: 1400, loss: 0.06305669248104095
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.10288021713495255
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.29120439291000366
+data point index: 1700, loss: 0.29393893480300903
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.22185452282428741
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.27490273118019104
+song_num: 27, song_loss: 247.29125509109053
+data point index: 0, loss: 0.18312841653823853
+data point index: 100, loss: 0.046871572732925415
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.19288630783557892
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.3031860291957855
+data point index: 400, loss: 0.021102799102663994
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.017400970682501793
+data point index: 600, loss: 0.01738046295940876
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.029011990875005722
+data point index: 800, loss: 0.0018084080656990409
+data point index: 900, loss: 0.0003744752611964941
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.05973150208592415
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.0033619189634919167
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.006031463388353586
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.003012723056599498
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.019622115418314934
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.2713039219379425
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.3786398470401764
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.12540605664253235
+data point index: 1800, loss: 0.06543529033660889
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.36178967356681824
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.19033192098140717
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.18108375370502472
+data point index: 2200, loss: 0.24492532014846802
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.25075802206993103
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.20416586101055145
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.13694153726100922
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.3243553340435028
+data point index: 2700, loss: 0.10151355713605881
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.39573338627815247
+data point index: 2900, loss: 0.027468783780932426
+data point index: 3000, loss: 0.045043278485536575
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 28, song_loss: 457.83087560084465
+data point index: 0, loss: 0.2994862496852875
+data point index: 100, loss: 0.1588764637708664
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.054843876510858536
+data point index: 300, loss: 0.04936743900179863
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.0004601426771841943
+data point index: 500, loss: 0.020904842764139175
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.03428064286708832
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.14828115701675415
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.21452467143535614
+song_num: 29, song_loss: 61.015274905423794
+data point index: 0, loss: 0.26728835701942444
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.2250816971063614
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.26246729493141174
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.2340853065252304
+data point index: 400, loss: 0.1789938062429428
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.16223730146884918
+data point index: 600, loss: 0.08801908046007156
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.00788581557571888
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.11052470654249191
+data point index: 900, loss: 0.025223812088370323
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.01071241032332182
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.001825976767577231
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.0025020132306963205
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.02307874709367752
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.02191917970776558
+data point index: 1500, loss: 0.04576227441430092
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.09067653119564056
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.17617914080619812
+data point index: 1800, loss: 0.1033671572804451
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.12186918407678604
+data point index: 2000, loss: 0.1275530755519867
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.5361920595169067
+data point index: 2200, loss: 0.6076386570930481
+data point index: 2300, loss: 0.17065688967704773
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.07171500474214554
+data point index: 2500, loss: 0.34784308075904846
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.1658959984779358
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.10339732468128204
+data point index: 2800, loss: 0.1809317022562027
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.45961350202560425
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.15153777599334717
+data point index: 3100, loss: 0.08427039533853531
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.17706182599067688
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.23066096007823944
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.07451049983501434
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.053557220846414566
+data point index: 3600, loss: 0.024329163134098053
+data point index: 3700, loss: 0.07077161967754364
+data point index: 3800, loss: 0.11031609028577805
+data point index: 3900, loss: 0.05100241303443909
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.003854788141325116
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.07951822131872177
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.011586773209273815
+data point index: 4300, loss: 0.009183439426124096
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 2.454959940223489e-05
+data point index: 4500, loss: 0.003182042622938752
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.002042667241767049
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 3.695083796628751e-05
+data point index: 4800, loss: 1.2982377484149765e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.006771476473659277
+data point index: 5000, loss: 0.10137618333101273
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.04366717115044594
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.004888915456831455
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.02470291405916214
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5400, loss: 0.00749945780262351
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5500, loss: 0.005484260153025389
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.1523536592721939
+song_num: 30, song_loss: 599.017580500058
+data point index: 0, loss: 0.6033281087875366
+data point index: 100, loss: 1.7190147638320923
+data point index: 200, loss: 0.5478622317314148
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.6322904825210571
+data point index: 400, loss: 0.7972258925437927
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.4600318968296051
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.3280632793903351
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.4448874890804291
+data point index: 800, loss: 0.2683224678039551
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.1750328689813614
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.08410903811454773
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.014772655442357063
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 1.627878737053834e-05
+data point index: 1300, loss: 0.002860221778973937
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.010604147799313068
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.016957620158791542
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.03248324617743492
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.02244800515472889
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.006713010370731354
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.23481504619121552
+song_num: 31, song_loss: 627.1479171238557
+Epoch: 1............. Loss: 27495.8538
+New best epoch loss: 27495.85382672473
+saving model.net.state_dict() to recurrent_approach/params/rnn-ScoreFollowingNetMSMDLCHSDeepDoLight-msmd_all_train-mutopia_lchs1_20200418_182105-cpsc424_xm83/best_model.pt
+data point index: 0, loss: 0.2906284034252167
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.34677067399024963
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.22370204329490662
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.3048520088195801
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.13317464292049408
+data point index: 500, loss: 0.2897087335586548
+data point index: 600, loss: 0.15909913182258606
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.20006506145000458
+data point index: 800, loss: 0.15691769123077393
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.1127106249332428
+data point index: 1000, loss: 0.23418748378753662
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.12729324400424957
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.01845041662454605
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.1655482053756714
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.005376368761062622
+data point index: 1500, loss: 0.056688450276851654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.02475021779537201
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0031775084789842367
+data point index: 1800, loss: 0.09495647251605988
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.007166681345552206
+data point index: 2000, loss: 0.054431185126304626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.06822528690099716
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.03252645954489708
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.006900354288518429
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.05010606721043587
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.06259110569953918
+data point index: 2600, loss: 0.1729123890399933
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.07960322499275208
+data point index: 2800, loss: 0.085360586643219
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.12961065769195557
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.3104286193847656
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.12891575694084167
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.4285160303115845
+data point index: 3300, loss: 0.33547335863113403
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.3148658573627472
+data point index: 3500, loss: 0.3074459135532379
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.2364491969347
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.34712842106819153
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.1254243701696396
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.160822331905365
+data point index: 4000, loss: 0.4279705584049225
+data point index: 4100, loss: 0.4139932692050934
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.10369369387626648
+data point index: 4300, loss: 0.5611686110496521
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.156685009598732
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.2376505434513092
+data point index: 4600, loss: 0.09271102398633957
+data point index: 4700, loss: 0.026085957884788513
+data point index: 4800, loss: 0.23916561901569366
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.46926575899124146
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5000, loss: 0.034950099885463715
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.015110624954104424
+data point index: 5200, loss: 0.06988629698753357
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.008839241228997707
+data point index: 5400, loss: 0.005358543712645769
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5500, loss: 0.0025967671535909176
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.11420165747404099
+data point index: 5700, loss: 0.05111653357744217
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5800, loss: 0.0012365319998934865
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5900, loss: 0.002679667202755809
+data point index: 6000, loss: 0.0016893444117158651
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6100, loss: 0.0007533141179010272
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6200, loss: 0.004810018464922905
+data point index: 6300, loss: 0.0786692425608635
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6400, loss: 0.014434296637773514
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6500, loss: 0.004527111072093248
+data point index: 6600, loss: 0.002943884115666151
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6700, loss: 5.100997077533975e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6800, loss: 0.03393379598855972
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6900, loss: 0.0456392876803875
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7000, loss: 0.05007883906364441
+data point index: 7100, loss: 0.1399654597043991
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7200, loss: 0.13664306700229645
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7300, loss: 0.043595556169748306
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7400, loss: 0.30218538641929626
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7500, loss: 0.0953611433506012
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7600, loss: 0.1230890229344368
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7700, loss: 0.09393133968114853
+data point index: 7800, loss: 0.05351237207651138
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7900, loss: 0.1336737722158432
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8000, loss: 0.037661075592041016
+data point index: 8100, loss: 0.17243459820747375
+data point index: 8200, loss: 0.05924801900982857
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8300, loss: 0.04927489906549454
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8400, loss: 0.03966996818780899
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8500, loss: 0.1300937980413437
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8600, loss: 0.0842697024345398
+data point index: 8700, loss: 0.24207858741283417
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8800, loss: 0.10139653086662292
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8900, loss: 0.10051305592060089
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9000, loss: 0.20213574171066284
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9100, loss: 0.05439717695116997
+data point index: 9200, loss: 0.10320053994655609
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9300, loss: 0.11588383466005325
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9400, loss: 0.07065461575984955
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 0, song_loss: 1322.821579600379
+data point index: 0, loss: 1.4261471033096313
+data point index: 100, loss: 0.8299925923347473
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.20272605121135712
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.23038822412490845
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.02533489093184471
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.06016284599900246
+song_num: 1, song_loss: 251.1019007449504
+data point index: 0, loss: 1.386954665184021
+data point index: 100, loss: 1.2121150493621826
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.1716132164001465
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.9668088555335999
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 1.043994665145874
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.7889058589935303
+data point index: 600, loss: 1.0076510906219482
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.3375825881958008
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.30957186222076416
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.2948760986328125
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.14100868999958038
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.44264814257621765
+data point index: 1200, loss: 0.049184348434209824
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.029232267290353775
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.08810321986675262
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 5.76211568841245e-05
+data point index: 1600, loss: 0.019723255187273026
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0009985278593376279
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 1.5729894585092552e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.014219204895198345
+data point index: 2000, loss: 0.018114732578396797
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.15586771070957184
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.04735253006219864
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.2667059302330017
+data point index: 2400, loss: 0.2669679522514343
+data point index: 2500, loss: 0.14915326237678528
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.37593507766723633
+data point index: 2700, loss: 0.49863433837890625
+data point index: 2800, loss: 0.3322594165802002
+data point index: 2900, loss: 0.43581777811050415
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.8662769198417664
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.4741595387458801
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.8448576331138611
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 1.6825752258300781
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.855846107006073
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.3865008056163788
+data point index: 3600, loss: 0.4044084846973419
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.6659939885139465
+song_num: 2, song_loss: 1702.9967774766724
+data point index: 0, loss: 0.09884025156497955
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.0004982809768989682
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.1442456990480423
+data point index: 300, loss: 0.08583418279886246
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.23459015786647797
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.5576950907707214
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.5596248507499695
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.5110903978347778
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.7260057926177979
+song_num: 3, song_loss: 265.2141477744433
+data point index: 0, loss: 0.06156972795724869
+data point index: 100, loss: 0.008915172889828682
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 8.934375728131272e-06
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.00017204866162501276
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.0001724304020171985
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.0003885982441715896
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 7.702670359321928e-07
+data point index: 700, loss: 0.0016596794594079256
+data point index: 800, loss: 0.008616911247372627
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.0006950187962502241
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.00833128485828638
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.015040338970720768
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.041986193507909775
+data point index: 1300, loss: 0.01612265780568123
+data point index: 1400, loss: 0.017832502722740173
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.09109745919704437
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.021670296788215637
+data point index: 1700, loss: 0.06517408043146133
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.022253861650824547
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.06411221623420715
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.016675159335136414
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.06396301090717316
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.05063562095165253
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.021989785134792328
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.002474603010341525
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.00239631999284029
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.0013200193643569946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.0050897435285151005
+data point index: 2800, loss: 0.0005076178931631148
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.008349879644811153
+data point index: 3000, loss: 0.005090224090963602
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.0036266210954636335
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.0077955410815775394
+data point index: 3300, loss: 0.0003544342762324959
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.001807949272915721
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.05203309282660484
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.013493181206285954
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.0045683677308261395
+data point index: 3800, loss: 0.004973429720848799
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.025888290256261826
+data point index: 4000, loss: 0.04757310077548027
+data point index: 4100, loss: 0.05793195962905884
+data point index: 4200, loss: 0.010554464533925056
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.002773319138213992
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.0016573115717619658
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.007885389029979706
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.03680502995848656
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.059498317539691925
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.048202600330114365
+data point index: 4900, loss: 0.008653877303004265
+data point index: 5000, loss: 0.04653887078166008
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.025472888723015785
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 3.2724845056009144e-08
+song_num: 4, song_loss: 106.47474708531473
+data point index: 0, loss: 1.2233911752700806
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.0620652437210083
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.9243596196174622
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.488237589597702
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.9921314120292664
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.45577695965766907
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.4376707673072815
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.18323661386966705
+data point index: 800, loss: 0.370304673910141
+data point index: 900, loss: 0.22545196115970612
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.286295622587204
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.228050097823143
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.09170587360858917
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.11896242946386337
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.023636644706130028
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.09423555433750153
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.02929755486547947
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.021149247884750366
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.020350946113467216
+data point index: 1900, loss: 0.028556784614920616
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.005604651756584644
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.03418434038758278
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.00024340450181625783
+data point index: 2300, loss: 0.182358518242836
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.019920988008379936
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.04541439935564995
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.11148975044488907
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.09253194183111191
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.29757264256477356
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.21772587299346924
+data point index: 3000, loss: 0.3826392889022827
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.17806273698806763
+data point index: 3200, loss: 0.2708812355995178
+data point index: 3300, loss: 0.2912919521331787
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.4599231481552124
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.20502759516239166
+data point index: 3600, loss: 0.5913350582122803
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.8215015530586243
+data point index: 3800, loss: 0.2289927452802658
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 0.482768177986145
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4000, loss: 0.4928930699825287
+data point index: 4100, loss: 0.3510306477546692
+data point index: 4200, loss: 0.6838034391403198
+data point index: 4300, loss: 0.35589492321014404
+data point index: 4400, loss: 0.26268526911735535
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.9007360935211182
+data point index: 4600, loss: 0.5526404976844788
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.5001392364501953
+data point index: 4800, loss: 0.5348151922225952
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.324294775724411
+data point index: 5000, loss: 0.196335107088089
+data point index: 5100, loss: 1.0210474729537964
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.42031723260879517
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5300, loss: 0.37958797812461853
+data point index: 5400, loss: 0.37919676303863525
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5500, loss: 0.19608183205127716
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5600, loss: 0.2827674150466919
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5700, loss: 0.2522630989551544
+data point index: 5800, loss: 0.2727120518684387
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5900, loss: 0.313527911901474
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6000, loss: 0.0655030682682991
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6100, loss: 0.0024093100801110268
+data point index: 6200, loss: 0.1020929366350174
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6300, loss: 0.06096015125513077
+data point index: 6400, loss: 0.025044770911335945
+data point index: 6500, loss: 0.19053174555301666
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6600, loss: 0.12786981463432312
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6700, loss: 0.023440655320882797
+data point index: 6800, loss: 0.09192954003810883
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 6900, loss: 0.03830351307988167
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7000, loss: 0.020935067906975746
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7100, loss: 0.04764498025178909
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7200, loss: 0.018948281183838844
+data point index: 7300, loss: 4.186198907518701e-07
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7400, loss: 0.0027434173971414566
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7500, loss: 0.0035703713074326515
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7600, loss: 0.010207878425717354
+data point index: 7700, loss: 0.000739508424885571
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7800, loss: 0.011110798455774784
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 7900, loss: 0.02617199718952179
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8000, loss: 0.06241163611412048
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8100, loss: 0.0043968562968075275
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8200, loss: 0.09689457714557648
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8300, loss: 0.04068413004279137
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8400, loss: 0.00041552746552042663
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8500, loss: 0.04527159780263901
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8600, loss: 0.02220970019698143
+data point index: 8700, loss: 0.0343155674636364
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8800, loss: 0.21924029290676117
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 8900, loss: 0.007811126299202442
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9000, loss: 0.02075222320854664
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9100, loss: 0.053598057478666306
+data point index: 9200, loss: 0.0871700644493103
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 9300, loss: 0.27989262342453003
+data point index: 9400, loss: 0.05452483892440796
+song_num: 5, song_loss: 2441.699170191725
+data point index: 0, loss: 1.5177361965179443
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.630070447921753
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 1.3957401514053345
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 1.6700527667999268
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 1.386572241783142
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 1.7794029712677002
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 1.2232601642608643
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 1.125282883644104
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.8954840898513794
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.7789486050605774
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 1.0227844715118408
+data point index: 1100, loss: 0.6689611673355103
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 1.0574085712432861
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.44826409220695496
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.5748248100280762
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.2100559026002884
+data point index: 1600, loss: 0.2959710657596588
+data point index: 1700, loss: 0.14875490963459015
+data point index: 1800, loss: 0.07261008769273758
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.17996267974376678
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.0004681555728893727
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.275426983833313
+data point index: 2200, loss: 0.08633510768413544
+data point index: 2300, loss: 0.0009532709955237806
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 3.977080632466823e-05
+data point index: 2500, loss: 0.05092158541083336
+data point index: 2600, loss: 0.0003423636080697179
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 0.013533354736864567
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.043618954718112946
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.045320793986320496
+data point index: 3000, loss: 0.19562749564647675
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.2283020168542862
+data point index: 3200, loss: 0.4150257110595703
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.43246227502822876
+data point index: 3400, loss: 0.38099539279937744
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.20355208218097687
+data point index: 3600, loss: 0.3318876326084137
+data point index: 3700, loss: 0.5584311485290527
+song_num: 6, song_loss: 1943.0016225721736
+data point index: 0, loss: 0.0302671417593956
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.00010974143515340984
+data point index: 200, loss: 0.09114967286586761
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.00018992612604051828
+data point index: 400, loss: 0.08468279242515564
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.14823545515537262
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.31840765476226807
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.6154468655586243
+data point index: 800, loss: 0.5778576731681824
+song_num: 7, song_loss: 144.1037907107152
+data point index: 0, loss: 0.06405556946992874
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.0289241261780262
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.046516019850969315
+data point index: 300, loss: 0.03821532055735588
+data point index: 400, loss: 0.041063591837882996
+data point index: 500, loss: 0.01759466715157032
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.012586360797286034
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.008929811418056488
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.005861735437065363
+data point index: 900, loss: 0.0016510630957782269
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.009410879574716091
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.013299863785505295
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.012995308265089989
+data point index: 1300, loss: 1.825175786507316e-05
+data point index: 1400, loss: 0.02475830540060997
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.009376772679388523
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.007399013731628656
+data point index: 1700, loss: 0.0029993897769600153
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.0681815817952156
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.05148991942405701
+data point index: 2000, loss: 0.06781436502933502
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.08642932027578354
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.06401799619197845
+data point index: 2300, loss: 0.21305018663406372
+data point index: 2400, loss: 0.07135223597288132
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.107306569814682
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.11674684286117554
+data point index: 2700, loss: 0.14754194021224976
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.08419206738471985
+data point index: 2900, loss: 0.09472902119159698
+data point index: 3000, loss: 0.050664499402046204
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.09984785318374634
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.03790499269962311
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3300, loss: 0.14692476391792297
+data point index: 3400, loss: 0.04092196747660637
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.1274336725473404
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.13095636665821075
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.037096694111824036
+data point index: 3800, loss: 0.08771365135908127
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3900, loss: 5.613461689790711e-05
+data point index: 4000, loss: 0.03085968643426895
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4100, loss: 0.007706029340624809
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4200, loss: 0.03045896254479885
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.0019114076858386397
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.006930153351277113
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 2.0754965589731e-05
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4600, loss: 0.02378632314503193
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4700, loss: 0.0005719240289181471
+data point index: 4800, loss: 0.012216371484100819
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.0022075874730944633
+data point index: 5000, loss: 0.004840699024498463
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.004373292904347181
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.001963268034160137
+song_num: 8, song_loss: 223.2621799552986
+data point index: 0, loss: 0.9225441217422485
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 1.2917661666870117
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.6998650431632996
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.7911447882652283
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.28830263018608093
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.5000916123390198
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.6867221593856812
+data point index: 700, loss: 0.49839118123054504
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.4857517182826996
+data point index: 900, loss: 0.3535255789756775
+data point index: 1000, loss: 0.0662490576505661
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.09223687648773193
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.047631047666072845
+data point index: 1300, loss: 0.1651105284690857
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.0013390884269028902
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.06562785059213638
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.04327137768268585
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0789727196097374
+data point index: 1800, loss: 0.17570993304252625
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.08430688828229904
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.02859722450375557
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2100, loss: 0.11203038692474365
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.3984438478946686
+data point index: 2300, loss: 0.2524431645870209
+data point index: 2400, loss: 0.07433822005987167
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.3879149556159973
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.6056075096130371
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2700, loss: 1.1200196743011475
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 9, song_loss: 1006.3271042093627
+data point index: 0, loss: 0.20718827843666077
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.05420548841357231
+data point index: 200, loss: 0.030873728916049004
+data point index: 300, loss: 0.0014407755807042122
+data point index: 400, loss: 2.5318353436887264e-05
+data point index: 500, loss: 0.003757883096113801
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.0023889802396297455
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.00010265078162774444
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0006708736182190478
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.03839534521102905
+data point index: 1000, loss: 0.000354149320628494
+data point index: 1100, loss: 0.0010835225693881512
+data point index: 1200, loss: 0.030271969735622406
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1300, loss: 0.1666135936975479
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.08270575851202011
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.10813971608877182
+data point index: 1600, loss: 0.0263929795473814
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.110511414706707
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.07439369708299637
+data point index: 1900, loss: 0.10967804491519928
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.04417479783296585
+data point index: 2100, loss: 0.14362388849258423
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.04146111011505127
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.06453022360801697
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.0023013665340840816
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.13255394995212555
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.22724409401416779
+data point index: 2700, loss: 0.015858938917517662
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.09231512993574142
+data point index: 2900, loss: 0.06169242039322853
+data point index: 3000, loss: 0.11375991255044937
+data point index: 3100, loss: 0.03193052485585213
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.0005529265617951751
+data point index: 3300, loss: 0.06228501349687576
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.005401370581239462
+data point index: 3500, loss: 0.08197366446256638
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 0.003954409155994654
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.011449635960161686
+song_num: 10, song_loss: 208.51628248990545
+data point index: 0, loss: 0.32790830731391907
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.47935977578163147
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.33721959590911865
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.3229583203792572
+data point index: 400, loss: 0.09616834670305252
+data point index: 500, loss: 0.042182326316833496
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.0005825353437103331
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.012280317954719067
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.03346194326877594
+song_num: 11, song_loss: 162.5136713458886
+data point index: 0, loss: 0.48982518911361694
+data point index: 100, loss: 0.7659815549850464
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.6439271569252014
+data point index: 300, loss: 0.3479404151439667
+data point index: 400, loss: 0.39804816246032715
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 500, loss: 0.17951078712940216
+data point index: 600, loss: 0.7317343950271606
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.3183058202266693
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.4570847153663635
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.18109552562236786
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1000, loss: 0.10817860811948776
+data point index: 1100, loss: 0.07625216990709305
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.04061512649059296
+data point index: 1300, loss: 0.002317521721124649
+data point index: 1400, loss: 0.00036332907620817423
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.0071391696110367775
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1600, loss: 0.0005152607918716967
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1700, loss: 0.0002383361425017938
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1800, loss: 0.054094865918159485
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1900, loss: 0.05782322958111763
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2000, loss: 0.16659456491470337
+data point index: 2100, loss: 0.025238558650016785
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2200, loss: 0.11520813405513763
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2300, loss: 0.0793670192360878
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2400, loss: 0.1296471804380417
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2500, loss: 0.08647320419549942
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2600, loss: 0.4345071613788605
+data point index: 2700, loss: 0.3188766837120056
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2800, loss: 0.645332396030426
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 2900, loss: 0.5355890989303589
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3000, loss: 0.5513644218444824
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3100, loss: 0.46948954463005066
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3200, loss: 0.6674604415893555
+data point index: 3300, loss: 0.4424988925457001
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3400, loss: 0.4357505440711975
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3500, loss: 0.7256761789321899
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3600, loss: 1.1537561416625977
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3700, loss: 0.6548011302947998
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 3800, loss: 0.35202184319496155
+data point index: 3900, loss: 0.6152384281158447
+data point index: 4000, loss: 0.3712131679058075
+data point index: 4100, loss: 0.6842663288116455
+data point index: 4200, loss: 0.34826505184173584
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4300, loss: 0.2896541953086853
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4400, loss: 0.24337290227413177
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4500, loss: 0.09673448652029037
+data point index: 4600, loss: 0.14819128811359406
+data point index: 4700, loss: 0.06508401781320572
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4800, loss: 0.30149540305137634
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 4900, loss: 0.2889334559440613
+data point index: 5000, loss: 0.1200515404343605
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5100, loss: 0.21085602045059204
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 5200, loss: 0.15147559344768524
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+song_num: 12, song_loss: 1573.1591296828447
+data point index: 0, loss: 0.5186815857887268
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 100, loss: 0.6322864294052124
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 200, loss: 0.30451837182044983
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 300, loss: 0.26777514815330505
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 400, loss: 0.3584319055080414
+data point index: 500, loss: 0.11837872117757797
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 600, loss: 0.3868967294692993
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 700, loss: 0.17657038569450378
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 800, loss: 0.0065955366007983685
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 900, loss: 0.038979798555374146
+data point index: 1000, loss: 0.014109605923295021
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1100, loss: 0.006795309949666262
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1200, loss: 0.0003471367817837745
+data point index: 1300, loss: 0.05653984099626541
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1400, loss: 0.014271934516727924
+fluidsynth: warning: No preset found on channel 9 [bank=128 prog=0]
+data point index: 1500, loss: 0.0011025029234588146
+slurmstepd: error: *** JOB 54621201 ON c22n06 CANCELLED AT 2020-04-18T16:20:54 DUE TO TIME LIMIT ***
