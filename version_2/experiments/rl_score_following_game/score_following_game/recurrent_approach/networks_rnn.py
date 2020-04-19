@@ -90,7 +90,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         sheet_x = self.sheet_do8(sheet_x)
 
         sheet_x = sheet_x.view(-1, num_flat_features(sheet_x))  # flatten
-        sheet_x = F.elu(self.sheet_fc_prior(sheet_x))   # Added (sketch)
+        # sheet_x = F.elu(self.sheet_fc_prior(sheet_x))   # Added (sketch)
         sheet_x = F.elu(self.sheet_fc(sheet_x))
 
         cat_x = torch.cat((spec_x, sheet_x), dim=1)
