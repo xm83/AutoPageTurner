@@ -69,12 +69,13 @@ class ScoreFollowingSupervisedEnv(Env):
 
         # resize factors for rendering
         self.resz_spec = 4
-        self.resz_imag = float(self.resz_spec) / 2 * float(self.rl_pool.perf_shape[1]) / self.rl_pool.score_shape[1]
+        self.resz_imag = float(self.resz_spec) / 4 * float(self.rl_pool.perf_shape[1]) / self.rl_pool.score_shape[1]
         self.resz_x, self.resz_y = self.resz_imag, self.resz_imag
         self.text_position = 0
 
     def step(self, newPos):
-        self.rl_pool.update_position(newPos)
+        unnormalized_pos = self.rl_pool.get_total_score_len() * max(newPos, 0)
+        self.rl_pool.update_position(unnormalized_pos)
 
         # get current frame from "pace-maker"
         if self.render_mode == 'computer' or self.render_mode == 'human':

@@ -60,6 +60,7 @@ class RLScoreFollowPool(object):
         self.curr_song = None
 
         self.song_history = {}
+        self.total_score_len = 0
 
     def reset(self, song_index=-1):
         """Reset generator.
@@ -93,6 +94,7 @@ class RLScoreFollowPool(object):
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
+        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.curr_song.cur_perf['onsets_padded'][-1])
 
     def get_data(self):
         """ return the np arrays for performance + score to feed into the network 
@@ -105,11 +107,10 @@ class RLScoreFollowPool(object):
         for idx in range(self.cache.get_maxlen()):
             self.reset(idx)  # load song from cache
             frame_idx = 0
-            total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.curr_song.cur_perf['onsets_padded'][-1])
             song_arr = []
             while not self.last_onset_reached():  # step through frame by frame
                 perf_excerpt, score_excerpt = self.step(frame_idx)
-                normalized_score_pos = self.true_score_position / total_score_len if total_score_len != 0 else 0
+                normalized_score_pos = self.true_score_position / self.total_score_len if total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
                 frame_idx += 1
             results.append(song_arr)
@@ -245,6 +246,9 @@ class RLScoreFollowPool(object):
         coord = np.min([coord, sheet.shape[2] - self.score_shape[2]//2 - 1])
 
         return coord
+
+    def get_total_score_len(self):
+        return self.total_score_len
 
 
 def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample') -> List[RLScoreFollowPool]:
