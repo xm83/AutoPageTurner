@@ -130,7 +130,8 @@ class ScoreFollowingSupervisedEnv(Env):
 
         self.step_id += 1
 
-        return self.state, done, {}
+        # observation, reward, done, info
+        return self.state, 0, done, {}
 
     def reset(self):
 
@@ -220,7 +221,7 @@ class ScoreFollowingSupervisedEnv(Env):
         obs_image[score.shape[0], c0:c1, :] = 0
 
         # write text to the observation image
-        self._write_text(obs_image=obs_image, pos=self.text_position, color=TEXT_COLOR)
+        # self._write_text(obs_image=obs_image, pos=self.text_position, color=TEXT_COLOR)
 
         # preserve this for access from outside
         self.obs_image = obs_image
@@ -242,6 +243,18 @@ class ScoreFollowingSupervisedEnv(Env):
 
     def prepare_perf_for_render(self):
         return prepare_spec_for_render(self.performance, resz_spec=self.resz_spec)
+
+    # def _write_text(self, obs_image, pos, color):
+    #     # write reward to observation image
+    #     write_text('reward: {:6.2f}'.format(self.last_reward if self.last_reward is not None else 0),
+    #                pos, obs_image, color=color)
+
+    #     # write cumulative reward (score) to observation image
+    #     write_text("score: {:6.2f}".format(self.cum_reward if self.cum_reward is not None else 0),
+    #                pos + 2, obs_image, color=color)
+
+    #     # write last action
+    #     write_text("action: {:+6.1f}".format(self.last_action), pos + 4, obs_image, color=color)
 
 
 

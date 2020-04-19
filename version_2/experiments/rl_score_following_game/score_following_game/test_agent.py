@@ -102,14 +102,14 @@ if __name__ == "__main__":
         for obs_key in observation:
             model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
 
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         # model_in["perf"].shape: torch.Size([1, 1, 78, 40])
         # model_in["score"].shape: torch.Size([1, 1, 80, 256]) => torch.Size([1, 1, 160, 512]) after changing score_factor to 1 from 0.5
 
         newPos = model(model_in)
 
         # perform step and observe
-        observation, done, info = env.step(newPos)
+        observation, _, done, info = env.step(newPos)
 
         if env.obs_image is not None:
             bar_img = env.obs_image
