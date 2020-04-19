@@ -11,7 +11,7 @@
 #SBATCH --gres-flags=enforce-binding
 #SBATCH --gres=gpu:1
 #SBATCH --job-name=Train
-#SBATCH --time=1:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=%x-%j.out
 
 echo "Starting training"
