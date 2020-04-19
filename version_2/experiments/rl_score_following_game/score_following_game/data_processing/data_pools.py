@@ -4,6 +4,7 @@ import multiprocessing
 import numpy as np
 import os
 import tqdm
+import torch
 
 from score_following_game.data_processing.data_production import SongCache
 from score_following_game.data_processing.song import load_song
@@ -110,7 +111,7 @@ class RLScoreFollowPool(object):
             song_arr = []
             while not self.last_onset_reached():  # step through frame by frame
                 perf_excerpt, score_excerpt = self.step(frame_idx)
-                normalized_score_pos = self.true_score_position / self.total_score_len if total_score_len != 0 else 0
+                normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
                 frame_idx += 1
             results.append(song_arr)
@@ -187,7 +188,7 @@ class RLScoreFollowPool(object):
         """Compute distance between score and performance position."""
 
         # error should go negative when estimate is behind
-        error = self.est_score_position - self.true_score_position
+        error = self.est_score_position - torch.Tensor(self.true_score_position)
         return error
 
     def get_true_score_position(self):

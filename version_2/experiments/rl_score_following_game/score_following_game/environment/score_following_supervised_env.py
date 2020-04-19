@@ -4,6 +4,7 @@ import logging
 import time
 
 import numpy as np
+import torch
 
 from gym import Env, spaces
 from gym.utils import seeding
@@ -74,7 +75,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.text_position = 0
 
     def step(self, newPos):
-        unnormalized_pos = self.rl_pool.get_total_score_len() * max(newPos, 0)
+        unnormalized_pos = torch.Tensor(self.rl_pool.get_total_score_len()) * max(newPos, 0)
         self.rl_pool.update_position(unnormalized_pos)
 
         # get current frame from "pace-maker"
@@ -228,9 +229,10 @@ class ScoreFollowingSupervisedEnv(Env):
         self.obs_image = obs_image
 
         # show image
-        if self.render_mode == 'computer' or self.render_mode == 'human':
-            cv2.imshow("Score Following", self.obs_image)
-            cv2.waitKey(1)
+        # TODO: uncomment once done debugging
+        # if self.render_mode == 'computer' or self.render_mode == 'human':
+        cv2.imshow("Score Following", self.obs_image)
+        cv2.waitKey(1)
 
     def close(self):
         pass
