@@ -8,8 +8,8 @@ import matplotlib.cm as cm
 import numpy as np
 
 from matplotlib.colors import LinearSegmentedColormap, Normalize
-from score_following_game.agents.human_agent import HumanAgent
-from score_following_game.agents.optimal_agent import OptimalAgent
+# from score_following_game.agents.human_agent import HumanAgent
+# from score_following_game.agents.optimal_agent import OptimalAgent
 from score_following_game.agents.networks_utils import get_network
 from score_following_game.data_processing.data_pools import get_single_song_pool
 from score_following_game.data_processing.utils import load_game_config
@@ -64,7 +64,9 @@ if __name__ == "__main__":
         shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
 
     # load network parameters
-    net.load_state_dict(torch.load(args.params))
+    device = torch.device("cuda" if args.use_cuda and torch.cuda.is_available() else "cpu")
+
+    net.load_state_dict(torch.load(args.params, map_location=torch.device(device)))
 
     # set model to evaluation mode
     net.eval()
@@ -94,17 +96,20 @@ if __name__ == "__main__":
     values = []
     tempo_curve = []
 
-    device = torch.device("cuda" if args.use_cuda else "cpu")
-
     while True:
         # feed state to model to get estimated pos
         model_in = OrderedDict()
         for obs_key in observation:
             model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
+
+        # import pdb; pdb.set_trace()
+        # model_in["perf"].shape: torch.Size([1, 1, 78, 40])
+        # model_in["score"].shape: torch.Size([1, 1, 80, 256]) => torch.Size([1, 1, 160, 512]) after changing score_factor to 1 from 0.5
+
         newPos = model(model_in)
 
         # perform step and observe
-        observation, done, info = env.step(newPos)
+        observation, _, done, info = env.step(newPos)
 
         if env.obs_image is not None:
             bar_img = env.obs_image

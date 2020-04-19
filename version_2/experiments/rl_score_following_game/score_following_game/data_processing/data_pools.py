@@ -4,6 +4,7 @@ import multiprocessing
 import numpy as np
 import os
 import tqdm
+import torch
 
 from score_following_game.data_processing.data_production import SongCache
 from score_following_game.data_processing.song import load_song
@@ -60,14 +61,15 @@ class RLScoreFollowPool(object):
         self.curr_song = None
 
         self.song_history = {}
+        self.total_score_len = 0
 
-    def reset(self):
+    def reset(self, song_index=-1):
         """Reset generator.
 
         Set sample generator to starting state.
         """
 
-        self.curr_song = self.cache.get_random()
+        self.curr_song = self.cache.get_random() if song_index==-1 else self.cache.get_elem(song_index)
 
         # initialize positions
         self.first_onset = int(self.curr_song.get_perf_onset(0))
@@ -93,54 +95,26 @@ class RLScoreFollowPool(object):
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
+        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.curr_song.cur_perf['onsets_padded'][-1])
 
     def get_data(self):
         """ return the np arrays for performance + score to feed into the network 
 
-        Returns results: each element is a tuple of (full score for a song, audio excerpt at a frame for the song, corresponding score position at a frame for the song)
+        Returns results: each element is a tuple of (score excerpt at a frame for a song, audio excerpt at a frame for the song, corresponding score position at a frame for the song)
         """
         results = []
         # print("self.cache.get_maxlen(): ", self.cache.get_maxlen())
+
         for idx in range(self.cache.get_maxlen()):
+            self.reset(idx)  # load song from cache
+            frame_idx = 0
             song_arr = []
-            song = self.cache.get_elem(idx)
-            curr_score = song.score['representation_padded']
-            curr_perf = song.cur_perf['representation_padded']
-
-            num_onsets = len(song.get_perf_onsets_padded())
-            for onset_idx in range(num_onsets):
-                curr_perf_frame = song.get_perf_onsets_padded()[onset_idx]
-                total_score_len = song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded'][-1]) # e.g. 7957.
-                # print("song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']: ", song.cur_perf['interpolation_fnc'](song.cur_perf['onsets_padded']))
-                curr_score_position = song.get_true_score_position(curr_perf_frame)
-                # make it a float btwn 0. and 1.
-                normalized_curr_score_position = curr_score_position / total_score_len if total_score_len != 0 else 0
-                perf_frame_idx_pad = curr_perf_frame + self.perf_shape[2]
-                offset = self.score_shape[2] // 2
-
-                if self.target_frame == 'right_most':
-                    perf_representation_excerpt = \
-                        curr_perf[..., (perf_frame_idx_pad - self.perf_shape[2]):perf_frame_idx_pad]
-                else:
-                    perf_representation_excerpt = \
-                        curr_perf[..., (perf_frame_idx_pad - offset):(perf_frame_idx_pad + offset)]
-
-                # get score representation
-                r0 = curr_score.shape[1]//2 - self.score_shape[1]//2
-                r1 = r0 + self.score_shape[1]
-                c0 = int(curr_score_position - self.score_shape[2]//2)
-                c1 = c0 + self.score_shape[2]
-                score_representation_excerpt = curr_score[:, r0:r1, c0:c1]
-
-                # print("self.score_shape: ", self.score_shape)
-                # print("curr_score.shape: ", curr_score.shape)
-                # print("curr_score_position: ", curr_score_position)
-                # print("normalized_curr_score_position: ", normalized_curr_score_position)
-                # print("r0, r1, c0, c1: ", r0, r1, c0, c1)
-
-                song_arr.append((score_representation_excerpt, perf_representation_excerpt, normalized_curr_score_position))
+            while not self.last_onset_reached():  # step through frame by frame
+                perf_excerpt, score_excerpt = self.step(frame_idx)
+                normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
+                song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
+                frame_idx += 1
             results.append(song_arr)
-
         return results
 
 
@@ -214,7 +188,7 @@ class RLScoreFollowPool(object):
         """Compute distance between score and performance position."""
 
         # error should go negative when estimate is behind
-        error = self.est_score_position - self.true_score_position
+        error = self.est_score_position - torch.Tensor(self.true_score_position)
         return error
 
     def get_true_score_position(self):
@@ -273,6 +247,9 @@ class RLScoreFollowPool(object):
         coord = np.min([coord, sheet.shape[2] - self.score_shape[2]//2 - 1])
 
         return coord
+
+    def get_total_score_len(self):
+        return self.total_score_len
 
 
 def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample') -> List[RLScoreFollowPool]:

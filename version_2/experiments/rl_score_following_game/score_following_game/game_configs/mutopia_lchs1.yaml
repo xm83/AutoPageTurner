@@ -3,7 +3,8 @@ perf_shape: [1, 78, 40]
 score_shape: [1, 160, 512]
 spec_representation: True
 spectrogram_params: {'sample_rate': 22050, 'frame_size': 2048, 'fps': 20}
-score_factor: 0.5
+# score_factor: 0.5
+score_factor: 1.0
 perf_factor: 1.0
 score_dim: [1, 2]
 perf_dim: [1, 2]
