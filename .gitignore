@@ -12,3 +12,5 @@ venv/
 **/__pycache__
 **/msmd
 **/sound_fonts/grand-piano-YDP-20160804.sf2
+**/Train-*.out
+**/videos

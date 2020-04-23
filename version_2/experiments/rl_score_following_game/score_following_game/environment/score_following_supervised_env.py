@@ -4,6 +4,7 @@ import logging
 import time
 
 import numpy as np
+import torch
 
 from gym import Env, spaces
 from gym.utils import seeding
@@ -31,7 +32,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.render_mode = render_mode
 
         # distance of tracker to true score position to fail the episode
-        # self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
+        self.score_dist_threshold = self.rl_pool.score_shape[2] // 3
 
         self.interpolationFunction = None
         self.spectrogram_positions = []
@@ -69,12 +70,13 @@ class ScoreFollowingSupervisedEnv(Env):
 
         # resize factors for rendering
         self.resz_spec = 4
-        self.resz_imag = float(self.resz_spec) / 2 * float(self.rl_pool.perf_shape[1]) / self.rl_pool.score_shape[1]
+        self.resz_imag = float(self.resz_spec) / 4 * float(self.rl_pool.perf_shape[1]) / self.rl_pool.score_shape[1]
         self.resz_x, self.resz_y = self.resz_imag, self.resz_imag
         self.text_position = 0
 
     def step(self, newPos):
-        self.rl_pool.update_position(newPos)
+        unnormalized_pos = torch.Tensor(self.rl_pool.get_total_score_len()) * max(newPos, 0)
+        self.rl_pool.update_position(unnormalized_pos)
 
         # get current frame from "pace-maker"
         if self.render_mode == 'computer' or self.render_mode == 'human':
@@ -130,7 +132,8 @@ class ScoreFollowingSupervisedEnv(Env):
 
         self.step_id += 1
 
-        return self.state, done, {}
+        # observation, reward, done, info
+        return self.state, 0, done, {}
 
     def reset(self):
 
@@ -220,15 +223,16 @@ class ScoreFollowingSupervisedEnv(Env):
         obs_image[score.shape[0], c0:c1, :] = 0
 
         # write text to the observation image
-        self._write_text(obs_image=obs_image, pos=self.text_position, color=TEXT_COLOR)
+        # self._write_text(obs_image=obs_image, pos=self.text_position, color=TEXT_COLOR)
 
         # preserve this for access from outside
         self.obs_image = obs_image
 
         # show image
-        if self.render_mode == 'computer' or self.render_mode == 'human':
-            cv2.imshow("Score Following", self.obs_image)
-            cv2.waitKey(1)
+        # TODO: uncomment once done debugging
+        # if self.render_mode == 'computer' or self.render_mode == 'human':
+        cv2.imshow("Score Following", self.obs_image)
+        cv2.waitKey(1)
 
     def close(self):
         pass
@@ -242,6 +246,18 @@ class ScoreFollowingSupervisedEnv(Env):
 
     def prepare_perf_for_render(self):
         return prepare_spec_for_render(self.performance, resz_spec=self.resz_spec)
+
+    # def _write_text(self, obs_image, pos, color):
+    #     # write reward to observation image
+    #     write_text('reward: {:6.2f}'.format(self.last_reward if self.last_reward is not None else 0),
+    #                pos, obs_image, color=color)
+
+    #     # write cumulative reward (score) to observation image
+    #     write_text("score: {:6.2f}".format(self.cum_reward if self.cum_reward is not None else 0),
+    #                pos + 2, obs_image, color=color)
+
+    #     # write last action
+    #     write_text("action: {:+6.1f}".format(self.last_action), pos + 4, obs_image, color=color)
 
 
 
