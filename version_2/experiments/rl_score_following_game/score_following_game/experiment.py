@@ -138,13 +138,13 @@ if __name__ == '__main__':
 
                 loss = cost_fxn(output, ans)
                 loss.backward() # Does backpropagation and calculates gradients
-                optimizer.step() # Updates the weights accordingly
                 epoch_loss += loss.item()
                 song_loss += loss.item()
                 if index % 100 == 0:
                     print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
 
+            optimizer.step() # Updates the weights accordingly
             print(f"song_num: {song_num}, song_loss: {song_loss}")
 
         print('Epoch: {}.............'.format(epoch + 1), end=' ') # make epoch 1-indexed
