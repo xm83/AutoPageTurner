@@ -75,7 +75,7 @@ class ScoreFollowingSupervisedEnv(Env):
         self.text_position = 0
 
     def step(self, newPos):
-        unnormalized_pos = torch.Tensor(self.rl_pool.get_total_score_len()) * max(newPos, 0)
+        unnormalized_pos = torch.Tensor(self.rl_pool.get_total_score_len()) * max(min(newPos, 1), 0)
         self.rl_pool.update_position(unnormalized_pos)
 
         # get current frame from "pace-maker"
