@@ -111,6 +111,7 @@ if __name__ == '__main__':
     train_data = dataset[:train_ind]
     test_data = dataset[train_ind:]
     cost_fxn = torch.nn.MSELoss()
+    prev_prediction = 0
     
     num_epochs = args.num_epochs
     best_epoch_loss = None
@@ -137,7 +138,10 @@ if __name__ == '__main__':
                 output = model(model_in)
 
                 loss = cost_fxn(output, ans)
-                loss.backward() # Does backpropagation and calculates gradients
+                if args.penalize_jumps:
+                    loss = loss + (output - prev_prediction) ** 2
+                    prev_prediction = output
+                loss.backward(retain_graph=True) # Does backpropagation and calculates gradients
                 epoch_loss += loss.item()
                 song_loss += loss.item()
                 if index % 100 == 0:
@@ -158,6 +162,9 @@ if __name__ == '__main__':
             # in the future, maybe only save if validation loss keep decreasing
             print(f"saving model.net.state_dict() to {args.dump_path}")
             torch.save(model.net.state_dict(), args.dump_path)
+        elif epoch == num_epochs - 1:
+            print(f"saving model.net.state_dict() to {args.dump_path}")
+            torch.save(model.net.state_dict(), dump_dir + "/final_model.pt")
 
 
     # store the song history to a file
