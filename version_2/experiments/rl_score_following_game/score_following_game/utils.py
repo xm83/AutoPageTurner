@@ -12,7 +12,7 @@ def write_video(images, fn_output='output.mp4', frame_rate=20, overwrite=False):
     """
     height, width, _ = images[0].shape
 
-    print(f'WRITING VIDEO WITH IMAGES SHAPE {images.shape}')
+    print(f'WRITING VIDEO WITH IMAGES SHAPE {len(images)}')
 
     if overwrite:
         if os.path.exists(fn_output):
