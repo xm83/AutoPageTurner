@@ -257,7 +257,7 @@ class RLScoreFollowPool(object):
         return frame_idx >= self.limit_song_steps
 
 
-def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample') -> List[RLScoreFollowPool]:
+def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample', limit_song_steps=None) -> List[RLScoreFollowPool]:
     """Get a list of data pools containing all the songs from the directory
 
     Parameters
@@ -277,7 +277,7 @@ def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_samp
         list of data pools with a shared cache
     """
 
-    pools = [RLScoreFollowPool(cache, os.path.basename(os.path.normpath(directory)), config) for _ in range(nr_pools)]
+    pools = [RLScoreFollowPool(cache, os.path.basename(os.path.normpath(directory)), config, limit_song_steps) for _ in range(nr_pools)]
 
     return pools
 
