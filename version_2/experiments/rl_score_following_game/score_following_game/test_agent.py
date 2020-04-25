@@ -35,6 +35,7 @@ if __name__ == "__main__":
     parser.add_argument('--agent_type', help='which agent to test [rnn|lstm|gru|optimal].',
                         choices=['rnn', 'lstm', 'gru', 'optimal'], type=str, default="rnn")
     parser.add_argument('--use_cuda', help='if set use gpu instead of cpu.', action='store_true')
+    parser.add_argument('--limit_song_steps', help='whether to limit the length of the song', type=int, default=500)
     
     args = parser.parse_args()
 
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     config = load_game_config(args.game_config)
 
     pool = get_single_song_pool(
-        dict(config=config, song_name=args.piece, directory=args.data_set, real_perf=args.real_perf, limit_song_steps = 500))
+        dict(config=config, song_name=args.piece, directory=args.data_set, real_perf=args.real_perf, limit_song_steps = args.limit_song_steps))
 
     observation_images = []
 
