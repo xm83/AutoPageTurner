@@ -103,7 +103,7 @@ class ScoreFollowingSupervisedEnv(Env):
         )
 
         # check if score follower reached end of song
-        end_of_song = self.rl_pool.last_onset_reached() or self.rl_pool.song_step_limit_reached(self.curr_frame)
+        end_of_song = self.rl_pool.last_onset_reached()
 
         # end of score following
         done = False

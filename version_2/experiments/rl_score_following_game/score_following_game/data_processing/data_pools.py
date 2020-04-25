@@ -63,7 +63,7 @@ class RLScoreFollowPool(object):
         self.song_history = {}
         self.total_score_len = 0
 
-        self.limit_song_steps = float('Inf') if limit_song_steps is None else limit_song_steps
+        self.limit_song_steps = limit_song_steps
 
     def reset(self, song_index=-1):
         """Reset generator.
@@ -93,11 +93,11 @@ class RLScoreFollowPool(object):
         self.true_score_position = int(self.curr_song.score['coords_padded'][0])
 
         self.first_onset = int(self.curr_song.get_perf_onset(0))
-        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1])
+        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if self.limit_song_steps is None else self.curr_song.get_perf_onset(self.limit_song_steps)
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
-        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.curr_song.cur_perf['onsets_padded'][-1])
+        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.last_onset)
 
     def get_data(self):
         """ return the np arrays for performance + score to feed into the network 
@@ -111,7 +111,7 @@ class RLScoreFollowPool(object):
             self.reset(idx)  # load song from cache
             frame_idx = 0
             song_arr = []
-            while frame_idx < self.limit_song_steps and not self.last_onset_reached():  # step through frame by frame
+            while not self.last_onset_reached():  # step through frame by frame
                 perf_excerpt, score_excerpt = self.step(frame_idx)
                 normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
@@ -252,9 +252,6 @@ class RLScoreFollowPool(object):
 
     def get_total_score_len(self):
         return self.total_score_len
-
-    def song_step_limit_reached(self, frame_idx):
-        return frame_idx >= self.limit_song_steps
 
 
 def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample', limit_song_steps=None) -> List[RLScoreFollowPool]:
