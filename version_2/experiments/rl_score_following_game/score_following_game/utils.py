@@ -11,7 +11,8 @@ def write_video(images, fn_output='output.mp4', frame_rate=20, overwrite=False):
     Source: http://tsaith.github.io/combine-images-into-a-video-with-python-3-and-opencv-3.html
     """
     height, width, _ = images[0].shape
-    
+    print(f'WRITING VIDEO WITH IMAGES SHAPE {len(images)}')
+
     if overwrite:
         if os.path.exists(fn_output):
             os.remove(fn_output)

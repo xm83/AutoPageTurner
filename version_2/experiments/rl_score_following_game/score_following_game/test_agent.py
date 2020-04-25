@@ -51,7 +51,7 @@ if __name__ == "__main__":
     config = load_game_config(args.game_config)
 
     pool = get_single_song_pool(
-        dict(config=config, song_name=args.piece, directory=args.data_set, real_perf=args.real_perf))
+        dict(config=config, song_name=args.piece, directory=args.data_set, real_perf=args.real_perf, limit_song_steps = 500))
 
     observation_images = []
 
