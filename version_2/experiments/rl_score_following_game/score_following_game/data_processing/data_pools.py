@@ -17,7 +17,7 @@ class RLScoreFollowPool(object):
         Data Pool for MIDI to MIDI snippet hashing.
     """
 
-    def __init__(self, cache, dataset: str, config: dict):
+    def __init__(self, cache, dataset: str, config: dict, limit_song_steps: int):
         """Constructor.
 
         Parameters
@@ -62,6 +62,8 @@ class RLScoreFollowPool(object):
 
         self.song_history = {}
         self.total_score_len = 0
+
+        self.limit_song_steps = float('Inf') if limit_song_steps is None else limit_song_steps
 
     def reset(self, song_index=-1):
         """Reset generator.
@@ -109,7 +111,7 @@ class RLScoreFollowPool(object):
             self.reset(idx)  # load song from cache
             frame_idx = 0
             song_arr = []
-            while not self.last_onset_reached():  # step through frame by frame
+            while frame_idx < self.limit_song_steps and not self.last_onset_reached():  # step through frame by frame
                 perf_excerpt, score_excerpt = self.step(frame_idx)
                 normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
@@ -251,6 +253,9 @@ class RLScoreFollowPool(object):
     def get_total_score_len(self):
         return self.total_score_len
 
+    def song_step_limit_reached(self, frame_idx):
+        return frame_idx >= self.limit_song_steps
+
 
 def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample') -> List[RLScoreFollowPool]:
     """Get a list of data pools containing all the songs from the directory
@@ -278,7 +283,7 @@ def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_samp
 
 
 def get_data_pools(config: dict, score_folder='score', perf_folder='performance', directory='test_sample',
-                   real_perf=None, n_worker=16) -> List[RLScoreFollowPool]:
+                   real_perf=None, n_worker=16, limit_song_steps=None) -> List[RLScoreFollowPool]:
     """Get a list of data pools with each data pool containing only a single song from the directory
 
     Parameters
@@ -315,6 +320,7 @@ def get_data_pools(config: dict, score_folder='score', perf_folder='performance'
             perf_folder=perf_folder,
             directory=directory,
             real_perf=real_perf,
+            limit_song_steps=limit_song_steps
         )
         for score_path in score_paths
     ]
@@ -335,6 +341,7 @@ def get_single_song_pool(params) -> RLScoreFollowPool:
     perf_folder = params.get('perf_folder', 'performance')
     directory = params.get('directory', 'test_sample')
     real_perf = params.get('real_perf', None)
+    limit_song_steps = params['limit_song_steps']
 
     cur_path_score = os.path.join(directory, score_folder, song_name + ".npz")
     cur_path_perf = os.path.join(directory, perf_folder, song_name+'.mid')
@@ -344,4 +351,4 @@ def get_single_song_pool(params) -> RLScoreFollowPool:
     cache = SongCache(1)
     cache.append(song)
 
-    return RLScoreFollowPool(cache, os.path.basename(os.path.normpath(directory)), config)
+    return RLScoreFollowPool(cache, os.path.basename(os.path.normpath(directory)), config, limit_song_steps)

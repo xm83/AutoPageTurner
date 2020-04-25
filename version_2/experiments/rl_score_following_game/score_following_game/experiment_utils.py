@@ -59,6 +59,7 @@ def setup_parser():
     parser.add_argument('--lr_multiplier', help='after patience expires multiply the learning rate with this factor.',
                         type=np.float32, default=0.1)
     parser.add_argument('--penalize_jumps', help='penalize larger jumps for the agent.', type=np.float32, default=0)
+    parser.add_argument('--limit_song_steps', help='limit the number of steps in a song.', type=np.int, default=None)
 
     # evaluation
     parser.add_argument('--eval_interval', help='', type=np.int, default=5000)
