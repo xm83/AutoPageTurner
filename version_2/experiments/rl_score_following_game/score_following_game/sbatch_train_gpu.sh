@@ -21,4 +21,4 @@ module load FFmpeg/3.4.2-foss-2018a
 module load GCC CUDA
 source activate score_following
 # Update the train and eval paths as necessary
-python -W ignore -u experiment.py --net ScoreFollowingNetMSMDLCHSDeepDoLight --train_set msmd/msmd_all/msmd_all_train --eval_set msmd/msmd_all/msmd_all_valid --game_config game_configs/mutopia_lchs1.yaml --log_root recurrent_approach/logs --param_root recurrent_approach/params --use_cuda --agent rnn --network gru --num_epochs 10 --cache_size 5
+python -W ignore -u experiment.py --net ScoreFollowingNetMSMDLCHSDeepDoLight --train_set msmd/msmd_all/msmd_all_train --eval_set msmd/msmd_all/msmd_all_valid --game_config game_configs/mutopia_lchs1.yaml --log_root recurrent_approach/logs --param_root recurrent_approach/params --use_cuda --agent rnn --network lstm --num_epochs 10 --cache_size 5 --limit_song_steps 200
