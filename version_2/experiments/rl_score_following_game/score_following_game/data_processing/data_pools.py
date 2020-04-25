@@ -93,7 +93,7 @@ class RLScoreFollowPool(object):
         self.true_score_position = int(self.curr_song.score['coords_padded'][0])
 
         self.first_onset = int(self.curr_song.get_perf_onset(0))
-        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if self.limit_song_steps is None else self.curr_song.get_perf_onset(self.limit_song_steps)
+        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if (self.limit_song_steps is None or self.limit_song_steps >= len(self.curr_song.cur_perf['onsets'])) else self.curr_song.get_perf_onset(self.limit_song_steps)
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
@@ -112,7 +112,7 @@ class RLScoreFollowPool(object):
             frame_idx = 0
             song_arr = []
             while not self.last_onset_reached():  # step through frame by frame
-                perf_excerpt, score_excerpt = self.step(frame_idx)
+                perf_excerpt, score_excerpt = self.step(frame_idx, dataGen=True)
                 normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
                 frame_idx += 1
@@ -120,7 +120,7 @@ class RLScoreFollowPool(object):
         return results
 
 
-    def step(self, perf_frame_idx: int) -> (np.ndarray, np.ndarray):
+    def step(self, perf_frame_idx: int, dataGen=False) -> (np.ndarray, np.ndarray):
         """Perform time step in performance and return state
 
         Parameters
@@ -149,12 +149,13 @@ class RLScoreFollowPool(object):
         self.est_score_position = self.clip_coord(self.est_score_position,
                                                   self.curr_song.score['representation_padded'])
 
-        # get current piano roll excerpts
-        perf_representation_excerpt, score_representation_excerpt = \
-            self.curr_song.get_representation_excerpts(perf_frame_idx_pad, self.est_score_position)
-
         # get true score position from annotations
         self.true_score_position = self.curr_song.get_true_score_position(self.curr_perf_frame)
+
+        # get current piano roll excerpts
+        use_pos = self.true_score_position if dataGen else self.est_score_position
+        perf_representation_excerpt, score_representation_excerpt = \
+            self.curr_song.get_representation_excerpts(perf_frame_idx_pad, self.est_score_position)
 
         # check if the excerpts have the desired shape
         try:
