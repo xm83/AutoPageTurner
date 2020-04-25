@@ -230,9 +230,9 @@ class ScoreFollowingSupervisedEnv(Env):
 
         # show image
         # TODO: uncomment once done debugging
-        # if self.render_mode == 'computer' or self.render_mode == 'human':
-        cv2.imshow("Score Following", self.obs_image)
-        cv2.waitKey(1)
+        if self.render_mode == 'computer' or self.render_mode == 'human':
+            cv2.imshow("Score Following", self.obs_image)
+            cv2.waitKey(1)
 
     def close(self):
         pass
