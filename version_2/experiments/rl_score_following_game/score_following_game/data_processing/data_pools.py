@@ -93,7 +93,7 @@ class RLScoreFollowPool(object):
         self.true_score_position = int(self.curr_song.score['coords_padded'][0])
 
         self.first_onset = int(self.curr_song.get_perf_onset(0))
-        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if (self.limit_song_steps is None or self.first_onset+self.limit_song_steps>=len(self.curr_song.cur_perf['onsets'])) else self.first_onset + self.limit_song_steps
+        self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if (self.limit_song_steps is None or self.first_onset+self.limit_song_steps>=len(self.curr_song.cur_perf['onsets'])) else (self.first_onset + self.limit_song_steps)
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
@@ -155,7 +155,7 @@ class RLScoreFollowPool(object):
         # get current piano roll excerpts
         use_pos = self.true_score_position if dataGen else self.est_score_position
         perf_representation_excerpt, score_representation_excerpt = \
-            self.curr_song.get_representation_excerpts(perf_frame_idx_pad, self.est_score_position)
+            self.curr_song.get_representation_excerpts(perf_frame_idx_pad, use_pos)
 
         # check if the excerpts have the desired shape
         try:
