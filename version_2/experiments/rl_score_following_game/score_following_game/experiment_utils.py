@@ -31,7 +31,6 @@ def setup_parser():
     parser.add_argument('--agent', help='reinforcement learning algorithm [rnn|lstm|gru|].',
                         choices=['reinforce', 'a2c', 'ppo', 'rnn'], type=str, default="a2c")
     parser.add_argument('--net', help='network architecture to optimize.', type=str)
-    parser.add_argument('--ini_params', help='path to initial parameters.', type=str, default=None)
     parser.add_argument('--n_worker', help='number of parallel workers.', type=np.int, default=8)
     parser.add_argument('--t_max', help='maximum number of time steps/horizon.', type=np.int, default=15)
     parser.add_argument('--value_coef', help='influence of value loss (critic).', type=np.float, default=0.5)
@@ -62,6 +61,7 @@ def setup_parser():
     parser.add_argument('--hidden_dim', help='size of hidden layer in network', type=np.int, default=12)
     parser.add_argument('--penalize_jumps', help='penalize larger jumps for the agent.', type=np.float32, default=0)
     parser.add_argument('--limit_song_steps', help='limit the number of steps in a song.', type=np.int, default=None)
+    parser.add_argument('--ini_params', help='path to initial parameters (can be used to continue training of a previous model network)', type=str, default=None)
 
     # evaluation
     parser.add_argument('--eval_interval', help='', type=np.int, default=5000)
