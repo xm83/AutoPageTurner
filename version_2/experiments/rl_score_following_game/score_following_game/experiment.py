@@ -32,7 +32,7 @@ if __name__ == '__main__':
     tr_set = os.path.basename(args.train_set)
     config_name = os.path.basename(args.game_config).split(".yaml")[0]
     user = getpass.getuser()
-    tuning_params = str(args.limit_song_steps) + "steps-" + str(args.penalize_jumps) + "jump-" + str(args.num_recurrent_layers) + "layers-" + str(args.network_hidden_dim) + "hidden"
+    tuning_params = str(args.limit_song_steps) + "steps-" + str(args.penalize_jumps) + "jump-" + str(args.num_layers) + "layers-" + str(args.hidden_dim) + "hidden"
     exp_dir = args.agent + "-" + args.net + "-" + tr_set + "-" + config_name + "_" + time_stamp + "-" + user + "-" + tuning_params
 
     args.experiment_directory = exp_dir
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     # compile network architecture: rnn, lstm, gru
     net = get_network(f'networks_{args.network}', args.net,
-                  shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, hidden_dim=args.hidden_dim, num_layers=args.num_ayers))
+                  shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, hidden_dim=args.hidden_dim, num_layers=args.num_layers))
 
     # load initial parameters
     if args.ini_params:
