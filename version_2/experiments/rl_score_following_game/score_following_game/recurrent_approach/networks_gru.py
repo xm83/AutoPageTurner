@@ -8,7 +8,7 @@ from score_following_game.agents.networks_utils import weights_init, num_flat_fe
 
 class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
-    def __init__(self,  perf_shape, score_shape, use_cuda=False, gru_hidden_dim=12, num_gru_layers=1):
+    def __init__(self,  perf_shape, score_shape, use_cuda=False, hidden_dim=12, num_layers=1):
         super(ScoreFollowingNetMSMDLCHSDeepDoLight, self).__init__()
 
         self.use_cuda = use_cuda
@@ -52,11 +52,11 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         self.concat_fc = nn.Linear(512 + 512, 512)
 
         # recurrent layer
-        self.num_gru_layers = num_gru_layers
-        self.gru_hidden_dim = gru_hidden_dim
-        self.gru_layer = nn.GRU(512, self.gru_hidden_dim, self.num_gru_layers, batch_first=True)   
+        self.num_layers = num_layers
+        self.hidden_dim = hidden_dim
+        self.gru_layer = nn.GRU(512, self.hidden_dim, self.num_layers, batch_first=True)   
         # fully connected layer
-        self.final_fc = nn.Linear(self.gru_hidden_dim, 1)  # output is a single value representing distance on the score
+        self.final_fc = nn.Linear(self.hidden_dim, 1)  # output is a single value representing distance on the score
 
         self.apply(weights_init)
 
@@ -103,7 +103,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         out, _ = self.gru_layer(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
-        out = out.contiguous().view(-1, self.gru_hidden_dim)
+        out = out.contiguous().view(-1, self.hidden_dim)
         #print("Forward out shape: ", score.shape)
         out = self.final_fc(out)
         
@@ -112,5 +112,5 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
-        hidden = torch.randn(self.num_gru_layers, batch_size, self.gru_hidden_dim)
+        hidden = torch.randn(self.num_layers, batch_size, self.hidden_dim)
         return hidden
