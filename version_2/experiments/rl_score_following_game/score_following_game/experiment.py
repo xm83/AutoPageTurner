@@ -61,7 +61,7 @@ if __name__ == '__main__':
     CACHE_SIZE = args.cache_size
     cache = create_song_cache(CACHE_SIZE)
     producer_process = create_song_producer(cache, config=config, directory=args.train_set, real_perf=args.real_perf)
-    rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set)
+    rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set, limit_song_steps=args.limit_song_steps)
 
     producer_process.start()
 
