@@ -32,7 +32,8 @@ if __name__ == '__main__':
     tr_set = os.path.basename(args.train_set)
     config_name = os.path.basename(args.game_config).split(".yaml")[0]
     user = getpass.getuser()
-    exp_dir = args.agent + "-" + args.net + "-" + tr_set + "-" + config_name + "_" + time_stamp + "-" + user
+    tuning_params = args.limit_song_steps + "steps-" + args.penalize_jumps + "jump-" + args.num_recurrent_layers + "layers-" + args.network_hidden_dim + "hidden"
+    exp_dir = args.agent + "-" + args.net + "-" + tr_set + "-" + config_name + "_" + time_stamp + "-" + user + "-" + tuning_params
 
     args.experiment_directory = exp_dir
 
