@@ -61,7 +61,7 @@ if __name__ == '__main__':
     CACHE_SIZE = args.cache_size
     cache = create_song_cache(CACHE_SIZE)
     producer_process = create_song_producer(cache, config=config, directory=args.train_set, real_perf=args.real_perf)
-    rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set, limit_song_steps=args.limit_song_steps)
+    rl_pools = get_shared_cache_pools(cache, config, nr_pools=args.n_worker, directory=args.train_set)
 
     producer_process.start()
 
@@ -73,17 +73,15 @@ if __name__ == '__main__':
     #     env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
 
     # compile network architecture
-    num_recurrent_layers = args.num_recurrent_layers
-    hidden_dim = args.network_hidden_dim
     if args.network == 'rnn':
         net = get_network('networks_rnn', args.net,
-                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, rnn_hidden_dim=hidden_dim, num_recurrent_layers=num_recurrent_layers))
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
     elif args.network == 'lstm':
         net = get_network('networks_lstm', args.net,
-                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, lstm_hidden_dim=hidden_dim, num_lstm_layers=num_recurrent_layers))
+                          shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
     elif args.network == 'gru':
         net = get_network('networks_gru', args.net,
-                      shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, gru_hidden_dim=hidden_dim, num_gru_layers=num_recurrent_layers))
+                      shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda))
 
     # load initial parameters
     if args.ini_params:
@@ -142,7 +140,10 @@ if __name__ == '__main__':
 
                 loss = cost_fxn(output, ans)
                 if args.penalize_jumps > 0:
-                    loss = loss + args.penalize_jumps * ((output - prev_prediction) ** 2)
+                    if output < prev_prediction:
+                        loss = loss + 2 * args.penalize_jumps * ((output - prev_prediction) ** 2)
+                    else:
+                        loss = loss + args.penalize_jumps * ((output - prev_prediction) ** 2)
                     prev_prediction = output
                 loss.backward(retain_graph=True) # Does backpropagation and calculates gradients
                 epoch_loss += loss.item()
