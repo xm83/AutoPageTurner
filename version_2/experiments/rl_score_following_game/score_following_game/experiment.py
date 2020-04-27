@@ -72,18 +72,18 @@ if __name__ == '__main__':
     # else:
     #     env = ShmemVecEnv([get_make_env(rl_pools[i], config, env_fnc, render_mode=None) for i in range(args.n_worker)])
 
+    # use cuda if available
+    device = torch.device("cuda" if args.use_cuda else "cpu")
+    #net.to(device)
+
     # compile network architecture: rnn, lstm, gru
     net = get_network(f'networks_{args.network}', args.net,
                   shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], use_cuda=args.use_cuda, hidden_dim=args.hidden_dim, num_layers=args.num_layers))
 
     # load initial parameters
     if args.ini_params:
-        net.load_state_dict(torch.load(args.ini_params))
-
-    # use cuda if available
-    device = torch.device("cuda" if args.use_cuda else "cpu")
-    #net.to(device)
-
+        net.load_state_dict(torch.load(args.ini_params, map_location=torch.device(device)))
+    
     # initialize optimizer
     optimizer = get_optimizer(args.optim, net.parameters(), **args.optim_params)
 
