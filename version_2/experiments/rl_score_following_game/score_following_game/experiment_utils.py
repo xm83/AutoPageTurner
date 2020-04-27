@@ -58,6 +58,8 @@ def setup_parser():
     parser.add_argument('--max_refinements', help='max number of learning rate refinements.', type=np.int, default=2)
     parser.add_argument('--lr_multiplier', help='after patience expires multiply the learning rate with this factor.',
                         type=np.float32, default=0.1)
+    parser.add_argument('--num_recurrent_layers', help='number of recurrnet layers to use in network', type=np.int, default=1)
+    parser.add_argument('--network_hidden_dim', help='size of hidden layer in network', type=np.int, default=12)
     parser.add_argument('--penalize_jumps', help='penalize larger jumps for the agent.', type=np.float32, default=0)
     parser.add_argument('--limit_song_steps', help='limit the number of steps in a song.', type=np.int, default=None)
 
