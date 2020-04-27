@@ -82,6 +82,7 @@ if __name__ == '__main__':
 
     # load initial parameters
     if args.ini_params:
+        print(f"loading from {args.ini_params}!")
         net.load_state_dict(torch.load(args.ini_params, map_location=torch.device(device)))
     
     # initialize optimizer
