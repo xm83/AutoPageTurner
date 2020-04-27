@@ -36,6 +36,8 @@ if __name__ == "__main__":
                         choices=['rnn', 'lstm', 'gru', 'optimal'], type=str, default="rnn")
     parser.add_argument('--use_cuda', help='if set use gpu instead of cpu.', action='store_true')
     parser.add_argument('--limit_song_steps', help='whether to limit the length of the song', type=int, default=500)
+    parser.add_argument('--num_layers', help='number of hidden layers', type=int, default=1)
+    parser.add_argument('--hidden_dim', help='hidden dimension of the network', type=int, default=12)
     
     args = parser.parse_args()
 
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     # compile network architecture
     # n_actions = len(config["actions"])
     net = get_network("networks_{}".format(args.agent_type), args.net, 
-        shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape']))
+        shapes=dict(perf_shape=config['spec_shape'], score_shape=config['sheet_shape'], hidden_dim=args.hidden_dim, num_layers=args.num_layers))
 
     # load network parameters
     device = torch.device("cuda" if args.use_cuda and torch.cuda.is_available() else "cpu")
