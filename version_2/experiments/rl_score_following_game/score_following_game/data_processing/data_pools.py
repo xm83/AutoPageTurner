@@ -73,17 +73,6 @@ class RLScoreFollowPool(object):
 
         self.curr_song = self.cache.get_random() if song_index==-1 else self.cache.get_elem(song_index)
 
-        # initialize positions
-        self.first_onset = int(self.curr_song.get_perf_onset(0))
-        self.last_onset = int(self.curr_song.get_perf_onset(-1))
-
-        self.next_onset_idx = 1
-        self.current_score_onset_idx = 0
-
-        # self.true_score_position = int(self.songs[self.song_id].get_perf_onset(0))
-        self.true_score_position = int(self.curr_song.get_score_onset(0))
-        self.est_score_position = int(self.curr_song.get_score_onset(0))
-
         # reset the current performance frame and set the padding for the performance
         self.curr_perf_frame = 0
 
@@ -93,7 +82,11 @@ class RLScoreFollowPool(object):
         self.true_score_position = int(self.curr_song.score['coords_padded'][0])
 
         self.first_onset = int(self.curr_song.get_perf_onset(0))
+        debug1 = len(self.curr_song.cur_perf['onsets'])
         self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if (self.limit_song_steps is None or self.first_onset+self.limit_song_steps>=len(self.curr_song.cur_perf['onsets'])) else (self.first_onset + self.limit_song_steps)
+        print(f'FIRST ONSET={self.first_onset}, LAST ONSET={self.last_onset}')
+        if debug1:
+            print(f'length onsets: {debug1}')
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
