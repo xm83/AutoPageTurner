@@ -85,7 +85,7 @@ class RLScoreFollowPool(object):
         debug1 = len(self.curr_song.cur_perf['onsets'])
         self.last_onset = int(self.curr_song.cur_perf['onsets_padded'][-1]) if (self.limit_song_steps is None or self.first_onset+self.limit_song_steps>=len(self.curr_song.cur_perf['onsets'])) else (self.first_onset + self.limit_song_steps)
         print(f'FIRST ONSET={self.first_onset}, LAST ONSET={self.last_onset}')
-        if debug1:
+        if self.first_onset+self.limit_song_steps>=debug1:
             print(f'length onsets: {debug1}, limit={self.limit_song_steps}')
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
