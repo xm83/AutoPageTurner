@@ -79,6 +79,7 @@ class RLScoreFollowPool(object):
         self.est_score_position = int(self.curr_song.score['coords_padded'][0])
         self.est_score_position = self.clip_coord(self.est_score_position,
                                                   self.curr_song.score['representation_padded'])
+        self.first_score_position = int(self.curr_song.score['coords_padded'][0])
         self.true_score_position = int(self.curr_song.score['coords_padded'][0])
 
         self.first_onset = int(self.curr_song.get_perf_onset(0))
@@ -90,7 +91,7 @@ class RLScoreFollowPool(object):
         self.next_onset_idx = 0
         self.next_onset = self.first_onset
         self.new_position = 0
-        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.last_onset)
+        self.total_score_len = self.curr_song.cur_perf['interpolation_fnc'](self.last_onset) - self.first_score_position
 
     def get_data(self):
         """ return the np arrays for performance + score to feed into the network 
@@ -106,7 +107,7 @@ class RLScoreFollowPool(object):
             song_arr = []
             while not self.last_onset_reached():  # step through frame by frame
                 perf_excerpt, score_excerpt = self.step(frame_idx, dataGen=True)
-                normalized_score_pos = self.true_score_position / self.total_score_len if self.total_score_len != 0 else 0
+                normalized_score_pos = (self.true_score_position - self.first_score_position) / self.total_score_len if self.total_score_len != 0 else 0
                 song_arr.append((score_excerpt, perf_excerpt, normalized_score_pos))
                 frame_idx += 1
             results.append(song_arr)
