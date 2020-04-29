@@ -95,7 +95,7 @@ class ScoreFollowingSupervisedEnv(Env):
         else:
             self.curr_frame += 1
 
-        self.performance, self.score = self.rl_pool.step(self.curr_frame)
+        self.performance, self.score = self.rl_pool.step(self.curr_frame, dataGen=True)
 
         self.state = dict(
             perf=self.performance,

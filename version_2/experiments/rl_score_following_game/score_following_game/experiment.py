@@ -142,6 +142,8 @@ if __name__ == '__main__':
                 loss.backward(retain_graph=True) # Does backpropagation and calculates gradients
                 epoch_loss += loss.item()
                 song_loss += loss.item()
+                if epoch == num_epochs-1:
+                    print(f'prediction: {output}, ans: {ans}, loss: {loss.item()}')
                 if index % 100 == 0:
                     print(f"data point index: {index}, loss: {loss.item()}")
                 index += 1
