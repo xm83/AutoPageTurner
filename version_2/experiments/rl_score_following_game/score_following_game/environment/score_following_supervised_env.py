@@ -77,7 +77,7 @@ class ScoreFollowingSupervisedEnv(Env):
     def step(self, newPos):
         
         # import pdb; pdb.set_trace()
-        unnormalized_pos = self.rl_pool.get_total_score_len() * max(min(newPos, 1), 0) + self.rl_pool.get_first_score_position
+        unnormalized_pos = self.rl_pool.get_total_score_len() * max(min(newPos, 1), 0) + self.rl_pool.get_first_score_position()
         self.rl_pool.update_position(unnormalized_pos)
 
         # get current frame from "pace-maker"
