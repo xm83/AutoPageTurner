@@ -123,7 +123,7 @@ if __name__ == '__main__':
             
             batch_size = 1 # in network definition, print("cat_x.shape: ", cat_x.shape) => torch.Size([1, 1, 512])
             # also cuz we're passing in one song at a time
-            
+
             # initialize new hidden for each new song
             hidden = model.net.init_hidden(batch_size)
 
@@ -140,8 +140,6 @@ if __name__ == '__main__':
                 for obs_key in observation:
                     model_in[obs_key] = observation[obs_key]
                 output, hidden = model(model_in)
-
-                import pdb; pdb.set_trace()
 
                 loss = cost_fxn(output, ans)
                 if args.penalize_jumps > 0:
