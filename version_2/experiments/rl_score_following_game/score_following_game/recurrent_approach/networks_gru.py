@@ -56,7 +56,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         self.hidden_dim = hidden_dim
         self.gru_layer = nn.GRU(512, self.hidden_dim, self.num_layers, batch_first=True)   
         # fully connected layer
-        self.final_fc = nn.Linear(self.hidden_dim, 1)  # output is a single value representing distance on the score
+        self.final_fc = nn.Linear(self.hidden_dim*self.num_layers, 1)  # output is a single value representing distance on the score
 
         self.apply(weights_init)
 
@@ -107,7 +107,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         #print("Forward out shape: ", score.shape)
         # out = self.final_fc(out)
 
-        reshape_hidden = hidden.contiguous().view(-1, self.hidden_dim)
+        reshape_hidden = hidden.contiguous().view(1,-1)
         output = self.final_fc(reshape_hidden)
         
         return output, hidden

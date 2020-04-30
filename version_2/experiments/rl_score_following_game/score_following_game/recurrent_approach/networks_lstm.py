@@ -56,7 +56,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         self.hidden_dim = hidden_dim
         self.lstm_layer = nn.LSTM(512, self.hidden_dim, self.num_layers, batch_first=True)   
         # fully connected layer
-        self.final_fc = nn.Linear(self.hidden_dim, 1)  # output is a single value representing distance on the score
+        self.final_fc = nn.Linear(self.hidden_dim*self.num_layers, 1)  # output is a single value representing distance on the score
 
         self.apply(weights_init)
 
@@ -111,8 +111,13 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
         #print("Forward out shape: ", score.shape)
         # out = self.final_fc(out)
 
-        reshape_hidden_state = hidden_state.contiguous().view(-1, self.hidden_dim)
-        output = self.final_fc(reshape_hidden_state)
+        # print("hidden_state.shape: ", hidden_state.shape) # torch.Size([2, 1, 256]) for 2 num layers
+        # reshape_hidden_state = hidden_state.contiguous().view(-1, self.hidden_dim)
+        # print("reshape_hidden_state.shape: ", reshape_hidden_state.shape) # torch.Size([2, 256]) for 2 num layers
+
+        reshape_hidden_state = hidden_state.contiguous().view(1, -1)
+
+        output = self.final_fc(reshape_hidden_state) 
         
         return output, hidden
 
