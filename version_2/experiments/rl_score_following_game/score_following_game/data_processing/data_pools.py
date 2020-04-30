@@ -248,6 +248,9 @@ class RLScoreFollowPool(object):
     def get_total_score_len(self):
         return self.total_score_len
 
+    def get_first_score_position(self):
+        return self.first_score_position
+
 
 def get_shared_cache_pools(cache, config: dict, nr_pools=1, directory='test_sample', limit_song_steps=None) -> List[RLScoreFollowPool]:
     """Get a list of data pools containing all the songs from the directory
