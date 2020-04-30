@@ -143,10 +143,7 @@ if __name__ == '__main__':
 
                 loss = cost_fxn(output, ans)
                 if args.penalize_jumps > 0:
-                    if output < prev_prediction:
-                        loss = loss + 2 * args.penalize_jumps * ((output - prev_prediction) ** 2)
-                    else:
-                        loss = loss + args.penalize_jumps * ((output - prev_prediction) ** 2)
+                    loss = loss + args.penalize_jumps * ((output - prev_prediction) ** 2)
                     prev_prediction = output
                 loss.backward(retain_graph=True) # Does backpropagation and calculates gradients
                 epoch_loss += loss.item()
