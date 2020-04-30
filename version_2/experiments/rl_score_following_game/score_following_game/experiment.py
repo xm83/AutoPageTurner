@@ -141,8 +141,6 @@ if __name__ == '__main__':
                     model_in[obs_key] = observation[obs_key]
                 output, hidden = model(model_in)
 
-                import pdb; pdb.set_trace()
-
                 loss = cost_fxn(output, ans)
                 if args.penalize_jumps > 0:
                     if output < prev_prediction:
