@@ -60,7 +60,7 @@ def setup_parser():
     parser.add_argument('--num_layers', help='number of recurrnet layers to use in network', type=np.int, default=1)
     parser.add_argument('--hidden_dim', help='size of hidden layer in network', type=np.int, default=12)
     parser.add_argument('--penalize_jumps', help='penalize larger jumps for the agent.', type=np.float32, default=0)
-    parser.add_argument('--limit_song_steps', help='limit the number of steps in a song.', type=np.int, default=None)
+    parser.add_argument('--limit_song_steps', help='limit the number of steps in a song.', type=np.int, default=10000)
     parser.add_argument('--ini_params', help='path to initial parameters (can be used to continue training of a previous model network)', type=str, default=None)
 
     # evaluation

@@ -121,16 +121,23 @@ if __name__ == '__main__':
             optimizer.zero_grad() # Clears existing gradients from previous epoch
             index = 0
             
+            batch_size = 1
+            # initialize new hidden for each new song
+            hidden = model.net.init_hidden(batch_size)
+
             for score, audio, ans in song:
                 ans = torch.Tensor(ans.reshape((1, 1))).float().to(device)
+                audio = torch.from_numpy(audio).float().unsqueeze(0).to(device)
+                score = torch.from_numpy(score).float().unsqueeze(0).to(device)
                 observation = dict(
                     perf=audio,
-                    score=score
+                    score=score,
+                    hidden=hidden
                 )
                 model_in = OrderedDict()
                 for obs_key in observation:
-                    model_in[obs_key] = torch.from_numpy(observation[obs_key]).float().unsqueeze(0).to(device)
-                output = model(model_in)
+                    model_in[obs_key] = observation[obs_key]
+                output, hidden = model(model_in)
 
                 loss = cost_fxn(output, ans)
                 if args.penalize_jumps > 0:
