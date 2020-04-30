@@ -60,7 +60,7 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         self.apply(weights_init)
 
-    def forward(self, perf, score):
+    def forward(self, perf, score, hidden):
 
         #print("Forward performance shape: ", perf.shape)
         #print("Forward score shape: ", score.shape)
@@ -99,20 +99,29 @@ class ScoreFollowingNetMSMDLCHSDeepDoLight(nn.Module):
 
         # Passing in the input and hidden state into the model and obtaining outputs
         cat_x = cat_x.unsqueeze(0)  # Sketch
-        hidden_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
-        cell_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
-        hidden = (hidden_state, cell_state)
-        out, _ = self.lstm_layer(cat_x, hidden)
+        # hidden_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
+        # cell_state = self.init_hidden(cat_x.size(0)).cuda() if self.use_cuda else self.init_hidden(cat_x.size(0))
+        # hidden = (hidden_state, cell_state)
+        out, hidden = self.lstm_layer(cat_x, hidden)
         
         # Reshaping the outputs such that it can be fit into the fully connected layer
-        out = out.contiguous().view(-1, self.hidden_dim)
+        # out = out.contiguous().view(-1, self.hidden_dim)
         #print("Forward out shape: ", score.shape)
-        out = self.final_fc(out)
+        # out = self.final_fc(out)
+
+        reshape_hidden = hidden.contiguous().view(-1, self.hidden_dim)
+        output = self.final_fc(reshape_hidden)
         
-        return out
+        return output, hidden
 
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
-        hidden = torch.randn(self.num_layers, batch_size, self.hidden_dim)
-        return hidden
+        hidden_state = torch.randn(self.num_layers, batch_size, self.hidden_dim)
+        cell_state =  torch.randn(self.num_layers, batch_size, self.hidden_dim)
+
+        if self.use_cuda:
+            hidden_state = hidden_state.cuda()
+            cell_state = cell_state.cuda()
+
+        return (hidden_state, cell_state)
