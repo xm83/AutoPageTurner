@@ -121,7 +121,7 @@ if __name__ == '__main__':
             optimizer.zero_grad() # Clears existing gradients from previous epoch
             index = 0
             
-            batch_size = 1
+            batch_size = 1 # in network definition, print("cat_x.shape: ", cat_x.shape) => torch.Size([1, 1, 512])
             # initialize new hidden for each new song
             hidden = model.net.init_hidden(batch_size)
 
