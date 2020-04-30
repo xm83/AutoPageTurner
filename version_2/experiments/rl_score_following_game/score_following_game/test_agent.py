@@ -118,7 +118,7 @@ if __name__ == "__main__":
         newPos, hidden = model(model_in)
 
         # perform step and observe
-        observation, _, done, info = env.step(newPos)
+        observation, _, done, info = env.step(newPos.item())
 
         if env.obs_image is not None:
             bar_img = env.obs_image
