@@ -187,14 +187,15 @@ class ScoreFollowingSupervisedEnv(Env):
         cv2.line(score, (score_center, 25), (score_center, score.shape[0] - 25), AGENT_COLOR, 2)
 
         font_face = cv2.FONT_HERSHEY_SIMPLEX
-        text_size = cv2.getTextSize("Agent", fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.6, thickness=1)[0]
+        text_size = cv2.getTextSize("Model", fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.6, thickness=1)[0]
         text_org = (score_center - text_size[0] // 2, score.shape[0] - 7)
-        cv2.putText(score, "Agent", text_org, fontFace=font_face, fontScale=0.6, color=AGENT_COLOR, thickness=2)
+        cv2.putText(score, "Model", text_org, fontFace=font_face, fontScale=0.6, color=AGENT_COLOR, thickness=2)
 
         # hide tracking lines if it is rendered for humans
         if self.metadata['render.modes']['human'] != mode:
             # visualize tracker position (true position within the score)
             true_position = int(score_center - (self.resz_x * self.rl_pool.tracking_error()))
+            print("true_position:", true_position)
 
             font_face = cv2.FONT_HERSHEY_SIMPLEX
             text_size = cv2.getTextSize("Target", fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.6, thickness=1)[0]

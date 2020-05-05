@@ -28,7 +28,7 @@ def setup_parser():
     parser.add_argument('--cache_size', help='how many songs to load', type=int, default=5)
 
     # agent parameters
-    parser.add_argument('--agent', help='reinforcement learning algorithm [rnn|lstm|gru|].',
+    parser.add_argument('--agent', help='reinforcement learning algorithm [rnn for recurrent methods].',
                         choices=['reinforce', 'a2c', 'ppo', 'rnn'], type=str, default="a2c")
     parser.add_argument('--net', help='network architecture to optimize.', type=str)
     parser.add_argument('--n_worker', help='number of parallel workers.', type=np.int, default=8)
