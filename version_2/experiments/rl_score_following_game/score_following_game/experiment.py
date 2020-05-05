@@ -102,6 +102,14 @@ if __name__ == '__main__':
         dataset += pool.get_data()
     print("num_rl_pools: ", num_rl_pools) # 8
 
+    # store the song history to a file
+    if not args.no_log:
+        with open(os.path.join(args.log_dir, 'song_history.pkl'), 'wb') as f:
+            pickle.dump(producer_process.cache.get_history(), f)
+
+    # stop the producer thread
+    producer_process.terminate()
+
     train_ind = len(dataset) // 5 * 4
     train_data = dataset[:train_ind]
     test_data = dataset[train_ind:]
@@ -171,15 +179,6 @@ if __name__ == '__main__':
         elif epoch == num_epochs - 1:
             print(f"saving model.net.state_dict() to {args.dump_path}")
             torch.save(model.net.state_dict(), dump_dir + "/final_model.pt")
-
-
-    # store the song history to a file
-    if not args.no_log:
-        with open(os.path.join(args.log_dir, 'song_history.pkl'), 'wb') as f:
-            pickle.dump(producer_process.cache.get_history(), f)
-
-    # stop the producer thread
-    producer_process.terminate()
 
     if not args.no_log:
         log_writer.close()
