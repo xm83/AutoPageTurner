@@ -2,4 +2,4 @@
 
 Our work is inspired by [Dorfer et al.](https://arxiv.org/abs/1807.06391) and their use of the [Multimodal Sheet Music Dataset (MSMD)](https://github.com/CPJKU/msmd). We study the effectiveness of using three main recurrent neural networks--Simple Recurrrent Network (SRN), Long Short-Term Memory network (LSTM), and Gated Recurrent Unit network (GRU)--for the task of score following, which is critial to the application of automatic page turning. The networks take in a sheet music and a window of audio excerpt at each time step, and outputs an esimated position in the sheet score. We find that LSTM performs the best out of the three RNN architectures, and a penalty preventing big jumps in the model's predicted positions improves the model's prediction. We also find that running models on longer songs leads to worse performance, which suggests that additional constraints are needed to guide RNNs through long sequential data for score following.
 
-Check out our report on the progress of work we did thus far.
+Check out our [report](../rl_score_following_game/Report.pdf) on the progress of work we did thus far.
